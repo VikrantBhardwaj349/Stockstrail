@@ -1,14 +1,14 @@
 import Layout from "../components/layout/Layout";
 
 const StockstrailLogoBW = () => (
-  <div className="flex items-center gap-4">
+  <div className="flex items-center gap-8">
     <svg
-      width="96"
-      height="104"
+      width="192"
+      height="208"
       viewBox="0 0 32 35"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-24 h-24"
+      className="w-48 h-48"
     >
       <rect x="3.74097" y="16.0264" width="20.8942" height="3.71985" fill="#ffffff" />
       <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" fill="#ffffff" />
@@ -17,8 +17,8 @@ const StockstrailLogoBW = () => (
       <path d="M11.0196 34.4984C10.6044 34.5951 10.2318 34.2225 10.3286 33.8073L11.8087 27.4536C11.9112 27.0139 12.4569 26.858 12.7761 27.1773L17.6496 32.0508C17.9688 32.37 17.8129 32.9157 17.3733 33.0182L11.0196 34.4984Z" fill="#ffffff" />
     </svg>
     <div className="flex items-baseline">
-      <span className="text-white font-product-sans text-5xl font-normal">Stocks</span>
-      <span className="text-white font-product-sans text-5xl font-normal">trail</span>
+      <span className="text-white font-product-sans text-7xl font-normal">Stocks</span>
+      <span className="text-white font-product-sans text-7xl font-normal">trail</span>
     </div>
   </div>
 );
@@ -26,14 +26,7 @@ const StockstrailLogoBW = () => (
 const Contact = () => {
   return (
     <Layout>
-      {/* Centered monochrome brand mark */}
-      <section className="px-4 sm:px-6 lg:px-8 pt-32 pb-10">
-        <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <StockstrailLogoBW />
-        </div>
-      </section>
-
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-4 pb-20">
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <div className="space-y-6 text-white/90">
             <div>
@@ -52,10 +45,8 @@ const Contact = () => {
           </div>
 
           <div className="col-span-2 flex flex-col items-center text-center">
-            <div className="w-40 h-40 rounded-xl bg-white/10 flex items-center justify-center mb-6">
-              <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 8L12 4L18 8M6 16L12 20L18 16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className="mb-6">
+              <StockstrailLogoBW />
             </div>
             <div>
               <h3 className="text-white/80">Get in touch</h3>
