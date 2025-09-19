@@ -58,6 +58,26 @@ const StockstrailLogo = () => (
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesCloseTimer = (typeof window !== 'undefined') ? (window as any).servicesCloseTimer as number | undefined : undefined;
+  const clearServicesTimer = () => {
+    if (typeof window !== 'undefined' && (window as any).servicesCloseTimer) {
+      clearTimeout((window as any).servicesCloseTimer);
+      (window as any).servicesCloseTimer = undefined;
+    }
+  };
+  const openServices = () => {
+    clearServicesTimer();
+    setIsServicesOpen(true);
+  };
+  const closeServicesWithDelay = (delay = 200) => {
+    clearServicesTimer();
+    if (typeof window !== 'undefined') {
+      (window as any).servicesCloseTimer = window.setTimeout(() => {
+        setIsServicesOpen(false);
+        (window as any).servicesCloseTimer = undefined;
+      }, delay);
+    }
+  };
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -90,20 +110,22 @@ const Header = () => {
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.hasDropdown ? (
-                    <div className="relative">
+                    <div
+                      className="relative"
+                      onMouseEnter={openServices}
+                      onMouseLeave={() => closeServicesWithDelay(250)}
+                    >
                       <button
                         className="flex items-center gap-2 text-white hover:text-stockstrail-green-light transition-colors font-work-sans font-medium"
-                        onMouseEnter={() => setIsServicesOpen(true)}
-                        onMouseLeave={() => setIsServicesOpen(false)}
                       >
                         {item.name}
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {isServicesOpen && (
                         <div 
-                          className="absolute top-full left-0 mt-2 w-48 bg-stockstrail-bg/95 backdrop-blur-lg border border-white/10 rounded-lg py-2 shadow-lg"
-                          onMouseEnter={() => setIsServicesOpen(true)}
-                          onMouseLeave={() => setIsServicesOpen(false)}
+                          className="absolute top-full left-0 mt-2 w-56 bg-stockstrail-bg/95 backdrop-blur-lg border border-white/10 rounded-lg py-2 shadow-lg"
+                          onMouseEnter={openServices}
+                          onMouseLeave={() => closeServicesWithDelay(250)}
                         >
                           {item.dropdownItems?.map((dropdownItem) => (
                             <a

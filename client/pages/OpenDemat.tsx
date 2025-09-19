@@ -1,22 +1,54 @@
 import Layout from "../components/layout/Layout";
 
 const brokers = [
-  { name: "Angelone", key: "angelone", href: "#", highlight: true },
-  { name: "Aliceblue", key: "aliceblue", href: "#" },
-  { name: "HDFC SKY", key: "hdfc-sky", href: "#" },
-  { name: "ZERODHA", key: "zerodha", href: "#" },
+  {
+    name: "Angel One",
+    key: "angelone",
+    href: "https://www.angelone.in/open-demat-account",
+    logoSrc: "/logos/angelone.webp",
+    highlight: true,
+  },
+  {
+    name: "Alice Blue",
+    key: "aliceblue",
+    href: "https://aliceblueonline.com/open-an-account/",
+    logoSrc: "/logos/aliceblue.webp",
+  },
+  {
+    name: "HDFC SKY",
+    key: "hdfc-sky",
+    href: "https://www.hdfcsky.com/open-demat-account",
+    logoSrc: "/logos/hdfcsky.webp",
+  },
+  {
+    name: "Zerodha",
+    key: "zerodha",
+    href: "https://zerodha.com/open-account",
+    logoSrc: "/logos/zerodha.png",
+  },
 ];
 
-const Row = ({ name, href, highlight = false }: { name: string; href: string; highlight?: boolean }) => (
+const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: string; logoSrc?: string; highlight?: boolean }) => (
   <a
     href={href}
-    className="group block rounded-[48px] border border-white/10 bg-white/[0.05] px-5 sm:px-7 py-4 sm:py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.07] transition-colors"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group block rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl px-5 sm:px-7 py-4 sm:py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.14] transition-colors"
     aria-label={`Open account with ${name}`}
   >
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4 sm:gap-6">
-        <div className="h-10 sm:h-12 px-4 sm:px-5 rounded-full bg-white/10 flex items-center text-white/90 text-sm sm:text-base tracking-wide">
-          {name}
+        <div className="h-14 sm:h-16 w-48 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+          {logoSrc ? (
+            <img
+              src={logoSrc}
+              alt={`${name} logo`}
+              className="h-full w-auto max-w-full object-contain px-2"
+            />
+          ) : null}
+          {!logoSrc && (
+            <span className="text-white text-sm sm:text-base font-medium">{name}</span>
+          )}
         </div>
         <div className="text-white text-lg sm:text-xl font-medium">{name}</div>
       </div>
@@ -50,7 +82,7 @@ const OpenDemat = () => {
 
         <div className="max-w-4xl mx-auto space-y-6">
           {brokers.map((b) => (
-            <Row key={b.key} name={b.name} href={b.href} highlight={Boolean(b.highlight)} />
+            <Row key={b.key} name={b.name} href={b.href} logoSrc={(b as any).logoSrc} highlight={Boolean((b as any).highlight)} />
           ))}
         </div>
       </section>

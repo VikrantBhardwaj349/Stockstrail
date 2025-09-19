@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="300" viewBox="0 0 420 300" fill="none">
+  <defs>
+    <linearGradient id="gins" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00FF97"/>
+      <stop offset="100%" stop-color="#007D42"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="300" rx="16" fill="rgba(0, 255, 151, 0.06)"/>
+  <path d="M210 70 C260 70 310 95 310 145 C310 210 250 240 210 255 C170 240 110 210 110 145 C110 95 160 70 210 70 Z" fill="#0F1A15" stroke="#1F3C2E"/>
+  <path d="M210 90 C245 90 280 105 280 140 C280 190 235 210 210 220 C185 210 140 190 140 140 C140 105 175 90 210 90 Z" fill="#13271F"/>
+  <path d="M180 150 l25 25 l40 -45" stroke="url(#gins)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="24" y="48" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">Insurance</text>
+</svg>
+

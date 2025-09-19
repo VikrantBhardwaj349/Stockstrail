@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="300" viewBox="0 0 420 300" fill="none">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00FF97"/>
+      <stop offset="100%" stop-color="#007D42"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0b1f16" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#00140b" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <rect width="420" height="300" rx="16" fill="url(#bg)"/>
+  <g opacity="0.25">
+    <circle cx="90" cy="210" r="60" fill="#00FF97"/>
+    <circle cx="190" cy="150" r="70" fill="#4BE09F"/>
+    <circle cx="290" cy="190" r="55" fill="#2AC782"/>
+    <circle cx="340" cy="120" r="45" fill="#12B56E"/>
+  </g>
+  <path d="M60 230 L120 160 L170 190 L230 120 L290 170 L350 110" stroke="url(#g1)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="60" cy="230" r="5" fill="#00FF97"/>
+  <circle cx="120" cy="160" r="5" fill="#00FF97"/>
+  <circle cx="170" cy="190" r="5" fill="#00FF97"/>
+  <circle cx="230" cy="120" r="5" fill="#00FF97"/>
+  <circle cx="290" cy="170" r="5" fill="#00FF97"/>
+  <circle cx="350" cy="110" r="5" fill="#00FF97"/>
+  <text x="24" y="48" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600">Mutual Funds</text>
+</svg>
+

@@ -1,5 +1,4 @@
 import Layout from "../components/layout/Layout";
-import placeholder from "../../public/placeholder.svg";
 
 const SectionBlock = ({
   id,
@@ -8,6 +7,8 @@ const SectionBlock = ({
   benefits,
   cta,
   reverse = false,
+  imageSrc,
+  imageAlt,
 }: {
   id?: string;
   title: string;
@@ -15,13 +16,15 @@ const SectionBlock = ({
   benefits: string[];
   cta: string;
   reverse?: boolean;
+  imageSrc: string;
+  imageAlt: string;
 }) => {
   return (
     <div id={id} className="grid grid-cols-1 gap-10 items-start">
       {/* Image on top */}
       <div className="justify-self-center">
         <div className="w-[420px] h-[300px] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5">
-          <img src={placeholder} alt="service" className="w-full h-full object-cover" />
+          <img src={imageSrc} alt={imageAlt} className="w-full h-full object-contain p-6" />
         </div>
       </div>
 
@@ -103,6 +106,8 @@ const Services = () => {
               'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
             ]}
             cta="OPEN DEMAT ACCOUNT"
+            imageSrc="/services/mutualfunds.svg"
+            imageAlt="Mutual Funds"
           />
 
           <SectionBlock
@@ -116,6 +121,8 @@ const Services = () => {
               'Find a wide range of event equipment and products, from furniture to décor to catering',
             ]}
             cta="OPEN FIXED DEPOSIT"
+            imageSrc="/services/fd.svg"
+            imageAlt="Fixed Deposit"
           />
 
           <SectionBlock
@@ -129,6 +136,8 @@ const Services = () => {
               'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
             ]}
             cta="APPLY INSURANCE"
+            imageSrc="/services/insurance.svg"
+            imageAlt="Insurance"
           />
 
           <section className="mt-20">
