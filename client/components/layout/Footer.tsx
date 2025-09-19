@@ -74,6 +74,12 @@ const FooterSection = ({
 );
 
 const Footer = () => {
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-black/75 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -147,9 +153,14 @@ const Footer = () => {
 
         {/* Social Media Icons */}
         <div className="flex justify-center gap-6 mb-12">
-          <div className="w-[70px] h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] transition-colors">
+          <button
+            type="button"
+            aria-label="Back to top"
+            onClick={scrollToTop}
+            className="w-[70px] h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] transition-colors"
+          >
             <ArrowRight className="w-8 h-8 text-white rotate-[-90deg]" />
-          </div>
+          </button>
         </div>
 
         {/* Social Media Links */}
