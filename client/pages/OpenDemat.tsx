@@ -5,20 +5,20 @@ const brokers = [
     name: "Angel One",
     key: "angelone",
     href: "https://www.angelone.in/open-demat-account",
-    logoSrc: "/logos/angelone.webp",
+    logoSrc: "/logos/angelone.png",
     highlight: true,
   },
   {
     name: "Alice Blue",
     key: "aliceblue",
     href: "https://aliceblueonline.com/open-an-account/",
-    logoSrc: "/logos/aliceblue.webp",
+    logoSrc: "/logos/aliceblue.png",
   },
   {
     name: "HDFC SKY",
     key: "hdfc-sky",
     href: "https://www.hdfcsky.com/open-demat-account",
-    logoSrc: "/logos/hdfcsky.webp",
+    logoSrc: "/logos/hdfcsky.png",
   },
   {
     name: "Zerodha",
@@ -33,35 +33,35 @@ const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: s
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group block rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl px-5 sm:px-7 py-4 sm:py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.14] transition-colors"
+    className="group block rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl px-4 sm:px-7 py-3 sm:py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.14] transition-colors"
     aria-label={`Open account with ${name}`}
   >
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4 sm:gap-6">
-        <div className="h-14 sm:h-16 w-48 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+        <div className="h-12 sm:h-16 w-36 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
           {logoSrc ? (
             <img
               src={logoSrc}
               alt={`${name} logo`}
-              className="h-full w-auto max-w-full object-contain px-2"
+              className="h-full w-auto max-w-full object-contain px-1 sm:px-2"
             />
           ) : null}
           {!logoSrc && (
             <span className="text-white text-sm sm:text-base font-medium">{name}</span>
           )}
         </div>
-        <div className="text-white text-lg sm:text-xl font-medium">{name}</div>
+        <div className="text-white text-base sm:text-xl font-medium">{name}</div>
       </div>
       <div
         className={
-          `inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/10 shadow-md transition-colors ${
+          `inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 shadow-md transition-colors ${
             highlight
               ? 'bg-[radial-gradient(ellipse_at_center,_#00FF97_0%,_#007D42_100%)]'
               : 'bg-white/10 group-hover:bg-[radial-gradient(ellipse_at_center,_#00FF97_0%,_#007D42_100%)]'
           }`
         }
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[18px] sm:h-[18px]">
           <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>

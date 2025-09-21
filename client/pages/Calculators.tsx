@@ -17,22 +17,22 @@ const Donut = ({ invested, returns }: { invested: number; returns: number }) => 
   const total = Math.max(1, invested + returns);
   const pct = (returns / total) * 100;
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-4 sm:gap-6">
       <div
-        className="relative w-64 h-64 rounded-full"
+        className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full"
         style={{
           background: `conic-gradient(#00FF97 ${pct}%, rgba(255,255,255,0.12) 0)`
         }}
       >
-        <div className="absolute inset-10 rounded-full bg-[#0A1E1A]" />
+        <div className="absolute inset-8 sm:inset-10 rounded-full bg-[#0A1E1A]" />
       </div>
-      <div className="flex items-center gap-6 text-sm text-white/80">
+      <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm text-white/80">
         <div className="flex items-center gap-2">
-          <span className="inline-block w-3 h-3 rounded-full bg-[#00FF97]" />
+          <span className="inline-block w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#00FF97]" />
           <span>EST. RETURN</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="inline-block w-3 h-3 rounded-full bg-white/20" />
+          <span className="inline-block w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/20" />
           <span>INVESTED AMOUNT</span>
         </div>
       </div>
@@ -146,8 +146,8 @@ const Calculators = () => {
                   </div>
                 </div>
 
-                <a href="#" className="inline-flex items-center gap-4 px-6 py-3 bg-transparent border-2 border-white/20 rounded-full text-white w-fit hover:border-[#00FF97] hover:text-[#00FF97] transition-colors">
-                  <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full"></div>
+                <a href="#" className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white w-fit hover:border-[#00FF97] hover:text-[#00FF97] transition-colors text-sm sm:text-base">
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full"></div>
                   INVEST NOW
                 </a>
               </div>

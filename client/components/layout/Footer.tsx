@@ -96,25 +96,25 @@ const Footer = () => {
               <p className="text-white font-montserrat text-base">
                 +49 89 69 444 444
               </p>
-              <div className="flex items-center gap-4 cursor-pointer group">
+              <a href="/contact" className="flex items-center gap-4 cursor-pointer group">
                 <span className="text-white font-montserrat text-base">
                   Get in touch with us
                 </span>
                 <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-              </div>
+              </a>
             </div>
           </FooterSection>
 
           {/* Important Link */}
           <FooterSection title="Important Link">
             <div className="space-y-4">
-              <a href="#services" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
+              <a href="/services" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
                 Services
               </a>
               <a href="#blog" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
                 Blog
               </a>
-              <a href="#calculators" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
+              <a href="/calculators" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
                 Calculators
               </a>
             </div>

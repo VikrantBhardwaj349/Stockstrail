@@ -1,14 +1,14 @@
 import Layout from "../components/layout/Layout";
 
 const StockstrailLogoBW = () => (
-  <div className="flex items-center gap-8">
+  <div className="flex items-center gap-4 sm:gap-8">
     <svg
       width="192"
       height="208"
       viewBox="0 0 32 35"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-48 h-48"
+      className="w-24 h-24 sm:w-48 sm:h-48"
     >
       <rect x="3.74097" y="16.0264" width="20.8942" height="3.71985" fill="#ffffff" />
       <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" fill="#ffffff" />
@@ -17,8 +17,8 @@ const StockstrailLogoBW = () => (
       <path d="M11.0196 34.4984C10.6044 34.5951 10.2318 34.2225 10.3286 33.8073L11.8087 27.4536C11.9112 27.0139 12.4569 26.858 12.7761 27.1773L17.6496 32.0508C17.9688 32.37 17.8129 32.9157 17.3733 33.0182L11.0196 34.4984Z" fill="#ffffff" />
     </svg>
     <div className="flex items-baseline">
-      <span className="text-white font-product-sans text-7xl font-normal">Stocks</span>
-      <span className="text-white font-product-sans text-7xl font-normal">trail</span>
+      <span className="text-white font-product-sans text-4xl sm:text-7xl font-normal">Stocks</span>
+      <span className="text-white font-product-sans text-4xl sm:text-7xl font-normal">trail</span>
     </div>
   </div>
 );
@@ -35,8 +35,13 @@ const Contact = () => {
             </div>
             <div>
               <h2 className="text-white text-sm uppercase tracking-widest mb-2">Call Us</h2>
-              <p>+91 97799-94858</p>
-              <p>+91 97363-04663</p>
+              <p><a href="tel:+919779994858" className="text-white hover:text-stockstrail-green-light transition-colors">+91 97799-94858</a></p>
+              <p><a href="tel:+919736304663" className="text-white hover:text-stockstrail-green-light transition-colors">+91 97363-04663</a></p>
+            </div>
+            <div>
+              <h2 className="text-white text-sm uppercase tracking-widest mb-2">WhatsApp</h2>
+              <p><a href="https://wa.me/919779994858" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light transition-colors">+91 97799-94858</a></p>
+              <p><a href="https://wa.me/919736304663" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light transition-colors">+91 97363-04663</a></p>
             </div>
             <div>
               <h2 className="text-white text-sm uppercase tracking-widest mb-2">Email</h2>
