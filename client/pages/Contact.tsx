@@ -36,87 +36,178 @@ const Contact = () => {
         <div className="absolute top-1/3 right-5 w-4 h-4 bg-white/10 rounded-full animate-pulse"></div>
         
         <div className="max-w-7xl mx-auto relative">
-          {/* Top Left - Address and Email */}
-          <div className="absolute top-0 left-0 space-y-6 text-white/90 max-w-sm">
-            <div className="group">
-              <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Address</h2>
-              <a 
-                href="https://maps.google.com/maps?q=Near+Punjab+And+Sind+Bank,+V.P.O.+Chintpurni+Teh:Amb,+Distt.-+Una,+Himachal+Pradesh+177110" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 cursor-pointer block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-              >
-                Near Punjab And Sind Bank ,<br/> V.P.O. Chintpurni Teh:Amb ,<br/> Distt.- Una , Himachal Pradesh (177110)
-              </a>
-            </div>
-            <div className="group">
-              <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Email</h2>
-              <a 
-                className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]" 
-                href="mailto:stockstrail@gmail.com"
-              >
-                stockstrail@gmail.com
-              </a>
-            </div>
-          </div>
-
-          {/* Center - Logo and Content */}
-          <div className="flex flex-col items-center text-center min-h-[400px] justify-center group">
-            <div className="mb-6 hover:scale-105 transition-transform duration-500">
-              <StockstrailLogoBW />
-            </div>
-            <div className="group-hover:scale-105 transition-transform duration-300">
-              <h3 className="text-white/80 text-xl mb-4 group-hover:text-stockstrail-green-light transition-colors duration-300">Get in touch</h3>
-              <p className="text-white/60 group-hover:text-white/80 transition-colors duration-300">We welcome your inquiries by phone or e-mail</p>
-            </div>
-          </div>
-
-          {/* Bottom Right - Call Us and WhatsApp */}
-          <div className="absolute bottom-0 right-0 space-y-6 text-white/90 max-w-sm">
-            <div className="group">
-              <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300 text-left">Call Us</h2>
-              <div className="space-y-2 text-right">
-                <p>
-                  <a 
-                    href="tel:+919779994858" 
-                    className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-                  >
-                    +91 97799-94858
-                  </a>
-                </p>
-                <p>
-                  <a 
-                    href="tel:+919736304663" 
-                    className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-                  >
-                    +91 97363-04663
-                  </a>
-                </p>
+          {/* Mobile Layout - Stacked vertically */}
+          <div className="lg:hidden space-y-12">
+            {/* Address and Email */}
+            <div className="space-y-6 text-white/90">
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Address</h2>
+                <a 
+                  href="https://maps.google.com/maps?q=Near+Punjab+And+Sind+Bank,+V.P.O.+Chintpurni+Teh:Amb,+Distt.-+Una,+Himachal+Pradesh+177110" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 cursor-pointer block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                >
+                  Near Punjab And Sind Bank ,<br/> V.P.O. Chintpurni Teh:Amb ,<br/> Distt.- Una , Himachal Pradesh (177110)
+                </a>
+              </div>
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Email</h2>
+                <a 
+                  className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]" 
+                  href="mailto:stockstrail@gmail.com"
+                >
+                  stockstrail@gmail.com
+                </a>
               </div>
             </div>
-            <div className="group">
-              <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300 text-left">WhatsApp</h2>
-              <div className="space-y-2 text-right">
-                <p>
-                  <a 
-                    href="https://wa.me/919779994858" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-                  >
-                    +91 97799-94858
-                  </a>
-                </p>
-                <p>
-                  <a 
-                    href="https://wa.me/919736304663" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-                  >
-                    +91 97363-04663
-                  </a>
-                </p>
+
+            {/* Logo and Content - Center */}
+            <div className="flex flex-col items-center text-center group">
+              <div className="mb-6 hover:scale-105 transition-transform duration-500">
+                <StockstrailLogoBW />
+              </div>
+              <div className="group-hover:scale-105 transition-transform duration-300">
+                <h3 className="text-white/80 text-xl mb-4 group-hover:text-stockstrail-green-light transition-colors duration-300">Get in touch</h3>
+                <p className="text-white/60 group-hover:text-white/80 transition-colors duration-300">We welcome your inquiries by phone or e-mail</p>
+              </div>
+            </div>
+
+            {/* Call Us and WhatsApp */}
+            <div className="space-y-6 text-white/90">
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Call Us</h2>
+                <div className="space-y-2">
+                  <p>
+                    <a 
+                      href="tel:+919779994858" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97799-94858
+                    </a>
+                  </p>
+                  <p>
+                    <a 
+                      href="tel:+919736304663" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97363-04663
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">WhatsApp</h2>
+                <div className="space-y-2">
+                  <p>
+                    <a 
+                      href="https://wa.me/919779994858" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97799-94858
+                    </a>
+                  </p>
+                  <p>
+                    <a 
+                      href="https://wa.me/919736304663" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97363-04663
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Layout - Absolute positioning */}
+          <div className="hidden lg:block">
+            {/* Top Left - Address and Email */}
+            <div className="absolute top-0 left-0 space-y-6 text-white/90 max-w-sm">
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Address</h2>
+                <a 
+                  href="https://maps.google.com/maps?q=Near+Punjab+And+Sind+Bank,+V.P.O.+Chintpurni+Teh:Amb,+Distt.-+Una,+Himachal+Pradesh+177110" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 cursor-pointer block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                >
+                  Near Punjab And Sind Bank ,<br/> V.P.O. Chintpurni Teh:Amb ,<br/> Distt.- Una , Himachal Pradesh (177110)
+                </a>
+              </div>
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Email</h2>
+                <a 
+                  className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]" 
+                  href="mailto:stockstrail@gmail.com"
+                >
+                  stockstrail@gmail.com
+                </a>
+              </div>
+            </div>
+
+            {/* Center - Logo and Content */}
+            <div className="flex flex-col items-center text-center min-h-[400px] justify-center group">
+              <div className="mb-6 hover:scale-105 transition-transform duration-500">
+                <StockstrailLogoBW />
+              </div>
+              <div className="group-hover:scale-105 transition-transform duration-300">
+                <h3 className="text-white/80 text-xl mb-4 group-hover:text-stockstrail-green-light transition-colors duration-300">Get in touch</h3>
+                <p className="text-white/60 group-hover:text-white/80 transition-colors duration-300">We welcome your inquiries by phone or e-mail</p>
+              </div>
+            </div>
+
+            {/* Bottom Right - Call Us and WhatsApp */}
+            <div className="absolute bottom-0 right-0 space-y-6 text-white/90 max-w-sm">
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300 text-left">Call Us</h2>
+                <div className="space-y-2 text-right">
+                  <p>
+                    <a 
+                      href="tel:+919779994858" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97799-94858
+                    </a>
+                  </p>
+                  <p>
+                    <a 
+                      href="tel:+919736304663" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97363-04663
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300 text-left">WhatsApp</h2>
+                <div className="space-y-2 text-right">
+                  <p>
+                    <a 
+                      href="https://wa.me/919779994858" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97799-94858
+                    </a>
+                  </p>
+                  <p>
+                    <a 
+                      href="https://wa.me/919736304663" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                    >
+                      +91 97363-04663
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
