@@ -143,13 +143,16 @@
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(-110%);
     }
   }
 
 .animate-scroll {
-  animation: scroll 15s linear infinite;
+  animation: scroll 20s linear infinite;
   width: 200%; /* Ensure full width for seamless scrolling */
+  will-change: transform; /* Optimize for smooth animation */
+  display: flex;
+  flex-shrink: 0;
 }
 
 /* Fade in animation for Why Choose section */
@@ -167,5 +170,163 @@
 .animate-fade-in {
   animation: fade-in 0.6s ease-out forwards;
   animation-delay: var(--animation-delay, 0ms);
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 151, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 151, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Bounce animation for logos */
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 3s ease-in-out infinite;
+}
+
+/* Slide in from top animation */
+@keyframes slide-in-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-from-top {
+  animation: slide-in-from-top 0.3s ease-out;
+}
+
+/* Grid movement animation */
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Advanced text reveal animation */
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-text-reveal {
+  animation: text-reveal 0.6s ease-out forwards;
+}
+
+/* Floating animation for particles */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glow pulse animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 151, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 151, 0.6), 0 0 60px rgba(0, 255, 151, 0.3);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Magnetic hover effect */
+@keyframes magnetic-pull {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+  }
+}
+
+.animate-magnetic {
+  animation: magnetic-pull 0.3s ease-out;
+}
+
+/* Advanced scale animation */
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+/* Rotation animation */
+@keyframes rotate-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+/* Advanced shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 151, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
 }
 }

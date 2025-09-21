@@ -26,6 +26,18 @@ const brokers = [
     href: "https://zerodha.com/open-account",
     logoSrc: "/logos/zerodha.png",
   },
+  {
+    name: "AssetPlus",
+    key: "assetplus",
+    href: "https://www.partners.assetplus.in/",
+    logoSrc: "/logos/assetplus.png",
+  },
+  {
+    name: "PB Partners",
+    key: "pbpartners",
+    href: "https://www.pbpartners.com/open-demat-account",
+    logoSrc: "/logos/pbpartners.png",
+  },
 ];
 
 const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: string; logoSrc?: string; highlight?: boolean }) => (
@@ -33,35 +45,35 @@ const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: s
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="group block rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl px-4 sm:px-7 py-3 sm:py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.14] transition-colors"
+    className="group block rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl px-4 sm:px-7 py-3 sm:py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] hover:bg-white/[0.14] hover:border-stockstrail-green-light/50 hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] hover:scale-[1.02] transition-all duration-300"
     aria-label={`Open account with ${name}`}
   >
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4 sm:gap-6">
-        <div className="h-12 sm:h-16 w-36 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+        <div className="h-12 sm:h-16 w-36 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden group-hover:bg-white/10 group-hover:border-stockstrail-green-light/30 transition-all duration-300">
           {logoSrc ? (
             <img
               src={logoSrc}
               alt={`${name} logo`}
-              className="h-full w-auto max-w-full object-contain px-1 sm:px-2"
+              className="h-full w-auto max-w-full object-contain px-1 sm:px-2 group-hover:scale-105 transition-transform duration-300"
             />
           ) : null}
           {!logoSrc && (
-            <span className="text-white text-sm sm:text-base font-medium">{name}</span>
+            <span className="text-white text-sm sm:text-base font-medium group-hover:text-stockstrail-green-light transition-colors duration-300">{name}</span>
           )}
         </div>
-        <div className="text-white text-base sm:text-xl font-medium">{name}</div>
+        <div className="text-white text-base sm:text-xl font-medium group-hover:text-stockstrail-green-light transition-colors duration-300">{name}</div>
       </div>
       <div
         className={
-          `inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 shadow-md transition-colors ${
+          `inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/10 shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(0,255,151,0.4)] ${
             highlight
-              ? 'bg-[radial-gradient(ellipse_at_center,_#00FF97_0%,_#007D42_100%)]'
+              ? 'bg-[radial-gradient(ellipse_at_center,_#00FF97_0%,_#007D42_100%)] group-hover:shadow-[0_0_25px_rgba(0,255,151,0.6)]'
               : 'bg-white/10 group-hover:bg-[radial-gradient(ellipse_at_center,_#00FF97_0%,_#007D42_100%)]'
           }`
         }
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[18px] sm:h-[18px]">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[18px] sm:h-[18px] group-hover:scale-110 transition-transform duration-300">
           <path d="M7 17L17 7M17 7H9M17 7V15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>

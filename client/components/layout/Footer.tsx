@@ -96,11 +96,11 @@ const Footer = () => {
               <p className="text-white font-montserrat text-base">
                 +49 89 69 444 444
               </p>
-              <a href="/contact" className="flex items-center gap-4 cursor-pointer group">
-                <span className="text-white font-montserrat text-base">
+              <a href="/contact" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
+                <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
                   Get in touch with us
                 </span>
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:text-stockstrail-green-light transition-all duration-300" />
               </a>
             </div>
           </FooterSection>
@@ -108,13 +108,13 @@ const Footer = () => {
           {/* Important Link */}
           <FooterSection title="Important Link">
             <div className="space-y-4">
-              <a href="/services" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
+              <a href="/services" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">
                 Services
               </a>
-              <a href="#blog" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
+              <a href="#blog" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">
                 Blog
               </a>
-              <a href="/calculators" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light transition-colors">
+              <a href="/calculators" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">
                 Calculators
               </a>
             </div>
@@ -126,12 +126,12 @@ const Footer = () => {
               <p className="text-white font-montserrat text-base leading-relaxed max-w-[262px]">
                 Code of Conduct
               </p>
-              <div className="flex items-center gap-4 cursor-pointer group">
-                <span className="text-white font-montserrat text-base">
+              <a href="/CoC/AMFI_code_of_conduct1.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
+                <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
                   Download now
                 </span>
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-              </div>
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:text-stockstrail-green-light transition-all duration-300" />
+              </a>
             </div>
           </FooterSection>
 
@@ -141,11 +141,11 @@ const Footer = () => {
               <p className="text-white font-montserrat text-base leading-relaxed max-w-[259px]">
                 Register now for free and secure many advantages!
               </p>
-              <div className="flex items-center gap-4 cursor-pointer group">
-                <span className="text-white font-montserrat text-base">
+              <div className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
+                <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
                   Join Now
                 </span>
-                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:text-stockstrail-green-light transition-all duration-300" />
               </div>
             </div>
           </FooterSection>
@@ -157,21 +157,21 @@ const Footer = () => {
             type="button"
             aria-label="Back to top"
             onClick={scrollToTop}
-            className="w-[70px] h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] transition-colors"
+            className="w-[70px] h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] hover:scale-110 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group"
           >
-            <ArrowRight className="w-8 h-8 text-white rotate-[-90deg]" />
+            <ArrowRight className="w-8 h-8 text-white rotate-[-90deg] group-hover:text-stockstrail-green-light transition-colors duration-300" />
           </button>
         </div>
 
         {/* Social Media Links */}
         <div className="flex justify-center gap-8 mb-12">
-          <a href="#" className="text-white hover:text-stockstrail-green-light transition-colors">
+          <a href="#" className="text-white hover:text-stockstrail-green-light hover:scale-125 hover:rotate-12 transition-all duration-300">
             <Facebook className="w-6 h-6" />
           </a>
-          <a href="#" className="text-white hover:text-stockstrail-green-light transition-colors">
+          <a href="#" className="text-white hover:text-stockstrail-green-light hover:scale-125 hover:rotate-12 transition-all duration-300">
             <Linkedin className="w-6 h-6" />
           </a>
-          <a href="#" className="text-white hover:text-stockstrail-green-light transition-colors">
+          <a href="#" className="text-white hover:text-stockstrail-green-light hover:scale-125 hover:rotate-12 transition-all duration-300">
             <Instagram className="w-6 h-6" />
           </a>
         </div>
@@ -191,7 +191,9 @@ const Footer = () => {
 
         {/* Logo at bottom */}
         <div className="flex justify-center mt-12">
-          <StockstrailLogo />
+          <div className="hover:scale-105 transition-transform duration-300">
+            <StockstrailLogo />
+          </div>
         </div>
       </div>
     </footer>

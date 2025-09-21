@@ -22,38 +22,38 @@ const SectionBlock = ({
   ctaLink?: string;
 }) => {
   return (
-    <div id={id} className="grid grid-cols-1 gap-10 items-start">
+    <div id={id} className="grid grid-cols-1 gap-10 items-start group">
       {/* Image on top */}
       <div className="justify-self-center">
-        <div className="w-full max-w-[420px] h-[200px] sm:h-[250px] md:h-[300px] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5">
-          <img src={imageSrc} alt={imageAlt} className="w-full h-full object-contain p-4 sm:p-6" />
+        <div className="w-full max-w-[420px] h-[200px] sm:h-[250px] md:h-[300px] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group-hover:border-stockstrail-green-light group-hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
+          <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         </div>
       </div>
 
       {/* Text below */}
       <div>
-        <h3 className="text-stockstrail-green-light text-lg tracking-wide font-semibold mb-3">
+        <h3 className="text-stockstrail-green-light text-lg tracking-wide font-semibold mb-3 group-hover:text-white transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-white/80 leading-relaxed mb-5 max-w-4xl">
+        <p className="text-white/80 leading-relaxed mb-5 max-w-4xl group-hover:text-white/90 transition-colors duration-300">
           {description}
         </p>
         <div className="mb-6">
-          <p className="text-white/80 font-semibold mb-2">Benefits:</p>
-          <ul className="space-y-2 text-white/80 list-disc pl-5">
+          <p className="text-white/80 font-semibold mb-2 group-hover:text-white transition-colors duration-300">Benefits:</p>
+          <ul className="space-y-2 text-white/80 list-disc pl-5 group-hover:text-white/90 transition-colors duration-300">
             {benefits.map((b, i) => (
-              <li key={i}>{b}</li>
+              <li key={i} className="group-hover:translate-x-1 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}>{b}</li>
             ))}
           </ul>
         </div>
         {ctaLink ? (
-          <a href={ctaLink} className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light transition-colors font-work-sans font-medium text-sm sm:text-base">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full"></div>
+          <a href={ctaLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 transition-all duration-300 font-work-sans font-medium text-sm sm:text-base group-hover:shadow-[0_0_20px_rgba(0,255,151,0.3)]">
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
             {cta}
           </a>
         ) : (
-          <button className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light transition-colors font-work-sans font-medium text-sm sm:text-base">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full"></div>
+          <button className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 transition-all duration-300 font-work-sans font-medium text-sm sm:text-base group-hover:shadow-[0_0_20px_rgba(0,255,151,0.3)]">
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
             {cta}
           </button>
         )}
@@ -116,7 +116,7 @@ const Services = () => {
             ]}
             cta="OPEN DEMAT ACCOUNT"
             ctaLink="/open-demat"
-            imageSrc="/services/mutualfunds.svg"
+            imageSrc="/services/mf.jpg"
             imageAlt="Mutual Funds"
           />
 
@@ -130,8 +130,9 @@ const Services = () => {
               'Support sustainable businesses and organizations',
               'Find a wide range of event equipment and products, from furniture to décor to catering',
             ]}
-            cta="OPEN FIXED DEPOSIT"
-            imageSrc="/services/fd.svg"
+            cta="APPLY FIXED DEPOSIT"
+            ctaLink="https://flow.assetplus.in/client_onboarding/?advisor=659a79c11af778e82872513a"
+            imageSrc="/services/fd.jpg"
             imageAlt="Fixed Deposit"
           />
 
@@ -146,14 +147,31 @@ const Services = () => {
               'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
             ]}
             cta="APPLY INSURANCE"
-            imageSrc="/services/insurance.svg"
+            ctaLink="https://www.pbpartners.com/v2/partner/vikrant-bhardwaj-una-K2g"
+            imageSrc="/services/insurance.jpg"
             imageAlt="Insurance"
+          />
+
+          <SectionBlock
+            id="loan"
+            title="Quick Approval, Flexible Terms | LOAN"
+            description="Get access to personal loans, home loans, and business loans with competitive interest rates and flexible repayment options. Our streamlined process ensures quick approval and minimal documentation."
+            benefits={[
+              'Quick loan approval with minimal documentation',
+              'Competitive interest rates and flexible terms',
+              'Multiple loan options including personal, home, and business loans',
+              'Dedicated relationship manager for personalized service',
+            ]}
+            cta="APPLY LOAN"
+            ctaLink="https://flow.assetplus.in/client_onboarding/?advisor=659a79c11af778e82872513a"
+            imageSrc="/services/loan.jpg"
+            imageAlt="Loan Services"
           />
 
           <section className="mt-20 overflow-hidden">
             <h3 className="text-center font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-8">OUR PARTNERS</h3>
             <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden">
-              <div className="flex animate-scroll">
+              <div className="animate-scroll">
                 {/* First set of logos */}
                 {[
                   { name: "AngelOne", logo: "/logos/angelone.png" },
@@ -163,11 +181,11 @@ const Services = () => {
                   { name: "AssetPlus", logo: "/logos/assetplus.png" },
                   { name: "PB Partners", logo: "/logos/pbpartners.png" },
                 ].map((partner) => (
-                  <div key={`first-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px]">
+                  <div key={`first-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px] group">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="h-16 sm:h-20 w-auto object-contain"
+                      className="h-16 sm:h-20 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
@@ -181,11 +199,11 @@ const Services = () => {
                   { name: "AssetPlus", logo: "/logos/assetplus.png" },
                   { name: "PB Partners", logo: "/logos/pbpartners.png" },
                 ].map((partner) => (
-                  <div key={`second-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px]">
+                  <div key={`second-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px] group">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="h-16 sm:h-20 w-auto object-contain"
+                      className="h-16 sm:h-20 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>

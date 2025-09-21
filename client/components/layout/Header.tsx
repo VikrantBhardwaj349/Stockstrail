@@ -87,8 +87,9 @@ const Header = () => {
       hasDropdown: true,
       dropdownItems: [
         { name: "Mutual Funds", href: "/services#mutual-funds" },
-        { name: "Demat Account", href: "/services#demat-account" },
+        { name: "Fixed Deposit", href: "/services#fd" },
         { name: "Insurance", href: "/services#insurance" },
+        { name: "Loan", href: "/services#loan" },
         { name: "Others", href: "/services#others" },
       ]
     },
@@ -102,13 +103,13 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="hover:opacity-80 transition-opacity">
+          <a href="/" className="hover:opacity-80 hover:scale-105 transition-all duration-300 group">
             <StockstrailLogo />
           </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <div className="flex items-center bg-white/5 backdrop-blur-[37.5px] px-14 py-4 rounded-[45px] space-x-16">
+            <div className="flex items-center bg-white/5 backdrop-blur-[37.5px] px-14 py-4 rounded-[45px] space-x-16 hover:bg-white/10 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-300">
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.hasDropdown ? (
@@ -118,14 +119,14 @@ const Header = () => {
                       onMouseLeave={() => closeServicesWithDelay(250)}
                     >
                       <button
-                        className="flex items-center gap-2 text-white hover:text-stockstrail-green-light transition-colors font-work-sans font-medium"
+                        className="flex items-center gap-2 text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 font-work-sans font-medium"
                       >
                         {item.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {isServicesOpen && (
                         <div 
-                          className="absolute top-full left-0 mt-2 w-56 bg-stockstrail-bg/95 backdrop-blur-lg border border-white/10 rounded-lg py-2 shadow-lg"
+                          className="absolute top-full left-0 mt-2 w-56 bg-stockstrail-bg/95 backdrop-blur-lg border border-white/10 rounded-lg py-2 shadow-lg animate-in slide-in-from-top-2 duration-200"
                           onMouseEnter={openServices}
                           onMouseLeave={() => closeServicesWithDelay(250)}
                         >
@@ -133,7 +134,7 @@ const Header = () => {
                             <a
                               key={dropdownItem.name}
                               href={dropdownItem.href}
-                              className="block px-4 py-2 text-white hover:text-stockstrail-green-light hover:bg-white/5 transition-colors"
+                              className="block px-4 py-2 text-white hover:text-stockstrail-green-light hover:bg-white/5 hover:translate-x-1 transition-all duration-300"
                             >
                               {dropdownItem.name}
                             </a>
@@ -144,7 +145,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.href}
-                      className="font-work-sans font-medium transition-colors text-white hover:text-stockstrail-green-light"
+                      className="font-work-sans font-medium transition-all duration-300 text-white hover:text-stockstrail-green-light hover:scale-105"
                     >
                       {item.name}
                     </a>
@@ -156,15 +157,15 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex">
-            <a href="/contact" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light transition-colors font-work-sans font-medium">
-              <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full"></div>
+            <a href="/contact" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 font-work-sans font-medium group">
+              <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
               Let's Talk
             </a>
           </div>
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2 text-white"
+            className="lg:hidden p-2 text-white hover:text-stockstrail-green-light hover:scale-110 transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -173,18 +174,18 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-white/10">
+          <div className="lg:hidden py-4 border-t border-white/10 animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <div key={item.name}>
                   {item.hasDropdown ? (
                     <div>
                       <button
-                        className="flex items-center justify-between w-full text-left py-2 text-white font-work-sans font-medium"
+                        className="flex items-center justify-between w-full text-left py-2 text-white font-work-sans font-medium hover:text-stockstrail-green-light transition-colors duration-300"
                         onClick={() => setIsServicesOpen(!isServicesOpen)}
                       >
                         {item.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {isServicesOpen && (
                         <div className="pl-4 space-y-2 mt-2">
@@ -192,7 +193,7 @@ const Header = () => {
                             <a
                               key={dropdownItem.name}
                               href={dropdownItem.href}
-                              className="block py-2 text-white/70 hover:text-stockstrail-green-light transition-colors"
+                              className="block py-2 text-white/70 hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
                               {dropdownItem.name}
@@ -204,7 +205,7 @@ const Header = () => {
                   ) : (
                     <a
                       href={item.href}
-                      className="block py-2 font-work-sans font-medium transition-colors text-white hover:text-stockstrail-green-light"
+                      className="block py-2 font-work-sans font-medium transition-all duration-300 text-white hover:text-stockstrail-green-light hover:translate-x-2"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {item.name}
@@ -212,8 +213,8 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              <a href="/contact" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white font-work-sans font-medium mt-4 w-fit">
-                <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full"></div>
+              <a href="/contact" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white font-work-sans font-medium mt-4 w-fit hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group">
+                <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                 Let's Talk
               </a>
             </div>
