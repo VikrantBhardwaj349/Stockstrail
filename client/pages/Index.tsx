@@ -71,7 +71,7 @@ const PartnerLogosSection = () => {
   ];
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-16 relative overflow-hidden">
       {/* Enhanced background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-1/4 w-4 h-4 bg-stockstrail-green-light/20 rounded-full animate-ping"></div>
@@ -86,26 +86,15 @@ const PartnerLogosSection = () => {
           </h3>
         </div>
         <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden hover:border-stockstrail-green-light/30 transition-colors duration-500">
-          <div className="animate-scroll">
-            {/* First set of logos */}
-            {partners.map((partner) => (
-              <div key={`first-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px] group">
+          <div className="partners-track animate-scroll">
+            {partners.concat(partners).map((partner, i) => (
+              <div key={`partner-${i}`} className="flex items-center justify-center px-4 sm:px-6 py-4 sm:py-4 min-w-[120px] sm:min-w-[200px] group">
                 <img
                   src={partner.logo}
                   alt={`${partner.name} logo`}
-                  className="h-16 sm:h-20 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
+                  className="h-20 sm:h-24 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
                   loading="lazy"
-                />
-              </div>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {partners.map((partner) => (
-              <div key={`second-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px] group">
-                <img
-                  src={partner.logo}
-                  alt={`${partner.name} logo`}
-                  className="h-16 sm:h-20 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
-                  loading="lazy"
+                  draggable={false}
                 />
               </div>
             ))}

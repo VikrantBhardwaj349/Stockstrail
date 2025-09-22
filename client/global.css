@@ -143,16 +143,26 @@
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-110%);
+      transform: translateX(-50.6%);
     }
   }
 
 .animate-scroll {
-  animation: scroll 20s linear infinite;
-  width: 200%; /* Ensure full width for seamless scrolling */
+  animation: scroll 25s linear infinite;
   will-change: transform; /* Optimize for smooth animation */
+  animation-fill-mode: both;
+}
+
+/* Pause marquee on hover */
+.partners-track:hover {
+  animation-play-state: paused;
+}
+
+.partners-track {
   display: flex;
-  flex-shrink: 0;
+  gap: 2rem;
+  width: fit-content;
+  animation-timing-function: linear;
 }
 
 /* Fade in animation for Why Choose section */

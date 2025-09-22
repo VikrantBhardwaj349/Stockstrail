@@ -171,8 +171,7 @@ const Services = () => {
           <section className="mt-20 overflow-hidden">
             <h3 className="text-center font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-8">OUR PARTNERS</h3>
             <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden">
-              <div className="animate-scroll">
-                {/* First set of logos */}
+              <div className="partners-track animate-scroll">
                 {[
                   { name: "AngelOne", logo: "/logos/angelone.png" },
                   { name: "Alice Blue", logo: "/logos/aliceblue.png" },
@@ -180,31 +179,21 @@ const Services = () => {
                   { name: "Zerodha", logo: "/logos/zerodha.png" },
                   { name: "AssetPlus", logo: "/logos/assetplus.png" },
                   { name: "PB Partners", logo: "/logos/pbpartners.png" },
-                ].map((partner) => (
-                  <div key={`first-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px] group">
-                    <img
-                      src={partner.logo}
-                      alt={`${partner.name} logo`}
-                      className="h-16 sm:h-20 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-                {/* Duplicate set for seamless loop */}
-                {[
+                ].concat([
                   { name: "AngelOne", logo: "/logos/angelone.png" },
                   { name: "Alice Blue", logo: "/logos/aliceblue.png" },
                   { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
                   { name: "Zerodha", logo: "/logos/zerodha.png" },
                   { name: "AssetPlus", logo: "/logos/assetplus.png" },
                   { name: "PB Partners", logo: "/logos/pbpartners.png" },
-                ].map((partner) => (
-                  <div key={`second-${partner.name}`} className="flex-shrink-0 flex items-center justify-center px-6 sm:px-12 py-6 sm:py-8 min-w-[120px] sm:min-w-[200px] group">
+                ]).map((partner, i) => (
+                  <div key={`partner-${i}`} className="flex items-center justify-center px-4 sm:px-6 py-4 sm:py-4 min-w-[120px] sm:min-w-[200px] group">
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="h-16 sm:h-20 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
+                      className="h-20 sm:h-24 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
                       loading="lazy"
+                      draggable={false}
                     />
                   </div>
                 ))}
