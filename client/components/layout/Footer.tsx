@@ -134,7 +134,7 @@ const Footer = () => {
               <p className="text-white font-montserrat text-base leading-relaxed max-w-[262px]">
                 Code of Conduct
               </p>
-              <a href="/CoC/RevisedCodeofConductforMutualFundDistributors-April2022.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
+              <a href="/CoC/revisedcoc.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
                 <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
                   Download now
                 </span>
