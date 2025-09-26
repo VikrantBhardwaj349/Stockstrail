@@ -87,15 +87,23 @@ const Footer = () => {
           {/* Our Service */}
           <FooterSection title="Our Service">
             <div className="space-y-4">
-              <p className="text-white font-montserrat text-base leading-relaxed max-w-[267px]">
-                Mon-Fri 7:00 a.m. to 10:00 p.m. & Sat. and Sun. 8:00 a.m. to 6:00 p.m.
+              <p className="text-white font-montserrat text-base leading-relaxed max-w-none">
+                Mon-Fri 7 a.m. to 10 p.m. Sat. and Sun. 8 a.m. to 6 p.m.
               </p>
               <p className="text-white font-montserrat text-base">
-                Financial advice Monday to Friday, 8 a.m. to 6 p.m
+                Financial advice Monday to Friday, 8 a.m. to 6 p.m.
               </p>
-              <p className="text-white font-montserrat text-base">
-                +49 89 69 444 444
-              </p>
+              <div className="flex flex-col gap-2">
+                <a href="tel:+919779994858" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300">
+                  +91 97799-94858
+                </a>
+                <a href="tel:+919736304663" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300">
+                  +91 97363-04663
+                </a>
+                <a href="mailto:stockstrail@gmail.com" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300">
+                  stockstrail@gmail.com
+                </a>
+              </div>
               <a href="/contact" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
                 <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
                   Get in touch with us
@@ -126,7 +134,7 @@ const Footer = () => {
               <p className="text-white font-montserrat text-base leading-relaxed max-w-[262px]">
                 Code of Conduct
               </p>
-              <a href="/CoC/AMFI_code_of_conduct1.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
+              <a href="/CoC/RevisedCodeofConductforMutualFundDistributors-April2022.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
                 <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
                   Download now
                 </span>
@@ -151,20 +159,18 @@ const Footer = () => {
           </FooterSection>
         </div>
 
-        {/* Social Media Icons */}
-        <div className="flex justify-center gap-6 mb-12">
-          <button
-            type="button"
-            aria-label="Back to top"
-            onClick={scrollToTop}
-            className="w-[70px] h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] hover:scale-110 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group"
-          >
-            <ArrowRight className="w-8 h-8 text-white rotate-[-90deg] group-hover:text-stockstrail-green-light transition-colors duration-300" />
-          </button>
-        </div>
+        {/* Back to top fixed button */}
+        <button
+          type="button"
+          aria-label="Back to top"
+          onClick={scrollToTop}
+          className="fixed right-6 bottom-6 z-40 w-[60px] h[60px] sm:w-[70px] sm:h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] hover:scale-110 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group"
+        >
+          <ArrowRight className="w-7 h-7 sm:w-8 sm:h-8 text-white rotate-[-90deg] group-hover:text-stockstrail-green-light transition-colors duration-300" />
+        </button>
 
         {/* Social Media Links */}
-        <div className="flex justify-center gap-8 mb-12">
+        <div className="flex justify-center gap-8 mb-12 mt-20">
           <a href="#" className="text-white hover:text-stockstrail-green-light hover:scale-125 hover:rotate-12 transition-all duration-300">
             <Facebook className="w-6 h-6" />
           </a>

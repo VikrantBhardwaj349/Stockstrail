@@ -12,6 +12,10 @@ import Services from "./pages/Services";
 import OpenDemat from "./pages/OpenDemat";
 import Calculators from "./pages/Calculators";
 import Contact from "./pages/Contact";
+import MutualFunds from "./pages/MutualFunds";
+import FixedDeposit from "./pages/FixedDeposit";
+import Insurance from "./pages/Insurance";
+import Loan from "./pages/Loan";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +28,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/mutual-funds" element={<MutualFunds />} />
+          <Route path="/services/fixed-deposit" element={<FixedDeposit />} />
+          <Route path="/services/insurance" element={<Insurance />} />
+          <Route path="/services/loan" element={<Loan />} />
           <Route path="/open-demat" element={<OpenDemat />} />
           <Route path="/calculators" element={<Calculators />} />
           <Route path="/contact" element={<Contact />} />

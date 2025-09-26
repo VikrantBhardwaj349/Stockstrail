@@ -47,7 +47,7 @@ const SectionBlock = ({
           </ul>
         </div>
         {ctaLink ? (
-          <a href={ctaLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 transition-all duration-300 font-work-sans font-medium text-sm sm:text-base group-hover:shadow-[0_0_20px_rgba(0,255,151,0.3)]">
+          <a href={ctaLink} className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 transition-all duration-300 font-work-sans font-medium text-sm sm:text-base group-hover:shadow-[0_0_20px_rgba(0,255,151,0.3)]">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
             {cta}
           </a>
@@ -114,8 +114,8 @@ const Services = () => {
               'Be confident that your suppliers are vetted and reliable',
               'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
             ]}
-            cta="OPEN DEMAT ACCOUNT"
-            ctaLink="/open-demat"
+            cta="APPLY MUTUAL FUNDS"
+            ctaLink="/services/mutual-funds"
             imageSrc="/services/mf.jpg"
             imageAlt="Mutual Funds"
           />
@@ -131,7 +131,7 @@ const Services = () => {
               'Find a wide range of event equipment and products, from furniture to décor to catering',
             ]}
             cta="APPLY FIXED DEPOSIT"
-            ctaLink="https://flow.assetplus.in/client_onboarding/?advisor=659a79c11af778e82872513a"
+            ctaLink="/services/fixed-deposit"
             imageSrc="/services/fd.jpg"
             imageAlt="Fixed Deposit"
           />
@@ -147,7 +147,7 @@ const Services = () => {
               'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
             ]}
             cta="APPLY INSURANCE"
-            ctaLink="https://www.pbpartners.com/v2/partner/vikrant-bhardwaj-una-K2g"
+            ctaLink="/services/insurance"
             imageSrc="/services/insurance.jpg"
             imageAlt="Insurance"
           />
@@ -163,7 +163,7 @@ const Services = () => {
               'Dedicated relationship manager for personalized service',
             ]}
             cta="APPLY LOAN"
-            ctaLink="https://flow.assetplus.in/client_onboarding/?advisor=659a79c11af778e82872513a"
+            ctaLink="/services/loan"
             imageSrc="/services/loan.jpg"
             imageAlt="Loan Services"
           />

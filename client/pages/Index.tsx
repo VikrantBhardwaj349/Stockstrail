@@ -136,11 +136,11 @@ const ServicesSection = () => {
   ];
 
   const getHref = (title: string) => {
-    if (title.includes("MUTUAL FUNDS")) return "/services#mutual-funds";
-    if (title.includes("FIXED DEPOSIT")) return "/services#fd";
-    if (title.includes("INSURANCE")) return "/services#insurance";
-    if (title.includes("LOAN")) return "/services#loan";
-    return "/services#others";
+    if (title.includes("MUTUAL FUNDS")) return "/services/mutual-funds";
+    if (title.includes("FIXED DEPOSIT")) return "/services/fixed-deposit";
+    if (title.includes("INSURANCE")) return "/services/insurance";
+    if (title.includes("LOAN")) return "/services/loan";
+    return "/services";
   };
 
   return (
@@ -176,7 +176,7 @@ const ServicesSection = () => {
                   </p>
                 </div>
                 
-                <a href={getHref(service.title)} className="w-16 h-16 sm:w-24 sm:h-24 bg-white/20 rounded-full flex items-center justify-center mt-4 sm:mt-0 sm:ml-8 flex-shrink-0 group-hover:bg-stockstrail-gradient group-hover:scale-110 transition-all duration-300 cursor-pointer" aria-label={`${service.title} link`}>
+                <a href={getHref(service.title)} target="_blank" rel="noopener noreferrer" className="w-16 h-16 sm:w-24 sm:h-24 bg-white/20 rounded-full flex items-center justify-center mt-4 sm:mt-0 sm:ml-8 flex-shrink-0 group-hover:bg-stockstrail-gradient group-hover:scale-110 transition-all duration-300 cursor-pointer" aria-label={`${service.title} link`}>
                   <svg width="24" height="24" className="sm:w-[35px] sm:h-[35px] group-hover:scale-110 transition-transform duration-300" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7.44141 28.6037L29.0414 7.00366M29.0414 7.00366H12.8414M29.0414 7.00366V23.2037" stroke="white" strokeWidth="2.16" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -378,17 +378,24 @@ const DisclaimerSection = () => {
         <div className="space-y-8 text-center">
           <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
             <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
-              <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">www.stockstrail.in is an online website of </span>
-              <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">Vikrant Bhardwaj </span>
-              <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">who is registered vide </span>
-              <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">ARN-284122</span>
-              <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500"> as a AMFI Registered Mutual Fund Distributor. The said website is intends to provide educative and informative details related to investments and also provide online transaction facility in Mutual Funds.</span>
+              <span className="text-white">www.stockstrail.in</span>
+              <span className="text-white"> is the official website of </span>
+              <span className="gradient-text inline-block">Vikrant Bhardwaj</span>
+              <span className="text-white">, who is registered under </span>
+              <span className="gradient-text inline-block">ARN-284122</span>
+              <span className="text-white"> as an AMFI Registered Mutual Fund Distributor. This website is intended to provide educational and informative content related to investments and also facilitates online transactions in Mutual Funds.</span>
             </p>
           </div>
-          
+
           <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
             <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
-              We do not charge any fees for these calculators and information, because we earn our commissions from the Mutual Fund companies. The website does not guarantee any returns or financial goal success by any means.
+              <span className="text-white">We do not charge any fees for the calculators or information provided on this website. Our earnings come in the form of commissions received from the respective Mutual Fund companies.</span>
+            </p>
+          </div>
+
+          <div className="animate-slide-in-from-top" style={{ animationDelay: '600ms' }}>
+            <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
+              <span className="text-white">Please note that investments in Mutual Funds are subject to market risks. The website does not guarantee any specific returns, financial outcomes, or achievement of investment goals.</span>
             </p>
           </div>
         </div>

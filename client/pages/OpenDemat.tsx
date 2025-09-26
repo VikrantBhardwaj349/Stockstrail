@@ -84,14 +84,54 @@ const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: s
 const OpenDemat = () => {
   return (
     <Layout>
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+      {/* Hero */}
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         <div className="absolute inset-0 -z-10">
           <div className="mx-auto max-w-5xl h-[80%] mt-10 rounded-[40px] bg-gradient-to-b from-white/5 to-white/0 blur-[60px]" />
         </div>
-        <div className="max-w-4xl mx-auto text-center mb-10">
-          <h1 className="font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text">OPEN DEMAT ACCOUNT</h1>
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-4">Your Gateway to Stock Market Investments</h1>
+          <p className="text-white/80 max-w-3xl mx-auto leading-relaxed">Trade, invest, and grow – all in one secure platform.</p>
         </div>
+      </section>
 
+      {/* Overview + Benefits */}
+      <section className="relative px-4 sm:px-6 lg:px-8 pb-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          {/* Visual */}
+          <div className="rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
+            <img src="/services/mf.jpg" alt="Investing" className="w-full h-[260px] sm:h-[340px] object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          {/* Copy */}
+          <div>
+            <h2 className="text-white text-2xl sm:text-3xl mb-3">Overview</h2>
+            <p className="text-white/80 leading-relaxed mb-6">
+              To buy and sell stocks or mutual funds, you need a Demat & Trading account. Think of it as a secure digital locker
+              that safely stores your shares, bonds, ETFs, and mutual funds in electronic form.
+            </p>
+            <h3 className="text-white text-xl sm:text-2xl mb-2">Benefits of opening with us</h3>
+            <ul className="space-y-2 text-white/80 mb-6 list-disc pl-5">
+              <li>100% paperless process — open in minutes</li>
+              <li>Secure & reliable platform with top-notch encryption</li>
+              <li>Real-time market access for buying and selling</li>
+              <li>Competitive brokerage charges</li>
+              <li>User-friendly mobile and desktop trading apps</li>
+            </ul>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-4 sm:p-5 mb-6">
+              <p className="text-white/85">
+                Example: Invest ₹10,000 in blue-chip stocks today and track them live on your trading app — all securely held in your
+                Demat account.
+              </p>
+            </div> 
+          </div>
+        </div>
+      </section>
+
+      {/* Broker list */}
+      <section id="brokers" className="relative px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-4xl mx-auto text-center mb-6">
+          <h2 className="text-white text-3xl sm:text-4xl">Choose your preferred platform</h2>
+        </div>
         <div className="max-w-4xl mx-auto space-y-6">
           {brokers.map((b) => (
             <Row key={b.key} name={b.name} href={b.href} logoSrc={(b as any).logoSrc} highlight={Boolean((b as any).highlight)} />

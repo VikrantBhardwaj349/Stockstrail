@@ -125,7 +125,7 @@ const Contact = () => {
           </div>
 
           {/* Desktop Layout - Absolute positioning */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:block relative min-h-[480px]">
             {/* Top Left - Address and Email */}
             <div className="absolute top-0 left-0 space-y-6 text-white/90 max-w-sm">
               <div className="group">
@@ -151,7 +151,7 @@ const Contact = () => {
             </div>
 
             {/* Center - Logo and Content */}
-            <div className="flex flex-col items-center text-center min-h-[400px] justify-center group">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-16 flex flex-col items-center text-center group">
               <div className="mb-6 hover:scale-105 transition-transform duration-500">
                 <StockstrailLogoBW />
               </div>
