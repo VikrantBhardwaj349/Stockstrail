@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Layout from "../components/layout/Layout";
 
 // Hero Section Component
@@ -266,6 +267,39 @@ const WhyChooseSection = () => {
 
 // Testimonials Section
 const TestimonialsSection = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  
+  const testimonials = [
+    {
+      quote: "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff.",
+      author: "Nominated by hundreds of clients and always rated as one of the region's top-rated advisors."
+    },
+    {
+      quote: "Stockstrail helped me build a diversified portfolio that has consistently outperformed my expectations. Their expertise in mutual funds is unmatched.",
+      author: "Sarah Johnson, Long-term Investor"
+    },
+    {
+      quote: "The team's personalized approach and transparent communication made me feel confident about my financial decisions. Highly recommended!",
+      author: "Michael Chen, Business Owner"
+    },
+    {
+      quote: "From SIP planning to tax optimization, Stockstrail covers all aspects of financial planning. Their calculators are incredibly helpful.",
+      author: "Priya Sharma, Software Engineer"
+    },
+    {
+      quote: "The fixed deposit rates offered through Stockstrail are competitive, and the process is completely hassle-free. Great service!",
+      author: "Rajesh Kumar, Retired Professional"
+    }
+  ];
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
       {/* Enhanced background effects */}
@@ -285,23 +319,63 @@ const TestimonialsSection = () => {
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto group hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,151,0.2)] transition-all duration-500">
-          <div className="flex items-center justify-center mb-6">
-              <div className="flex text-stockstrail-green-light group-hover:scale-110 transition-transform duration-300">
-              {[...Array(4)].map((_, i) => (
-                  <svg key={i} className="w-6 h-6 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              ))}
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevTestimonial}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300 group"
+              aria-label="Previous testimonial"
+            >
+              <svg className="w-6 h-6 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            
+            <button
+              onClick={nextTestimonial}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300 group"
+              aria-label="Next testimonial"
+            >
+              <svg className="w-6 h-6 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            {/* Testimonial Card */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto group hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,151,0.2)] transition-all duration-500">
+              <div className="flex items-center justify-center mb-6">
+                <div className="flex text-stockstrail-green-light group-hover:scale-110 transition-transform duration-300">
+                  {[...Array(4)].map((_, i) => (
+                    <svg key={i} className="w-6 h-6 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              
+              <blockquote className="text-white text-lg leading-relaxed mb-6 group-hover:text-stockstrail-green-light transition-colors duration-500">
+                "{testimonials[currentTestimonial].quote}"
+              </blockquote>
+              
+              <div className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-500">
+                {testimonials[currentTestimonial].author}
+              </div>
             </div>
-          </div>
-          
-            <blockquote className="text-white text-lg leading-relaxed mb-6 group-hover:text-stockstrail-green-light transition-colors duration-500">
-            "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff."
-          </blockquote>
-          
-            <div className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-500">
-            Nominated by hundreds of clients and always rated as one of the region's top-rated advisors.
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTestimonial 
+                      ? 'bg-stockstrail-green-light scale-125' 
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
