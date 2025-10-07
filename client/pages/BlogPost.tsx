@@ -28,14 +28,28 @@ export default function BlogPost() {
       try {
         const response = await fetch(`/api/blog/posts/${postId}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch blog post');
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
+        
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const text = await response.text();
+          console.error('Non-JSON response received for post:', text.substring(0, 200));
+          throw new Error('Server returned non-JSON response');
+        }
+        
         const data = await response.json();
         setPost(data);
         setError(null);
       } catch (err) {
         console.error(`Error fetching post ${postId}:`, err);
-        setError('Blog post not found. It may have been moved or deleted.');
+        
+        // If it's a real blog post ID (not sample), show a different error message
+        if (!postId.startsWith('sample-')) {
+          setError('This blog post is currently unavailable. Please try again later or browse other posts.');
+        } else {
+          setError('Blog post not found. It may have been moved or deleted.');
+        }
       } finally {
         setLoading(false);
       }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BLOGGER_API_KEY = process.env.VITE_BLOGGER_API_KEY || process.env.BLOGGER_API_KEY || 'AIzaSyC5KJgPKNp88WqxGi53WD2JsYsSiZ8l5EU';
-const BLOG_ID = process.env.BLOG_ID ||  process.env.VITE_BLOG_ID || '8967612143410750655';
+const BLOG_ID = process.env.BLOG_ID || process.env.VITE_BLOG_ID || '8967612143410750655';
 const API_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`;
 
 // Sample blog posts for fallback
@@ -187,7 +187,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { postId } = req.query;
+  const { params } = req.query;
+  const postId = Array.isArray(params) ? params[0] : params;
   
   if (!postId) {
     return res.status(400).json({ error: 'Post ID is required' });
@@ -226,6 +227,17 @@ export default async function handler(req, res) {
     res.json(post);
   } catch (error) {
     console.error(`Error fetching blog post ${postId} from Blogger API:`, error);
+    
+    // Log more details about the error
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error details:', {
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        url: error.config?.url
+      });
+    }
+    
     res.status(404).json({
       error: 'Blog post not found',
       details: 'The requested blog post could not be found or the API is unavailable.',
