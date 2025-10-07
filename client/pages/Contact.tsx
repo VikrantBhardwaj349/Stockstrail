@@ -1,5 +1,19 @@
 import Layout from "../components/layout/Layout";
 
+// Phone Icon Component
+const PhoneIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline mr-2">
+    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06691 2.16708 8.43376 2.48353C8.80061 2.79999 9.04207 3.23945 9.11999 3.72C9.23662 4.68007 9.47144 5.62273 9.81999 6.53C9.94454 6.88792 9.97366 7.27691 9.9039 7.65088C9.83415 8.02485 9.6682 8.36811 9.42499 8.64L8.08999 9.97C9.51355 12.4379 11.5621 14.4864 14.03 15.91L15.36 14.58C15.6319 14.3368 15.9751 14.1708 16.3491 14.1011C16.7231 14.0313 17.1121 14.0605 17.47 14.185C18.3773 14.5335 19.3199 14.7684 20.28 14.885C20.7658 14.9636 21.2094 15.2072 21.5265 15.5775C21.8437 15.9478 22.0122 16.4226 22 16.92Z" fill="#007D42"/>
+  </svg>
+);
+
+// WhatsApp Icon Component
+const WhatsAppIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline mr-2">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" fill="#25D366"/>
+  </svg>
+);
+
 const StockstrailLogoBW = () => (
   <div className="flex items-center gap-4 sm:gap-8 group">
     <svg
@@ -81,17 +95,17 @@ const Contact = () => {
                   <p>
                     <a 
                       href="tel:+919779994858" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97799-94858
+                      <PhoneIcon />+91 97799-94858
                     </a>
                   </p>
                   <p>
                     <a 
                       href="tel:+919736304663" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97363-04663
+                      <PhoneIcon />+91 97363-04663
                     </a>
                   </p>
                 </div>
@@ -104,9 +118,9 @@ const Contact = () => {
                       href="https://wa.me/919779994858" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97799-94858
+                      <WhatsAppIcon />+91 97799-94858
                     </a>
                   </p>
                   <p>
@@ -114,9 +128,9 @@ const Contact = () => {
                       href="https://wa.me/919736304663" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97363-04663
+                      <WhatsAppIcon />+91 97363-04663
                     </a>
                   </p>
                 </div>
@@ -169,17 +183,17 @@ const Contact = () => {
                   <p>
                     <a 
                       href="tel:+919779994858" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97799-94858
+                      <PhoneIcon />+91 97799-94858
                     </a>
                   </p>
                   <p>
                     <a 
                       href="tel:+919736304663" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97363-04663
+                      <PhoneIcon />+91 97363-04663
                     </a>
                   </p>
                 </div>
@@ -192,9 +206,9 @@ const Contact = () => {
                       href="https://wa.me/919779994858" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97799-94858
+                      <WhatsAppIcon />+91 97799-94858
                     </a>
                   </p>
                   <p>
@@ -202,9 +216,9 @@ const Contact = () => {
                       href="https://wa.me/919736304663" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                      className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-2 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)] underline"
                     >
-                      +91 97363-04663
+                      <WhatsAppIcon />+91 97363-04663
                     </a>
                   </p>
                 </div>

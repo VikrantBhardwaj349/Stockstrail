@@ -6,6 +6,9 @@ type Tab = "SIP" | "LUMPSUM" | "FD" | "RD" | "EMI" | "TAX";
 const formatINR = (n: number) =>
   new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(Math.round(n));
 
+const formatRate = (n: number) =>
+  new Intl.NumberFormat("en-IN", { minimumFractionDigits: 0, maximumFractionDigits: 1 }).format(n);
+
 const ValueChip = ({
   value,
   suffix,
@@ -20,11 +23,16 @@ const ValueChip = ({
   ariaLabel?: string;
 }) => {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/[^0-9]/g, "");
+    const isRate = suffix === "%";
+    const raw = isRate 
+      ? e.target.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, '$1') // Allow one decimal point
+      : e.target.value.replace(/[^0-9]/g, "");
     const n = Number(raw || 0);
     onChange?.(n);
   };
-  const display = `${prefix ?? ""}${formatINR(value)}${suffix ? ` ${suffix}` : ""}`;
+  const display = suffix === "%" 
+    ? `${prefix ?? ""}${formatRate(value)}${suffix ? ` ${suffix}` : ""}`
+    : `${prefix ?? ""}${formatINR(value)}${suffix ? ` ${suffix}` : ""}`;
   return onChange ? (
     <input
       aria-label={ariaLabel}
@@ -268,7 +276,7 @@ const Calculators = () => {
                       <span className="uppercase tracking-wide text-xs sm:text-sm">EXPECTED RETURN RATE (p.a.)</span>
                       <ValueChip ariaLabel="rate" value={rate} suffix="%" onChange={(n)=> setRate(Math.min(Math.max(n, 0), 100))} />
                     </div>
-                    <input type="range" min={1} max={24} step={1} value={rate} onChange={(e)=>setRate(Number(e.target.value))} className="w-full accent-[#00FF97]" />
+                    <input type="range" min={1} max={24} step={0.1} value={rate} onChange={(e)=>setRate(Number(e.target.value))} className="w-full accent-[#00FF97]" />
                   </div>
 
                   <div className="space-y-3">
@@ -296,7 +304,7 @@ const Calculators = () => {
                         <span className="uppercase tracking-wide text-xs sm:text-sm">INTEREST RATE (p.a.)</span>
                         <ValueChip ariaLabel="emi-rate" value={emiRate} suffix="%" onChange={(n)=> setEmiRate(Math.min(Math.max(n, 0), 40))} />
                       </div>
-                      <input type="range" min={1} max={24} step={1} value={emiRate} onChange={(e)=>setEmiRate(Number(e.target.value))} className="w-full accent-[#00FF97]" />
+                      <input type="range" min={1} max={24} step={0.1} value={emiRate} onChange={(e)=>setEmiRate(Number(e.target.value))} className="w-full accent-[#00FF97]" />
                     </div>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between text-white/80">

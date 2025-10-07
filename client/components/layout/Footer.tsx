@@ -94,13 +94,13 @@ const Footer = () => {
                 Financial advice Monday to Friday, 8 a.m. to 6 p.m.
               </p>
               <div className="flex flex-col gap-2">
-                <a href="tel:+919779994858" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300">
+                <a href="tel:+919779994858" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300 underline">
                   +91 97799-94858
                 </a>
-                <a href="tel:+919736304663" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300">
+                <a href="tel:+919736304663" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300 underline">
                   +91 97363-04663
                 </a>
-                <a href="mailto:stockstrail@gmail.com" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300">
+                <a href="mailto:stockstrail@gmail.com" className="text-white font-montserrat text-base hover:text-stockstrail-green-light transition-colors duration-300 underline">
                   stockstrail@gmail.com
                 </a>
               </div>
@@ -131,12 +131,9 @@ const Footer = () => {
           {/* Download */}
           <FooterSection title="Download">
             <div className="space-y-4">
-              <p className="text-white font-montserrat text-base leading-relaxed max-w-[262px]">
-                Code of Conduct
-              </p>
               <a href="/CoC/revisedcoc.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
                 <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
-                  Download now
+                  Code of Conduct
                 </span>
                 <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:text-stockstrail-green-light transition-all duration-300" />
               </a>
@@ -164,9 +161,9 @@ const Footer = () => {
           type="button"
           aria-label="Back to top"
           onClick={scrollToTop}
-          className="fixed right-6 bottom-6 z-40 w-[60px] h[60px] sm:w-[70px] sm:h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#2E2E2E] hover:scale-110 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group"
+          className="fixed right-6 bottom-6 z-40 w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] bg-[#1E1E1E] rounded-full flex items-center justify-center cursor-pointer hover:bg-stockstrail-green-light hover:scale-110 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group"
         >
-          <ArrowRight className="w-7 h-7 sm:w-8 sm:h-8 text-white rotate-[-90deg] group-hover:text-stockstrail-green-light transition-colors duration-300" />
+          <ArrowRight className="w-7 h-7 sm:w-8 sm:h-8 text-white rotate-[-90deg] transition-colors duration-300" />
         </button>
 
         {/* Social Media Links */}
