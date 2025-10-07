@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BLOGGER_API_KEY = process.env.VITE_BLOGGER_API_KEY || process.env.BLOGGER_API_KEY || 'AIzaSyC5KJgPKNp88WqxGi53WD2JsYsSiZ8l5EU';
-const BLOG_ID = process.env.BLOG_ID || process.env.VITE_BLOG_ID || '8967612143410750655';
+const BLOG_ID = process.env.VITE_BLOG_ID || process.env.BLOG_ID || '8967612143410750655';
 const API_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`;
 
 // Sample blog posts for fallback
