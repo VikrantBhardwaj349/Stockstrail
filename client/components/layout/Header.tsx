@@ -93,7 +93,7 @@ const Header = () => {
         { name: "Others", href: "/services#others" },
       ]
     },
-    { name: "Blog", href: "/#blog" },
+    { name: "Blog", href: "/blog" },
     { name: "Calculators", href: "/calculators" },
     { name: "Open Demat", href: "/open-demat" },
   ];

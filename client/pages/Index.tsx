@@ -36,22 +36,22 @@ const HeroSection = () => {
         <div className="animate-slide-in-from-top">
           <h1 className="font-product-sans text-4xl sm:text-5xl lg:text-7xl font-normal leading-tight lg:leading-[80px] mb-8 group">
             <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">Embark on Your</span>
-            <br />
+          <br />
             <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">Journey to </span>
             <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">Financial Freedom</span>
-          </h1>
+        </h1>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
           <p className="text-white/50 text-lg sm:text-xl font-work-sans leading-relaxed max-w-[881px] mx-auto mb-12 group-hover:text-white/70 transition-colors duration-500">
-            Achieve financial independence with Stockstrail. Our expert guidance and innovative tools help you navigate investing and reach your long-term goals. Whether you're a beginner or experienced investor, stay ahead and attain financial freedom with us.
-          </p>
+          Achieve financial independence with Stockstrail. Our expert guidance and innovative tools help you navigate investing and reach your long-term goals. Whether you're a beginner or experienced investor, stay ahead and attain financial freedom with us.
+        </p>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
           <a href="/services" className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium text-base sm:text-lg group">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
-            Learn More
+          Learn More
           </a>
         </div>
       </div>
@@ -82,8 +82,8 @@ const PartnerLogosSection = () => {
       <div className="relative z-10">
         <div className="animate-slide-in-from-top">
           <h3 className="text-center font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-10 px-4 sm:px-6 lg:px-8 group hover:scale-105 transition-transform duration-500">
-            OUR PARTNERS
-          </h3>
+          OUR PARTNERS
+        </h3>
         </div>
         <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden hover:border-stockstrail-green-light/30 transition-colors duration-500">
           <div className="partners-track animate-scroll">
@@ -93,9 +93,9 @@ const PartnerLogosSection = () => {
                   src={partner.logo}
                   alt={`${partner.name} logo`}
                   className="h-20 sm:h-24 w-auto object-contain group-hover:scale-110 group-hover:brightness-110 transition-all duration-300"
-                  loading="lazy"
+            loading="lazy"
                   draggable={false}
-                />
+          />
               </div>
             ))}
           </div>
@@ -281,27 +281,27 @@ const TestimonialsSection = () => {
             <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">What our </span>
             <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">client</span>
             <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500"> says</span>
-          </h2>
+        </h2>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
           <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto group hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,151,0.2)] transition-all duration-500">
-            <div className="flex items-center justify-center mb-6">
+          <div className="flex items-center justify-center mb-6">
               <div className="flex text-stockstrail-green-light group-hover:scale-110 transition-transform duration-300">
-                {[...Array(4)].map((_, i) => (
+              {[...Array(4)].map((_, i) => (
                   <svg key={i} className="w-6 h-6 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                ))}
-              </div>
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
             </div>
-            
+          </div>
+          
             <blockquote className="text-white text-lg leading-relaxed mb-6 group-hover:text-stockstrail-green-light transition-colors duration-500">
-              "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff."
-            </blockquote>
-            
+            "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff."
+          </blockquote>
+          
             <div className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-500">
-              Nominated by hundreds of clients and always rated as one of the region's top-rated advisors.
+            Nominated by hundreds of clients and always rated as one of the region's top-rated advisors.
             </div>
           </div>
         </div>
@@ -327,19 +327,19 @@ const AboutSection = () => {
           <h2 className="font-product-sans text-4xl sm:text-5xl lg:text-6xl font-normal uppercase mb-8 group">
             <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">About </span>
             <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">StocksTrail</span>
-          </h2>
+        </h2>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
           <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto mb-12 group-hover:text-stockstrail-green-light transition-colors duration-500">
-            We ensure a secure and safe mutual fund investment platform through a structured and disciplined approach. We offer a wide range of services, including Mutual Funds, Insurance, Fixed Deposits, and more, combining top-tier proprietary and third-party products.
-          </p>
+          We ensure a secure and safe mutual fund investment platform through a structured and disciplined approach. We offer a wide range of services, including Mutual Funds, Insurance, Fixed Deposits, and more, combining top-tier proprietary and third-party products.
+        </p>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
           <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
-            Our goal is to provide quick transaction services tailored to your profile and risk appetite. Partner with us to develop a savings and investment habit, along with a protection plan that helps you achieve your investment goals according to your specific needs. Our advice ensures you choose the best schemes under the SEBI-defined riskometer.
-          </p>
+          Our goal is to provide quick transaction services tailored to your profile and risk appetite. Partner with us to develop a savings and investment habit, along with a protection plan that helps you achieve your investment goals according to your specific needs. Our advice ensures you choose the best schemes under the SEBI-defined riskometer.
+        </p>
         </div>
         
         <div className="mt-16">
@@ -371,8 +371,8 @@ const DisclaimerSection = () => {
       <div className="max-w-6xl mx-auto text-center">
         <div className="animate-slide-in-from-top">
           <h2 className="font-product-sans text-4xl sm:text-5xl lg:text-6xl font-normal uppercase mb-8 text-white group hover:scale-105 transition-transform duration-500">
-            DISCLAIMER
-          </h2>
+          DISCLAIMER
+        </h2>
         </div>
         
         <div className="space-y-8 text-center">

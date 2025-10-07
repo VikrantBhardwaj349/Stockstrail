@@ -37,8 +37,8 @@ const ValueChip = ({
   ) : (
     <span className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 text-white/90 text-sm hover:bg-white/20 hover:scale-105 transition-all duration-300">
       {display}
-    </span>
-  );
+  </span>
+);
 };
 
 
@@ -413,7 +413,7 @@ const Calculators = () => {
                       <div className="rounded-lg bg-white/5 p-4 hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.2)] transition-all duration-300 group cursor-pointer">
                         <div className="text-white/60 text-xs uppercase group-hover:text-white/80 transition-colors duration-300">Total value</div>
                         <div className="text-lg group-hover:text-stockstrail-green-light transition-colors duration-300">₹{formatINR(active.value)}</div>
-                      </div>
+                  </div>
                     </>
                   )}
                   {tab === "EMI" && (
@@ -441,7 +441,7 @@ const Calculators = () => {
 
               <div className="flex items-center justify-center">
                 {(["SIP","LUMPSUM","FD","RD"] as Tab[]).includes(tab) && (
-                  <Donut invested={active.invested} returns={active.returns} />
+                <Donut invested={active.invested} returns={active.returns} />
                 )}
                 {tab === "EMI" && (
                   <Donut investedLabel="Principal Amount" returnsLabel="Interest Amount" invested={emiCalc.principal} returns={emiCalc.interest} />

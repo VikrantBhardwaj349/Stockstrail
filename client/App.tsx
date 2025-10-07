@@ -16,6 +16,8 @@ import MutualFunds from "./pages/MutualFunds";
 import FixedDeposit from "./pages/FixedDeposit";
 import Insurance from "./pages/Insurance";
 import Loan from "./pages/Loan";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/services/insurance" element={<Insurance />} />
           <Route path="/services/loan" element={<Loan />} />
           <Route path="/open-demat" element={<OpenDemat />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:postId" element={<BlogPost />} />
           <Route path="/calculators" element={<Calculators />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
