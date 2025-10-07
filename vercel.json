@@ -2,5 +2,10 @@
   "installCommand": "npm ci || npm install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/spa",
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
