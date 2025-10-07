@@ -210,11 +210,22 @@ export const getBlogPosts: RequestHandler = async (req, res) => {
     console.error('Error fetching blog posts from Blogger API:', error);
     console.log('Falling back to sample blog posts...');
     
+    // Log more details about the error
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error details:', {
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        url: error.config?.url
+      });
+    }
+    
     // Return sample posts instead of error
     res.json({
       items: samplePosts,
       totalItems: samplePosts.length,
       fallback: true, // Flag to indicate this is fallback data
+      error: error instanceof Error ? error.message : 'Unknown error'
     });
   }
 };
