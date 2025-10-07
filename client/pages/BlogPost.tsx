@@ -32,9 +32,10 @@ export default function BlogPost() {
         }
         const data = await response.json();
         setPost(data);
+        setError(null);
       } catch (err) {
         console.error(`Error fetching post ${postId}:`, err);
-        setError('Failed to load the blog post. It may have been moved or deleted.');
+        setError('Blog post not found. It may have been moved or deleted.');
       } finally {
         setLoading(false);
       }
