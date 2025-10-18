@@ -95,7 +95,6 @@ const Header = () => {
     },
     { name: "Blog", href: "/blog" },
     { name: "Calculators", href: "/calculators" },
-    { name: "Open Demat", href: "/open-demat" },
   ];
 
   return (

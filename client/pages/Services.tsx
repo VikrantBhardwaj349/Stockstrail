@@ -107,12 +107,13 @@ const Services = () => {
           <SectionBlock
             id="mutual-funds"
             title="Invest Smart, Invest Secure | MUTUAL FUNDS"
-            description="We work with a network of sustainable event suppliers to help you find the perfect vendors for your event. We also handle all the logistics of booking and managing your suppliers, so you can focus on your guests."
+            description="Diversify your investment portfolio with our expertly managed mutual funds. Our professional fund managers help you build wealth through systematic investment plans (SIPs) or lump sum investments across various asset classes."
             benefits={[
-              'Save time and money by letting us do the hard work for you',
-              'Get access to a wide range of sustainable event suppliers',
-              'Be confident that your suppliers are vetted and reliable',
-              'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
+              'Professional fund management with proven track records',
+              'Diversification across multiple asset classes and sectors',
+              'Systematic Investment Plans (SIP) starting from ₹500',
+              'Tax-saving ELSS funds under Section 80C',
+              'Regular portfolio reviews and rebalancing',
             ]}
             cta="APPLY MUTUAL FUNDS"
             ctaLink="/services/mutual-funds"
@@ -123,12 +124,13 @@ const Services = () => {
           <SectionBlock
             id="fd"
             title="Secure Savings, Guaranteed Growth | FD"
-            description="Our event-secondary sustainable marketplace allows you to buy, sell, and hire sustainable equipment and products for your event. This is a great way to save money and reduce your environmental impact."
+            description="Secure your savings with guaranteed returns through our fixed deposit schemes. Enjoy competitive interest rates with flexible tenure options ranging from 7 days to 10 years, backed by trusted financial institutions."
             benefits={[
-              'Save money on event equipment and products',
-              'Reduce your environmental impact by buying and selling used items',
-              'Support sustainable businesses and organizations',
-              'Find a wide range of event equipment and products, from furniture to décor to catering',
+              '100% capital protection with guaranteed returns',
+              'Competitive interest rates up to 7.5% per annum',
+              'Flexible tenure from 7 days to 10 years',
+              'Monthly, quarterly, or maturity interest payout options',
+              'Tax-saving FD options under Section 80C',
             ]}
             cta="APPLY FIXED DEPOSIT"
             ctaLink="/services/fixed-deposit"
@@ -139,12 +141,13 @@ const Services = () => {
           <SectionBlock
             id="insurance"
             title="Comprehensive Coverage, Confident Living | Insurance"
-            description="We work with a network of sustainable event suppliers to help you find the perfect vendors for your event. We also handle all the logistics of booking and managing your suppliers, so you can focus on your guests."
+            description="Protect yourself and your loved ones with our comprehensive insurance solutions. From life insurance to health coverage, we offer tailored plans that provide financial security and peace of mind for life's uncertainties."
             benefits={[
-              'Save time and money by letting us do the hard work for you',
-              'Get access to a wide range of sustainable event suppliers',
-              'Be confident that your suppliers are vetted and reliable',
-              'Enjoy peace of mind knowing that your suppliers are managed by a team of experts',
+              'Comprehensive life and health insurance coverage',
+              'Affordable premium plans with flexible payment options',
+              'Quick and hassle-free claim settlement process',
+              'Wide range of coverage options for individuals and families',
+              'Expert guidance in choosing the right insurance plan',
             ]}
             cta="APPLY INSURANCE"
             ctaLink="/services/insurance"
@@ -166,6 +169,24 @@ const Services = () => {
             ctaLink="/services/loan"
             imageSrc="/services/loan.jpg"
             imageAlt="Loan Services"
+          />
+
+          <SectionBlock
+            id="demat"
+            title="Your Gateway to Stock Market | DEMAT ACCOUNT"
+            description="Open your Demat and Trading account to start your journey in the stock market. Trade stocks, mutual funds, ETFs, and more with our secure and user-friendly platform. Enjoy real-time market access with competitive brokerage charges."
+            benefits={[
+              '100% paperless account opening process',
+              'Secure digital locker for your securities',
+              'Real-time market access for buying and selling',
+              'Competitive brokerage charges and zero AMC',
+              'User-friendly mobile and desktop trading platforms',
+              'Dedicated customer support and assistance',
+            ]}
+            cta="OPEN DEMAT ACCOUNT"
+            ctaLink="/open-demat"
+            imageSrc="/services/da.png"
+            imageAlt="Demat Account"
           />
 
           <section className="mt-20 overflow-hidden">

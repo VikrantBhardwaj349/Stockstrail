@@ -20,7 +20,7 @@ const MutualFunds = () => {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Visual */}
           <div className="rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
-            <img src="/services/mf.jpg" alt="Mutual Funds" className="w-full h-[280px] sm:h-[360px] object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="/services/mf2.png" alt="Mutual Funds" className="w-full h-[280px] sm:h-[360px] object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
 
           {/* Copy */}

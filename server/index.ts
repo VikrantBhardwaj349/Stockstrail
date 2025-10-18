@@ -36,14 +36,5 @@ export function createServer() {
   app.get("/api/blog/posts", getBlogPosts);
   app.get("/api/blog/posts/:postId", getBlogPost);
 
-  // Catch-all for undefined API routes
-  app.get("/api/*", (req, res) => {
-    res.status(404).json({ 
-      error: "API endpoint not found", 
-      path: req.path,
-      method: req.method 
-    });
-  });
-
   return app;
 }

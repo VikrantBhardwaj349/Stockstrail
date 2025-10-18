@@ -14,6 +14,27 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
+// Location Icon Component (Google Maps style)
+const LocationIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline mr-2">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#4285F4"/>
+  </svg>
+);
+
+// Email Icon Component (Gmail style)
+const EmailIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline mr-2">
+    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#EA4335"/>
+  </svg>
+);
+
+// Telegram Icon Component
+const TelegramIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="inline mr-2">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.9 1.21-5.38 3.56-.51.35-.97.52-1.38.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.4-.88.03-.24.37-.49 1.02-.74 3.98-1.73 6.64-2.87 7.98-3.43 3.79-1.57 4.58-1.84 5.09-1.84.12 0 .38.03.55.18.14.12.18.28.2.39-.01.13.01.55.01.55z" fill="#0088CC"/>
+  </svg>
+);
+
 const StockstrailLogoBW = () => (
   <div className="flex items-center gap-4 sm:gap-8 group">
     <svg
@@ -24,18 +45,49 @@ const StockstrailLogoBW = () => (
       xmlns="http://www.w3.org/2000/svg"
       className="w-24 h-24 sm:w-48 sm:h-48 group-hover:scale-110 transition-transform duration-500"
     >
-      <rect x="3.74097" y="16.0264" width="20.8942" height="3.71985" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500" />
-      <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500" />
-      <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500" />
-      <path d="M30.5214 17.0648C30.6657 17.209 30.6647 17.4433 30.5192 17.5863L15.742 32.1108C15.3414 32.5044 14.6985 32.5017 14.3014 32.1046L12.6547 30.4578C12.2527 30.0559 12.2555 29.4033 12.6609 29.0048L24.8337 17.0402C26.415 15.4859 28.9536 15.4969 30.5214 17.0648Z" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500" />
-      <path d="M11.0196 34.4984C10.6044 34.5951 10.2318 34.2225 10.3286 33.8073L11.8087 27.4536C11.9112 27.0139 12.4569 26.858 12.7761 27.1773L17.6496 32.0508C17.9688 32.37 17.8129 32.9157 17.3733 33.0182L11.0196 34.4984Z" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500" />
+      {/* center horizontal bar (centered in viewBox) */}
+      <rect
+        x="3.5"
+        y="15.9"
+        width="25"
+        height="3.8"
+        fill="#ffffff"
+        className="group-hover:fill-stockstrail-green-light transition-colors duration-500"
+      />
+
+      {/* TOP arrow (original shapes) */}
+      <g fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500">
+        {/* main top arrow body */}
+        <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" />
+        {/* top arrow tip */}
+        <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" />
+      </g>
+
+      {/* MIRRORED copy for the bottom arrow:
+          We reuse the exact top shapes and mirror them across the center
+          by translating by the viewBox width/height and scaling -1 on both axes.
+          This guarantees exact geometric symmetry. */}
+      <g transform="translate(32 35.5) scale(-1 -1)" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500">
+        <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" />
+        <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" />
+      </g>
+
+      {/* bottom arrow tip (keep subtle rounded tail as in original) */}
+      {/* Note: the mirrored group already includes the tip shape — keeping the separate bottom-tip path
+          is unnecessary now. If you prefer the specific original bottom-tip geometry, you can re-add it. */}
     </svg>
+
     <div className="flex items-baseline">
-      <span className="text-white font-product-sans text-4xl sm:text-7xl font-normal group-hover:text-stockstrail-green-light transition-colors duration-500">Stocks</span>
-      <span className="text-white font-product-sans text-4xl sm:text-7xl font-normal group-hover:text-stockstrail-green-light transition-colors duration-500">trail</span>
+      <span className="text-white font-product-sans text-4xl sm:text-7xl font-bold group-hover:text-stockstrail-green-light transition-colors duration-500">
+        Stocks
+      </span>
+      <span className="text-white font-product-sans text-4xl sm:text-7xl font-normal group-hover:text-stockstrail-green-light transition-colors duration-500">
+        trail
+      </span>
     </div>
   </div>
 );
+
 
 const Contact = () => {
   return (
@@ -52,8 +104,19 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto relative">
           {/* Mobile Layout - Stacked vertically */}
           <div className="lg:hidden space-y-12">
-            {/* Address and Email */}
-            <div className="space-y-6 text-white/90">
+            {/* Logo and Content - Top */}
+            <div className="flex flex-col items-center text-center group">
+              <div className="mb-6 hover:scale-105 transition-transform duration-500">
+                <StockstrailLogoBW />
+              </div>
+              <div className="group-hover:scale-105 transition-transform duration-300">
+                <h3 className="text-white/80 text-xl mb-4 group-hover:text-stockstrail-green-light transition-colors duration-300">Get in touch</h3>
+                <p className="text-white/60 group-hover:text-white/80 transition-colors duration-300">We welcome your inquiries by phone or e-mail</p>
+              </div>
+            </div>
+
+            {/* Address, Email and Telegram */}
+          <div className="space-y-6 text-white/90">
               <div className="group">
                 <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Address</h2>
                 <a 
@@ -62,6 +125,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 cursor-pointer block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
                 >
+                  <LocationIcon />
                   Near Punjab And Sind Bank ,<br/> V.P.O. Chintpurni Teh:Amb ,<br/> Distt.- Una , Himachal Pradesh (177110)
                 </a>
               </div>
@@ -71,19 +135,21 @@ const Contact = () => {
                   className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]" 
                   href="mailto:stockstrail@gmail.com"
                 >
+                  <EmailIcon />
                   stockstrail@gmail.com
                 </a>
               </div>
-            </div>
-
-            {/* Logo and Content - Center */}
-            <div className="flex flex-col items-center text-center group">
-              <div className="mb-6 hover:scale-105 transition-transform duration-500">
-                <StockstrailLogoBW />
-              </div>
-              <div className="group-hover:scale-105 transition-transform duration-300">
-                <h3 className="text-white/80 text-xl mb-4 group-hover:text-stockstrail-green-light transition-colors duration-300">Get in touch</h3>
-                <p className="text-white/60 group-hover:text-white/80 transition-colors duration-300">We welcome your inquiries by phone or e-mail</p>
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Telegram</h2>
+                <a 
+                  href="https://t.me/stockstrail" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                >
+                  <TelegramIcon />
+                  @stockstrail
+                </a>
               </div>
             </div>
 
@@ -150,6 +216,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className="text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 cursor-pointer block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
                 >
+                  <LocationIcon />
                   Near Punjab And Sind Bank ,<br/> V.P.O. Chintpurni Teh:Amb ,<br/> Distt.- Una , Himachal Pradesh (177110)
                 </a>
               </div>
@@ -159,7 +226,20 @@ const Contact = () => {
                   className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]" 
                   href="mailto:stockstrail@gmail.com"
                 >
+                  <EmailIcon />
                   stockstrail@gmail.com
+                </a>
+              </div>
+              <div className="group">
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Telegram</h2>
+                <a 
+                  href="https://t.me/stockstrail" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
+                >
+                  <TelegramIcon />
+                  @stockstrail
                 </a>
               </div>
             </div>

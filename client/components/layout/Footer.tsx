@@ -144,14 +144,14 @@ const Footer = () => {
           <FooterSection title="Telegram">
             <div className="space-y-4">
               <p className="text-white font-montserrat text-base leading-relaxed max-w-[259px]">
-                Register now for free and secure many advantages!
+                Join our Telegram channel for latest updates and market insights!
               </p>
-              <div className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
-                <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300">
-                  Join Now
+              <a href="https://t.me/stockstrail" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 cursor-pointer group hover:text-stockstrail-green-light transition-colors duration-300">
+                <span className="text-white font-montserrat text-base group-hover:text-stockstrail-green-light transition-colors duration-300 underline">
+                  @stockstrail
                 </span>
                 <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 group-hover:text-stockstrail-green-light transition-all duration-300" />
-              </div>
+              </a>
             </div>
           </FooterSection>
         </div>

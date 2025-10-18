@@ -309,20 +309,31 @@
 .animate-scale-in {
   animation: scale-in 0.5s ease-out forwards;
 }
-
-/* Rotation animation */
-@keyframes rotate-slow {
+@keyframes logo-rotate {
   0% {
-    transform: rotate(0deg);
+    transform: rotateX(0deg);
+    animation-timing-function: ease-in; /* start slowly */
+  }
+  50% {
+    transform: rotateX(360deg);
+    animation-timing-function: linear; /* accelerate during spin */
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotateX(360deg); /* hold final position */
   }
 }
 
-.animate-rotate-slow {
-  animation: rotate-slow 20s linear infinite;
+.animate-logo-rotate {
+  animation: logo-rotate 1.6s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  transform-origin: center;
+  display: inline-block;
+  will-change: transform;
 }
+
+/* .hero-logo path {
+  fill: url(#metal-gradient);
+} */
+
 
 /* Advanced shimmer effect */
 @keyframes shimmer {

@@ -100,7 +100,7 @@ const OpenDemat = () => {
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           {/* Visual */}
           <div className="rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
-            <img src="/services/mf.jpg" alt="Investing" className="w-full h-[260px] sm:h-[340px] object-cover group-hover:scale-105 transition-transform duration-300" />
+            <img src="/services/da2.png" alt="Investing" className="w-full h-[260px] sm:h-[340px] object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
           {/* Copy */}
           <div>
