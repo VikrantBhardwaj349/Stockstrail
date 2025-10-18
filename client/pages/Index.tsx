@@ -89,7 +89,7 @@ const HeroSection = () => {
       {/* Content with advanced animations */}
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Logo */}
-        <div className="animate-slide-in-from-top mb-8">
+  <div className="animate-slide-in-from-top mb-8 mt-8 lg:mt-12">
           <HeroLogo/>
         </div>
         <div className="animate-slide-in-from-top">
@@ -112,7 +112,7 @@ const HeroSection = () => {
           </h2>
         </div>
         
-        <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
+  <div className="animate-slide-in-from-top mb-12 lg:mb-16" style={{ animationDelay: '400ms' }}>
           <a href="/services" className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium text-base sm:text-lg group">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
           Learn More
