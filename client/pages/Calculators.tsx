@@ -22,24 +22,87 @@ const ValueChip = ({
   onChange?: (n: number) => void;
   ariaLabel?: string;
 }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editValue, setEditValue] = useState("");
+
+  const handleFocus = () => {
+    setIsEditing(true);
+    // Show the raw number when focusing
+    setEditValue(value.toString());
+  };
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    // Parse and validate the final value
+    const isRate = suffix === "%";
+    let parsed = parseFloat(editValue || "0");
+    
+    if (isNaN(parsed)) {
+      parsed = 0;
+    }
+    
+    // Round to 1 decimal for percentages
+    if (isRate) {
+      parsed = Math.round(parsed * 10) / 10;
+    }
+    
+    onChange?.(parsed);
+  };
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isRate = suffix === "%";
-    const raw = isRate 
-      ? e.target.value.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, '$1') // Allow one decimal point
-      : e.target.value.replace(/[^0-9]/g, "");
-    const n = Number(raw || 0);
-    onChange?.(n);
+    let raw = e.target.value;
+    
+    // Remove prefix/suffix if present
+    if (prefix) raw = raw.replace(prefix, "");
+    if (suffix) raw = raw.replace(suffix, "").trim();
+    
+    // Allow only numbers and one decimal point
+    if (isRate) {
+      raw = raw.replace(/[^0-9.]/g, "");
+      // Allow only one decimal point
+      const parts = raw.split(".");
+      if (parts.length > 2) {
+        raw = parts[0] + "." + parts.slice(1).join("");
+      }
+      // Limit to 1 decimal place
+      if (parts.length === 2 && parts[1].length > 1) {
+        raw = parts[0] + "." + parts[1].substring(0, 1);
+      }
+    } else {
+      raw = raw.replace(/[^0-9]/g, "");
+    }
+    
+    setEditValue(raw);
+    
+    // Update value in real-time
+    const n = parseFloat(raw || "0");
+    if (!isNaN(n)) {
+      onChange?.(n);
+    }
   };
-  const display = suffix === "%" 
-    ? `${prefix ?? ""}${formatRate(value)}${suffix ? ` ${suffix}` : ""}`
-    : `${prefix ?? ""}${formatINR(value)}${suffix ? ` ${suffix}` : ""}`;
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.currentTarget.blur();
+    }
+  };
+
+  const display = isEditing 
+    ? editValue 
+    : suffix === "%" 
+      ? `${formatRate(value)}${suffix ? ` ${suffix}` : ""}`
+      : `${prefix ?? ""}${formatINR(value)}${suffix ? ` ${suffix}` : ""}`;
+
   return onChange ? (
     <input
       aria-label={ariaLabel}
-      inputMode="numeric"
-      pattern="[0-9]*"
+      inputMode="decimal"
       value={display}
       onChange={handleInput}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
       className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white/10 text-white/90 text-sm hover:bg-white/20 hover:scale-105 transition-all duration-300 w-[150px] sm:w-[180px] text-right"
     />
   ) : (

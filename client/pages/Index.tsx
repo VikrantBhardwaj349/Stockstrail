@@ -1,5 +1,4 @@
 import { useState } from "react";
-import React from "react";
 import Layout from "../components/layout/Layout";
 
 const HeroLogo = () => (
@@ -59,7 +58,7 @@ const HeroLogo = () => (
 // Hero Section Component
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Advanced Background Elements */}
       <div className="absolute inset-0">
         {/* Main animated blur circle */}
@@ -90,7 +89,7 @@ const HeroSection = () => {
       {/* Content with advanced animations */}
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Logo */}
-        <div className="animate-slide-in-from-top mb-8 lg:mb-8 lg:mt-6">
+        <div className="animate-slide-in-from-top mb-8">
           <HeroLogo/>
         </div>
         <div className="animate-slide-in-from-top">
@@ -113,7 +112,7 @@ const HeroSection = () => {
           </h2>
         </div>
         
-        <div className="animate-slide-in-from-top lg:mb-20" style={{ animationDelay: '400ms' }}>
+        <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
           <a href="/services" className="inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-3 sm:py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium text-base sm:text-lg group">
             <div className="w-2 h-2 sm:w-3 sm:h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
           Learn More
@@ -136,7 +135,7 @@ const PartnerLogosSection = () => {
   ];
 
   return (
-  <section className="py-16 relative overflow-hidden lg:pt-32">
+    <section className="py-16 relative overflow-hidden">
       {/* Enhanced background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-1/4 w-4 h-4 bg-stockstrail-green-light/20 rounded-full animate-ping"></div>
@@ -175,39 +174,29 @@ const ServicesSection = () => {
   const services = [
     {
       title: "MUTUAL FUNDS",
-      description:
-        "Our expertly managed funds offer a convenient way to grow your wealth over time, with the potential for long-term returns and minimal risk.",
-      icon: "/piggybank.png", // ✅ Correct path (no /public)
-      isImage: true,
+      description: "Our expertly managed funds offer a convenient way to grow your wealth over time, with the potential for long-term returns and minimal risk.",
+      icon: "🏦"
     },
     {
       title: "FIXED DEPOSIT",
-      description:
-        "Secure your savings with guaranteed returns through our fixed deposit schemes, offering competitive interest rates and flexible tenure options.",
-        icon: "/fd.png", // ✅ Correct path (no /public)
-        isImage: true,
+      description: "Secure your savings with guaranteed returns through our fixed deposit schemes, offering competitive interest rates and flexible tenure options.",
+      icon: "💰"
     },
     {
       title: "INSURANCE",
-      description:
-        "Protect yourself and your loved ones from life's uncertainties with our comprehensive insurance plans.",
-        icon: "/insurance.png", // ✅ Correct path (no /public)
-        isImage: true,
+      description: "Protect yourself and your loved ones from life's uncertainties with our comprehensive insurance plans.",
+      icon: "📄"
     },
     {
       title: "LOAN",
-      description:
-        "Get quick approval for personal, home, and business loans with competitive interest rates and flexible repayment terms.",
-        icon: "/loan.png", // ✅ Correct path (no /public)
-        isImage: true,
+      description: "Get quick approval for personal, home, and business loans with competitive interest rates and flexible repayment terms.",
+      icon: "🏠"
     },
     {
       title: "OTHERS",
-      description:
-        "In addition to our core financial services, we also offer a range of other solutions to support your financial well-being.",
-        icon: "/others.png", // ✅ Correct path (no /public)
-        isImage: true,
-    },
+      description: "In addition to our core financial services, we also offer a range of other solutions to support your financial well-being.",
+      icon: "➕"
+    }
   ];
 
   const getHref = (title: string) => {
@@ -239,23 +228,10 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <div key={index} className="relative">
               <div className="bg-stockstrail-bg border-2 border-white/13 rounded-[105px] p-4 sm:p-8 flex flex-col sm:flex-row items-center group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
-                
-                {/* Icon / Image */}
                 <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white/10 rounded-full flex items-center justify-center mb-4 sm:mb-0 sm:mr-8 flex-shrink-0 group-hover:scale-110 group-hover:bg-stockstrail-green-light/20 transition-all duration-300">
-                  {service.isImage ? (
-                    <img
-                      src={service.icon}
-                      alt={service.title}
-                      className="w-8 h-8 sm:w-12 sm:h-12 object-contain group-hover:scale-110 transition-transform duration-300"
-                    />
-                  ) : (
-                    <span className="text-2xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">
-                      {service.icon}
-                    </span>
-                  )}
+                  <span className="text-2xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">{service.icon}</span>
                 </div>
-
-                {/* Text */}
+                
                 <div className="flex-grow text-center">
                   <h3 className="font-product-sans text-xl sm:text-2xl font-normal uppercase text-white mb-4 group-hover:text-stockstrail-green-light transition-colors duration-300">
                     {service.title}
@@ -264,30 +240,10 @@ const ServicesSection = () => {
                     {service.description}
                   </p>
                 </div>
-
-                {/* Arrow Link */}
-                <a
-                  href={getHref(service.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-16 h-16 sm:w-24 sm:h-24 bg-white/20 rounded-full flex items-center justify-center mt-4 sm:mt-0 sm:ml-8 flex-shrink-0 group-hover:bg-stockstrail-gradient group-hover:scale-110 transition-all duration-300 cursor-pointer"
-                  aria-label={`${service.title} link`}
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    className="sm:w-[35px] sm:h-[35px] group-hover:scale-110 transition-transform duration-300"
-                    viewBox="0 0 36 36"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.44141 28.6037L29.0414 7.00366M29.0414 7.00366H12.8414M29.0414 7.00366V23.2037"
-                      stroke="white"
-                      strokeWidth="2.16"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                
+                <a href={getHref(service.title)} target="_blank" rel="noopener noreferrer" className="w-16 h-16 sm:w-24 sm:h-24 bg-white/20 rounded-full flex items-center justify-center mt-4 sm:mt-0 sm:ml-8 flex-shrink-0 group-hover:bg-stockstrail-gradient group-hover:scale-110 transition-all duration-300 cursor-pointer" aria-label={`${service.title} link`}>
+                  <svg width="24" height="24" className="sm:w-[35px] sm:h-[35px] group-hover:scale-110 transition-transform duration-300" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.44141 28.6037L29.0414 7.00366M29.0414 7.00366H12.8414M29.0414 7.00366V23.2037" stroke="white" strokeWidth="2.16" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </a>
               </div>
@@ -296,10 +252,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="text-center mt-16">
-          <a
-            href="/services"
-            className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group"
-          >
+          <a href="/services" className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group">
             <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
             All Services
           </a>
@@ -376,41 +329,31 @@ const WhyChooseSection = () => {
   );
 };
 
+// Testimonials Section
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  // ✅ Each testimonial now has a `rating` (out of 5, supports .5) and an `author` name
+  
   const testimonials = [
     {
-      quote:
-        "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff.",
-      author: "Olivia Carter, Financial Analyst",
-      rating: 4,
+      quote: "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff.",
+      author: "Nominated by hundreds of clients and always rated as one of the region's top-rated advisors."
     },
     {
-      quote:
-        "Stockstrail helped me build a diversified portfolio that has consistently outperformed my expectations. Their expertise in mutual funds is unmatched.",
-      author: "Sarah Johnson, Long-term Investor",
-      rating: 4.5,
+      quote: "Stockstrail helped me build a diversified portfolio that has consistently outperformed my expectations. Their expertise in mutual funds is unmatched.",
+      author: "Sarah Johnson, Long-term Investor"
     },
     {
-      quote:
-        "The team's personalized approach and transparent communication made me feel confident about my financial decisions. Highly recommended!",
-      author: "Michael Chen, Business Owner",
-      rating: 5,
+      quote: "The team's personalized approach and transparent communication made me feel confident about my financial decisions. Highly recommended!",
+      author: "Michael Chen, Business Owner"
     },
     {
-      quote:
-        "From SIP planning to tax optimization, Stockstrail covers all aspects of financial planning. Their calculators are incredibly helpful.",
-      author: "Priya Sharma, Software Engineer",
-      rating: 4.5,
+      quote: "From SIP planning to tax optimization, Stockstrail covers all aspects of financial planning. Their calculators are incredibly helpful.",
+      author: "Priya Sharma, Software Engineer"
     },
     {
-      quote:
-        "The fixed deposit rates offered through Stockstrail are competitive, and the process is completely hassle-free. Great service!",
-      author: "Rajesh Kumar, Retired Professional",
-      rating: 4,
-    },
+      quote: "The fixed deposit rates offered through Stockstrail are competitive, and the process is completely hassle-free. Great service!",
+      author: "Rajesh Kumar, Retired Professional"
+    }
   ];
 
   const nextTestimonial = () => {
@@ -418,152 +361,86 @@ const TestimonialsSection = () => {
   };
 
   const prevTestimonial = () => {
-    setCurrentTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
-  };
-
-  // ✅ Helper to render stars dynamically (supports half stars)
-  const renderStars = (rating: number) => {
-    const stars = [];
-    for (let i = 1; i <= 5; i++) {
-      if (i <= Math.floor(rating)) {
-        // Full Star
-        stars.push(
-          <svg
-            key={i}
-            className="w-6 h-6 text-stockstrail-green-light"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        );
-      } else if (i - 0.5 === rating) {
-        // Half Star
-        stars.push(
-          <svg
-            key={i}
-            className="w-6 h-6 text-stockstrail-green-light"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <defs>
-              <linearGradient id={`half-${i}`}>
-                <stop offset="50%" stopColor="currentColor" />
-                <stop offset="50%" stopColor="#3f3f3f" />
-              </linearGradient>
-            </defs>
-            <path
-              fill={`url(#half-${i})`}
-              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-            />
-          </svg>
-        );
-      } else {
-        // Empty Star
-        stars.push(
-          <svg
-            key={i}
-            className="w-6 h-6 text-gray-500 opacity-50"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-          </svg>
-        );
-      }
-    }
-    return stars;
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
-      {/* Background Effects */}
+      {/* Enhanced background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-20 w-4 h-4 bg-stockstrail-green-light/20 rounded-full animate-ping"></div>
         <div className="absolute bottom-20 left-20 w-3 h-3 bg-stockstrail-green-accent/30 rounded-full animate-bounce"></div>
         <div className="absolute top-1/2 right-10 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
       </div>
-
+      
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-product-sans text-4xl sm:text-5xl lg:text-6xl font-normal uppercase mb-16">
-          <span className="text-white">What our </span>
-          <span className="gradient-text inline-block">client</span>
-          <span className="text-white"> says</span>
+        <div className="animate-slide-in-from-top">
+          <h2 className="font-product-sans text-4xl sm:text-5xl lg:text-6xl font-normal uppercase mb-16 group">
+            <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">What our </span>
+            <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">client</span>
+            <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500"> says</span>
         </h2>
-
-        <div className="relative">
-          {/* Arrows */}
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300"
-            aria-label="Previous testimonial"
-          >
-            <svg
-              className="w-6 h-6 text-white hover:text-black"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        </div>
+        
+        <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevTestimonial}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300 group"
+              aria-label="Previous testimonial"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300"
-            aria-label="Next testimonial"
-          >
-            <svg
-              className="w-6 h-6 text-white hover:text-black"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+              <svg className="w-6 h-6 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            
+            <button
+              onClick={nextTestimonial}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300 group"
+              aria-label="Next testimonial"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+              <svg className="w-6 h-6 text-white group-hover:text-black transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
 
-          {/* Testimonial Card */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto hover:bg-white/10 hover:scale-105 transition-all duration-500">
-            {/* ⭐ Dynamic Star Ratings */}
-            <div className="flex items-center justify-center mb-6 space-x-1">
-              {renderStars(testimonials[currentTestimonial].rating)}
+            {/* Testimonial Card */}
+            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto group hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,255,151,0.2)] transition-all duration-500">
+              <div className="flex items-center justify-center mb-6">
+                <div className="flex text-stockstrail-green-light group-hover:scale-110 transition-transform duration-300">
+                  {[...Array(4)].map((_, i) => (
+                    <svg key={i} className="w-6 h-6 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20" style={{ animationDelay: `${i * 100}ms` }}>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              
+              <blockquote className="text-white text-lg leading-relaxed mb-6 group-hover:text-stockstrail-green-light transition-colors duration-500">
+                "{testimonials[currentTestimonial].quote}"
+              </blockquote>
+              
+              <div className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-500">
+                {testimonials[currentTestimonial].author}
+              </div>
             </div>
 
-            <blockquote className="text-white text-lg leading-relaxed mb-6">
-              “{testimonials[currentTestimonial].quote}”
-            </blockquote>
-
-            <div className="text-white/70 text-sm">
-              — {testimonials[currentTestimonial].author}
+            {/* Dots Indicator */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentTestimonial 
+                      ? 'bg-stockstrail-green-light scale-125' 
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
             </div>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-6 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentTestimonial
-                    ? "bg-stockstrail-green-light scale-125"
-                    : "bg-white/30 hover:bg-white/50"
-                }`}
-              />
-            ))}
           </div>
         </div>
       </div>
