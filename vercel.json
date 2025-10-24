@@ -1,0 +1,15 @@
+{
+  "installCommand": "npm ci || npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/spa",
+  "rewrites": [
+    {
+      "source": "/api/blog/posts/:params*",
+      "destination": "/api/blog/posts/[...params].js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
