@@ -9,7 +9,7 @@ const HeroLogo = () => (
     <img
       src="/stockstrail_logo.gif"
       alt="Stockstrail Logo"
-      className="w-24 h-24 sm:w-52 sm:h-52 group-hover:scale-110 transition-transform duration-500 object-contain"
+      className="w-32 h-32 sm:w-52 sm:h-52 group-hover:scale-110 transition-transform duration-500 object-contain"
       loading="eager"
     />
   </div>
@@ -19,7 +19,7 @@ const HeroLogo = () => (
 // Hero Section Component
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-12 sm:px-6 lg:px-6 overflow-hidden">
       {/* Advanced Background Elements */}
       <div className="absolute inset-0">
         {/* Main animated blur circle */}
@@ -50,7 +50,7 @@ const HeroSection = () => {
       {/* Content with advanced animations */}
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Logo */}
-        <div className="animate-slide-in-from-top mb-8 lg:mb-8 lg:mt-6">
+        <div className="animate-slide-in-from-top mb-4 sm:mb-8 lg:mb-8 lg:mt-6">
           <HeroLogo/>
         </div>
         <div className="animate-slide-in-from-top">
