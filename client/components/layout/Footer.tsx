@@ -117,7 +117,7 @@ const Footer = () => {
               <a href="/services" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">
                 Services
               </a>
-              <a href="#blog" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">
+              <a href="/blog" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">
                 Blog
               </a>
               <a href="/calculators" className="block text-white font-work-sans text-base hover:text-stockstrail-green-light hover:translate-x-2 transition-all duration-300">

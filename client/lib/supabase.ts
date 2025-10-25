@@ -1,8 +1,22 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Replace these with your Supabase project URL and anon key
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+// Your Supabase project credentials
+const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL 
+const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY 
+
+// Validate the URL format
+if (!supabaseUrl || !supabaseUrl.startsWith('http')) {
+  console.error('❌ Invalid Supabase URL:', supabaseUrl)
+  throw new Error('Invalid Supabase URL: Must be a valid HTTP or HTTPS URL')
+}
+
+if (!supabaseAnonKey) {
+  console.error('❌ Missing Supabase Anon Key')
+  throw new Error('Missing Supabase Anon Key')
+}
+
+console.log('✅ Supabase URL:', supabaseUrl)
+console.log('✅ Supabase Key:', supabaseAnonKey.substring(0, 20) + '...')
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 

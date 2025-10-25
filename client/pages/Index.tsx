@@ -1,41 +1,18 @@
 /** @jsxRuntime classic */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
+import { addReview, getRandomReviews } from "../lib/reviews";
+import { Review } from "../lib/supabase";
 
 const HeroLogo = () => (
   <div className="flex justify-center items-center gap-4 sm:gap-8 group w-full">
-  <svg
-    width="192"
-    height="208"
-    viewBox="0 0 32 35"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-24 h-24 sm:w-48 sm:h-48 group-hover:scale-110 transition-transform duration-500"
-  >
-    {/* center horizontal bar (centered in viewBox) */}
-    <rect
-      x="3.5"
-      y="15.9"
-      width="25"
-      height="3.8"
-      fill="#ffffff"
-      className="group-hover:fill-stockstrail-green-light transition-colors duration-500"
+    <img
+      src="/stockstrail_logo.gif"
+      alt="Stockstrail Logo"
+      className="w-24 h-24 sm:w-52 sm:h-52 group-hover:scale-110 transition-transform duration-500 object-contain"
+      loading="eager"
     />
-
-    {/* TOP arrow (original shapes) */}
-    <g fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500">
-      {/* main top arrow body */}
-      <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" />
-      {/* top arrow tip */}
-      <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" />
-    </g>
-    <g transform="translate(32 35.5) scale(-1 -1)" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500">
-      <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" />
-      <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" />
-    </g>
-
-    </svg>
-</div>
+  </div>
 );
 
 
@@ -145,7 +122,7 @@ const PartnerLogosSection = () => {
                   width="200"
                   height="96"
                   draggable={false}
-                  fetchPriority="low"
+                  
                 />
               </div>
             ))}
@@ -236,7 +213,6 @@ const ServicesSection = () => {
                       loading="lazy"
                       width="48"
                       height="48"
-                      fetchPriority="low"
                     />
                   ) : (
                     <span className="text-2xl sm:text-4xl group-hover:scale-110 transition-transform duration-300">
@@ -368,40 +344,86 @@ const WhyChooseSection = () => {
 
 const TestimonialsSection = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [testimonials, setTestimonials] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
-  // ✅ Each testimonial now has a `rating` (out of 5, supports .5) and an `author` name
-  const testimonials = [
+  // Default testimonials as fallback
+  const defaultTestimonials = [
     {
-      quote:
-        "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff.",
-      author: "Olivia Carter, Financial Analyst",
+      id: 1,
+      created_at: new Date().toISOString(),
+      name: "Olivia Carter",
+      company: "Financial Services",
+      position: "Financial Analyst",
+      comment: "One of the best investment firms in Sydney with highly knowledgeable, professional and friendly staff.",
       rating: 4,
     },
     {
-      quote:
-        "Stockstrail helped me build a diversified portfolio that has consistently outperformed my expectations. Their expertise in mutual funds is unmatched.",
-      author: "Sarah Johnson, Long-term Investor",
+      id: 2,
+      created_at: new Date().toISOString(),
+      name: "Sarah Johnson",
+      company: "Investment Group",
+      position: "Long-term Investor",
+      comment: "Stockstrail helped me build a diversified portfolio that has consistently outperformed my expectations. Their expertise in mutual funds is unmatched.",
       rating: 4.5,
     },
     {
-      quote:
-        "The team's personalized approach and transparent communication made me feel confident about my financial decisions. Highly recommended!",
-      author: "Michael Chen, Business Owner",
+      id: 3,
+      created_at: new Date().toISOString(),
+      name: "Michael Chen",
+      company: "Tech Solutions",
+      position: "Business Owner",
+      comment: "The team's personalized approach and transparent communication made me feel confident about my financial decisions. Highly recommended!",
       rating: 5,
     },
     {
-      quote:
-        "From SIP planning to tax optimization, Stockstrail covers all aspects of financial planning. Their calculators are incredibly helpful.",
-      author: "Priya Sharma, Software Engineer",
+      id: 4,
+      created_at: new Date().toISOString(),
+      name: "Priya Sharma",
+      company: "Software Corp",
+      position: "Software Engineer",
+      comment: "From SIP planning to tax optimization, Stockstrail covers all aspects of financial planning. Their calculators are incredibly helpful.",
       rating: 4.5,
     },
     {
-      quote:
-        "The fixed deposit rates offered through Stockstrail are competitive, and the process is completely hassle-free. Great service!",
-      author: "Rajesh Kumar, Retired Professional",
+      id: 5,
+      created_at: new Date().toISOString(),
+      name: "Rajesh Kumar",
+      company: "Retirement Planning",
+      position: "Retired Professional",
+      comment: "The fixed deposit rates offered through Stockstrail are competitive, and the process is completely hassle-free. Great service!",
       rating: 4,
     },
   ];
+
+  // Load random reviews on component mount
+  useEffect(() => {
+    const loadReviews = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await getRandomReviews(5);
+        
+        if (error) {
+          console.error('Error loading reviews:', error);
+          // Use default testimonials if there's an error
+          setTestimonials(defaultTestimonials);
+        } else if (data && data.length > 0) {
+          setTestimonials(data);
+        } else {
+          // Use default testimonials if no reviews in database
+          setTestimonials(defaultTestimonials);
+        }
+      } catch (error) {
+        console.error('Error loading reviews:', error);
+        setTestimonials(defaultTestimonials);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadReviews();
+  }, []);
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
@@ -484,18 +506,53 @@ const TestimonialsSection = () => {
   const handleRatingChange = (value: number) => {
     setForm((prev) => ({ ...prev, rating: value }));
   };
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     // Validate required fields
     if (!form.name || !form.position || !form.comment || !form.rating) {
       setFormError("Please fill all required fields and select a star rating.");
       return;
     }
+    
     setFormError("");
-    // Here you would send to backend/database
-    setShowForm(false);
-    setForm({ name: "", company: "", position: "", comment: "", rating: 0 });
-    alert("Thank you for your review! (DB integration coming soon)");
+    setSubmitting(true);
+    
+    try {
+      // Prepare review data for Supabase
+      const reviewData = {
+        name: form.name,
+        company: form.company || null,
+        position: form.position,
+        comment: form.comment,
+        rating: form.rating,
+      };
+      
+      // Add review to Supabase
+      const { data, error } = await addReview(reviewData);
+      
+      if (error) {
+        throw error;
+      }
+      
+      // Success - reset form and close
+      setShowForm(false);
+      setForm({ name: "", company: "", position: "", comment: "", rating: 0 });
+      
+      // Reload reviews to include the new one
+      const { data: newReviews, error: reloadError } = await getRandomReviews(5);
+      if (!reloadError && newReviews && newReviews.length > 0) {
+        setTestimonials(newReviews);
+      }
+      
+      alert("Thank you for your review! Your feedback has been submitted successfully.");
+      
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      setFormError("Failed to submit review. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -556,21 +613,32 @@ const TestimonialsSection = () => {
             </svg>
           </button>
 
-          {/* Testimonial Card */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto hover:bg-white/10 hover:scale-105 transition-all duration-500">
-            {/* ⭐ Dynamic Star Ratings */}
-            <div className="flex items-center justify-center mb-6 space-x-1">
-              {renderStars(testimonials[currentTestimonial].rating)}
-            </div>
+           {/* Testimonial Card */}
+           <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto hover:bg-white/10 hover:scale-105 transition-all duration-500">
+             {loading ? (
+               <div className="flex items-center justify-center py-8">
+                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-stockstrail-green-light"></div>
+               </div>
+             ) : (
+               <>
+                 {/* ⭐ Dynamic Star Ratings */}
+                 <div className="flex items-center justify-center mb-6 space-x-1">
+                   {renderStars(testimonials[currentTestimonial]?.rating || 0)}
+                 </div>
 
-            <blockquote className="text-white text-lg leading-relaxed mb-6">
-              “{testimonials[currentTestimonial].quote}”
-            </blockquote>
+                 <blockquote className="text-white text-lg leading-relaxed mb-6">
+                   "{testimonials[currentTestimonial]?.comment || ''}"
+                 </blockquote>
 
-            <div className="text-white/70 text-sm">
-              — {testimonials[currentTestimonial].author}
-            </div>
-          </div>
+                 <div className="text-white/70 text-sm">
+                   — {testimonials[currentTestimonial]?.name || ''}, {testimonials[currentTestimonial]?.position || ''}
+                   {testimonials[currentTestimonial]?.company && (
+                     <span className="text-white/50"> at {testimonials[currentTestimonial]?.company}</span>
+                   )}
+                 </div>
+               </>
+             )}
+           </div>
 
           {/* Dots Indicator */}
           <div className="flex justify-center mt-6 space-x-2">
@@ -587,14 +655,16 @@ const TestimonialsSection = () => {
             ))}
           </div>
 
-          {/* Add a review button and dropdown form */}
-          <div className="mt-8 flex flex-col items-center">
-            <button
-              className="px-6 py-3 bg-stockstrail-green-light text-black rounded-full font-semibold shadow hover:bg-stockstrail-green-accent transition-all duration-300"
-              onClick={() => setShowForm((v) => !v)}
-            >
-              {showForm ? "Close" : "Add a review"}
-            </button>
+           {/* Add a review button and dropdown form */}
+           <div className="mt-8 flex flex-col items-center">
+             <button
+               className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group"
+               onClick={() => setShowForm((v) => !v)}
+               style={{ pointerEvents: 'auto' }}
+             >
+               <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
+               {showForm ? "Close" : "Add a review"}
+             </button>
             {showForm && (
               <form
                 className="mt-4 w-full max-w-md bg-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-4 animate-dropdown"
@@ -662,12 +732,20 @@ const TestimonialsSection = () => {
                   </div>
                 </div>
                 {formError && <div className="text-red-500 text-sm mt-2">{formError}</div>}
-                <button
-                  type="submit"
-                  className="mt-4 px-6 py-2 bg-stockstrail-green-light text-black rounded-full font-semibold shadow hover:bg-stockstrail-green-accent transition-all duration-300"
-                >
-                  Submit Review
-                </button>
+                 <button
+                   type="submit"
+                   disabled={submitting}
+                   className="mt-4 px-6 py-2 bg-stockstrail-green-light text-black rounded-full font-semibold shadow hover:bg-stockstrail-green-accent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                 >
+                   {submitting ? (
+                     <div className="flex items-center gap-2">
+                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-black"></div>
+                       Submitting...
+                     </div>
+                   ) : (
+                     'Submit Review'
+                   )}
+                 </button>
               </form>
             )}
           </div>
@@ -676,7 +754,6 @@ const TestimonialsSection = () => {
     </section>
   );
 };
-
 // About Section
 const AboutSection = () => {
   return (
@@ -691,20 +768,20 @@ const AboutSection = () => {
       
       <div className="max-w-6xl mx-auto text-center relative z-10">
         <div className="animate-slide-in-from-top" style={{ animationDelay: '100ms' }}>
-          <h2 className="font-product-sans text-4xl sm:text-5xl lg:text-6xl font-normal uppercase mb-8 group">
+          <h2 className="font-product-sans text-2xl sm:text-4xl lg:text-6xl font-normal uppercase mb-8 group">
             <span className="text-white group-hover:text-stockstrail-green-light transition-colors duration-500">About </span>
             <span className="gradient-text group-hover:scale-105 transition-transform duration-500 inline-block">StocksTrail</span>
         </h2>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
-          <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto mb-12 group-hover:text-stockstrail-green-light transition-colors duration-500">
+          <p className="text-white font-work-sans text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-5xl mx-auto mb-12 group-hover:text-stockstrail-green-light transition-colors duration-500">
           We ensure a secure and safe mutual fund investment platform through a structured and disciplined approach. We offer a wide range of services, including Mutual Funds, Insurance, Fixed Deposits, and more, combining top-tier proprietary and third-party products.
         </p>
         </div>
         
         <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
-          <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
+          <p className="text-white font-work-sans text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
           Our goal is to provide quick transaction services tailored to your profile and risk appetite. Partner with us to develop a savings and investment habit, along with a protection plan that helps you achieve your investment goals according to your specific needs. Our advice ensures you choose the best schemes under the SEBI-defined riskometer.
         </p>
         </div>
@@ -737,14 +814,14 @@ const DisclaimerSection = () => {
       
       <div className="max-w-6xl mx-auto text-center">
         <div className="animate-slide-in-from-top">
-          <h2 className="font-product-sans text-4xl sm:text-5xl lg:text-6xl font-normal uppercase mb-8 text-white group hover:scale-105 transition-transform duration-500">
+          <h2 className="font-product-sans text-2xl sm:text-4xl lg:text-6xl font-normal uppercase mb-8 text-white group hover:scale-105 transition-transform duration-500">
           DISCLAIMER
         </h2>
         </div>
         
         <div className="space-y-8 text-center">
           <div className="animate-slide-in-from-top" style={{ animationDelay: '200ms' }}>
-            <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
+            <p className="text-white font-work-sans text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
               <span className="text-white">www.stockstrail.in</span>
               <span className="text-white"> is the official website of </span>
               <span className="gradient-text inline-block">Vikrant Bhardwaj</span>
@@ -755,13 +832,13 @@ const DisclaimerSection = () => {
           </div>
 
           <div className="animate-slide-in-from-top" style={{ animationDelay: '400ms' }}>
-            <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
+            <p className="text-white font-work-sans text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
               <span className="text-white">We do not charge any fees for the calculators or information provided on this website. Our earnings come in the form of commissions received from the respective Mutual Fund companies.</span>
             </p>
           </div>
 
           <div className="animate-slide-in-from-top" style={{ animationDelay: '600ms' }}>
-            <p className="text-white font-work-sans text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
+            <p className="text-white font-work-sans text-base sm:text-xl lg:text-2xl font-light leading-relaxed max-w-5xl mx-auto group-hover:text-stockstrail-green-light transition-colors duration-500">
               <span className="text-white">Please note that investments in Mutual Funds are subject to market risks. The website does not guarantee any specific returns, financial outcomes, or achievement of investment goals.</span>
             </p>
           </div>

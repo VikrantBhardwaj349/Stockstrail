@@ -62,7 +62,7 @@ export default function BlogPost() {
     return (
       <Layout>
         <div className="pt-20 pb-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <Skeleton className="h-20 w-3/4 mx-auto mb-12 bg-stockstrail-bg-light/30" />
             <Skeleton className="h-6 w-1/2 mx-auto mb-16 bg-stockstrail-bg-light/30" />
             <Skeleton className="h-4 w-full mb-4 bg-stockstrail-bg-light/30" />
@@ -78,7 +78,7 @@ export default function BlogPost() {
     return (
       <Layout>
         <div className="pt-20 pb-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto text-center">
+          <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl font-normal mb-6 gradient-text font-product-sans uppercase">Post Not Found</h1>
             <p className="text-red-500 mb-10 text-lg">{error}</p>
             <Link to="/blog" className="inline-flex items-center text-stockstrail-green-light hover:text-white transition-colors duration-300 text-lg">
@@ -94,7 +94,7 @@ export default function BlogPost() {
   return (
     <Layout>
       <div className="pt-20 pb-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <Link 
             to="/blog" 
             className="inline-flex items-center text-white/50 hover:text-stockstrail-green-light mb-16 transition-colors duration-300 font-work-sans text-sm sm:text-base group"
@@ -103,7 +103,7 @@ export default function BlogPost() {
             Back to All Posts
           </Link>
           
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto border border-stockstrail-green-light/20 hover:bg-white/10  hover:border-stockstrail-green-light/40 hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-500">
+          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-4xl mx-auto border border-stockstrail-green-light/20 hover:bg-white/10  hover:border-stockstrail-green-light/40 hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-500">
             <article className="space-y-10 text-white">
               {/* Title */}
               <div className="text-center space-y-8">

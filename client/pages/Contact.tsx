@@ -37,45 +37,12 @@ const TelegramIcon = () => (
 
 const StockstrailLogoBW = () => (
   <div className="flex items-center gap-4 sm:gap-8 group">
-    <svg
-      width="192"
-      height="208"
-      viewBox="0 0 32 35"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-24 h-24 sm:w-48 sm:h-48 group-hover:scale-110 transition-transform duration-500"
-    >
-      {/* center horizontal bar (centered in viewBox) */}
-      <rect
-        x="3.5"
-        y="15.9"
-        width="25"
-        height="3.8"
-        fill="#ffffff"
-        className="group-hover:fill-stockstrail-green-light transition-colors duration-500"
-      />
-
-      {/* TOP arrow (original shapes) */}
-      <g fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500">
-        {/* main top arrow body */}
-        <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" />
-        {/* top arrow tip */}
-        <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" />
-      </g>
-
-      {/* MIRRORED copy for the bottom arrow:
-          We reuse the exact top shapes and mirror them across the center
-          by translating by the viewBox width/height and scaling -1 on both axes.
-          This guarantees exact geometric symmetry. */}
-      <g transform="translate(32 35.5) scale(-1 -1)" fill="#ffffff" className="group-hover:fill-stockstrail-green-light transition-colors duration-500">
-        <path d="M1.15294 18.553C0.922293 18.3223 0.923909 17.9479 1.15654 17.7192L15.5948 3.52791C16.0954 3.03584 16.8991 3.0393 17.3955 3.53568L18.6805 4.82068C19.183 5.32315 19.1794 6.13889 18.6726 6.63701L6.52575 18.5761C5.032 20.0444 2.63398 20.034 1.15294 18.553Z" />
-        <path d="M20.498 0.96257C20.9132 0.86584 21.2857 1.23841 21.189 1.65361L19.7088 8.0073C19.6064 8.447 19.0607 8.6029 18.7414 8.2837L13.868 3.41016C13.5487 3.09092 13.7046 2.54519 14.1443 2.44276L20.498 0.96257Z" />
-      </g>
-
-      {/* bottom arrow tip (keep subtle rounded tail as in original) */}
-      {/* Note: the mirrored group already includes the tip shape — keeping the separate bottom-tip path
-          is unnecessary now. If you prefer the specific original bottom-tip geometry, you can re-add it. */}
-    </svg>
+    <img
+      src="/stockstrail_logo.gif"
+      alt="Stockstrail Logo"
+      className="w-24 h-24 sm:w-56 sm:h-56 group-hover:scale-110 transition-transform duration-500 object-contain"
+      loading="eager"
+    />
 
     <div className="flex items-baseline">
       <span className="text-white font-product-sans text-4xl sm:text-7xl font-bold group-hover:text-stockstrail-green-light transition-colors duration-500">
@@ -229,7 +196,7 @@ const Contact = () => {
             </div>
 
             {/* Center - Logo and Content */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-16 flex flex-col items-center text-center group">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ml-8 flex flex-col items-center text-center group">
               <div className="mb-6 hover:scale-105 transition-transform duration-500">
                 <StockstrailLogoBW />
               </div>
