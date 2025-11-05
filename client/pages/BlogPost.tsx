@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Facebook, Linkedin, Instagram, Send, MessageCircle, Share2 } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 
 interface Post {
@@ -14,6 +14,131 @@ interface Post {
     displayName: string;
   };
 }
+
+const ContactCard = () => {
+  return (
+    <div className="w-full bg-white/10 rounded-2xl p-6 sm:p-8 border border-white/10 hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
+      <h2 className="text-2xl font-product-sans mb-6">
+        <span className="text-white">Get in </span>
+        <span className="gradient-text">touch</span>
+      </h2>
+      <div className="space-y-4 text-white/90">
+        <div>
+          <div className="text-white/60 text-sm mb-1">Email</div>
+          <a href="mailto:stockstrail@gmail.com" className="underline hover:text-stockstrail-green-light transition-colors">stockstrail@gmail.com</a>
+        </div>
+        <div>
+          <div className="text-white/60 text-sm mb-1">WhatsApp</div>
+          <a href="https://wa.me/919736304663" target="_blank" rel="noopener noreferrer" className="underline hover:text-stockstrail-green-light transition-colors">+91 97363-04663</a>
+        </div>
+        <div>
+          <div className="text-white/60 text-sm mb-1">Mobile No.</div>
+          <a href="tel:+919736304663" className="underline hover:text-stockstrail-green-light transition-colors">+91 97363-04663</a>
+        </div>
+      </div>
+      <div className="mt-6">
+        <h4 className="text-white/80 text-sm uppercase tracking-widest mb-2">Socials</h4>
+        <div className="flex items-center gap-5">
+          <a href="https://www.facebook.com/people/Stockstrail-Stockstrail/100089234534696/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300"><Facebook className="w-6 h-6" /></a>
+          <a href="https://www.linkedin.com/company/stockstrail/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300"><Linkedin className="w-6 h-6" /></a>
+          <a href="http://instagram.com/stockstrail/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300"><Instagram className="w-6 h-6" /></a>
+          <a href="https://t.me/stockstrail" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300"><Send className="w-6 h-6" /></a>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ShareButtons = ({ title, url }: { title: string; url: string }) => {
+  const encodedTitle = encodeURIComponent(title);
+  const encodedUrl = encodeURIComponent(url);
+
+  const shareLinks = {
+    whatsapp: `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`,
+    telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    instagram: `https://www.instagram.com/` // Instagram doesn't support direct link sharing
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      alert('Link copied to clipboard!');
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
+  return (
+    <div className="bg-white/10 rounded-2xl p-6 border border-white/10 hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
+      <div className="flex items-center gap-2 mb-4">
+        <Share2 className="w-5 h-5 text-stockstrail-green-light" />
+        <h3 className="text-white text-lg font-product-sans">Share this post</h3>
+      </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <a
+          href={shareLinks.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white hover:bg-stockstrail-green-light hover:text-black transition-all duration-300"
+          title="Share on WhatsApp"
+        >
+          <MessageCircle className="w-5 h-5" />
+          <span className="text-sm">WhatsApp</span>
+        </a>
+        <a
+          href={shareLinks.telegram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white hover:bg-stockstrail-green-light hover:text-black transition-all duration-300"
+          title="Share on Telegram"
+        >
+          <Send className="w-5 h-5" />
+          <span className="text-sm">Telegram</span>
+        </a>
+        <a
+          href={shareLinks.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white hover:bg-stockstrail-green-light hover:text-black transition-all duration-300"
+          title="Share on Facebook"
+        >
+          <Facebook className="w-5 h-5" />
+          <span className="text-sm">Facebook</span>
+        </a>
+        <a
+          href={shareLinks.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white hover:bg-stockstrail-green-light hover:text-black transition-all duration-300"
+          title="Share on LinkedIn"
+        >
+          <Linkedin className="w-5 h-5" />
+          <span className="text-sm">LinkedIn</span>
+        </a>
+        <a
+          href={shareLinks.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white hover:bg-stockstrail-green-light hover:text-black transition-all duration-300"
+          title="Open Instagram"
+        >
+          <Instagram className="w-5 h-5" />
+          <span className="text-sm">Instagram</span>
+        </a>
+        <button
+          onClick={copyToClipboard}
+          className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-white hover:bg-stockstrail-green-light hover:text-black transition-all duration-300"
+          title="Copy link"
+        >
+          <Share2 className="w-5 h-5" />
+          <span className="text-sm">Copy Link</span>
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default function BlogPost() {
   const { postId } = useParams<{ postId: string }>();
@@ -91,6 +216,8 @@ export default function BlogPost() {
     );
   }
 
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
   return (
     <Layout>
       <div className="pt-20 pb-24 px-4 sm:px-6 lg:px-8">
@@ -103,35 +230,75 @@ export default function BlogPost() {
             Back to All Posts
           </Link>
           
-          <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-4xl mx-auto border border-stockstrail-green-light/20 hover:bg-white/10  hover:border-stockstrail-green-light/40 hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-500">
-            <article className="space-y-10 text-white">
-              {/* Title */}
-              <div className="text-center space-y-8">
-                <h1 className="font-product-sans text-3xl sm:text-4xl lg:text-4xl font-normal uppercase gradient-text leading-tight">
-                  {post.title}
-                </h1>
-                {/* Author and Date */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm sm:text-base pb-8 border-b border-white/10 max-w-3xl mx-auto">
-                  <p className="text-stockstrail-green-light font-work-sans uppercase tracking-wider font-medium">
-                    {post.author?.displayName || 'Building Vendor'}
-                  </p>
-                  <span className="hidden sm:block text-white/30">•</span>
-                  <p className="text-white/50 font-work-sans">
-                    {format(new Date(post.published), 'd MMMM, yyyy')}
-                  </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            {/* Left: Blog Content */}
+            <div className="lg:col-span-2">
+              <div className="bg-white/5 backdrop-blur-lg rounded-2xl border border-stockstrail-green-light/20 hover:bg-white/10  hover:border-stockstrail-green-light/40 hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-500 flex flex-col lg:h-[calc(100vh-8rem)]">
+                {/* Scrollable Content (including title) */}
+                <div className="flex-1 overflow-y-auto p-8 scrollable-blog-content">
+                  <article className="space-y-10 text-white">
+                    {/* Title */}
+                    <div className="text-center space-y-8">
+                      <h1 className="font-product-sans text-3xl sm:text-4xl lg:text-4xl font-normal uppercase gradient-text leading-tight">
+                        {post.title}
+                      </h1>
+                      {/* Author and Date */}
+                      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-sm sm:text-base pb-8 border-b border-white/10 max-w-3xl mx-auto">
+                        <p className="text-stockstrail-green-light font-work-sans uppercase tracking-wider font-medium">
+                          {post.author?.displayName || 'Building Vendor'}
+                        </p>
+                        <span className="hidden sm:block text-white/30">•</span>
+                        <p className="text-white/50 font-work-sans">
+                          {format(new Date(post.published), 'd MMMM, yyyy')}
+                        </p>
+                      </div>
+                    </div>
+                    {/* Content */}
+                    <div 
+                      className="blog-content prose prose-sm sm:prose-base lg:prose-lg mx-auto w-full"
+                      dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
+                  </article>
                 </div>
               </div>
-              {/* Content */}
-              <div 
-                className="blog-content prose prose-sm sm:prose-base lg:prose-lg mx-auto w-full"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            </article>
+            </div>
+
+            {/* Right: Share Buttons and Contact Card */}
+            <div className="lg:col-span-1 space-y-6">
+              <ShareButtons title={post.title} url={currentUrl} />
+              <div className="sticky top-24">
+                <ContactCard />
+              </div>
+            </div>
           </div>
         </div>
       </div>
       
       <style>{`
+        /* Custom scrollbar for blog content */
+        .scrollable-blog-content {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(0, 255, 151, 0.5) rgba(255, 255, 255, 0.1);
+        }
+        
+        .scrollable-blog-content::-webkit-scrollbar {
+          width: 8px;
+        }
+        
+        .scrollable-blog-content::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+        }
+        
+        .scrollable-blog-content::-webkit-scrollbar-thumb {
+          background: rgba(0, 255, 151, 0.5);
+          border-radius: 10px;
+        }
+        
+        .scrollable-blog-content::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 255, 151, 0.7);
+        }
+        
         .blog-content {
           color: rgba(255, 255, 255, 0.85);
           font-family: 'Work Sans', system-ui, sans-serif;

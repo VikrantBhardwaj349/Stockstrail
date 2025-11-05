@@ -30,3 +30,15 @@ export type Review = {
   comment: string
   rating: number
 }
+
+// Queries table type
+export type QueryRecord = {
+  id: number
+  created_at: string
+  name: string
+  phone: string
+  email: string
+  service: string
+  message: string
+}
+export type NewQueryInput = Omit<QueryRecord, "id" | "created_at">;

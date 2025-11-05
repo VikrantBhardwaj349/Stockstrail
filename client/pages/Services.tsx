@@ -1,4 +1,5 @@
 import Layout from "../components/layout/Layout";
+import { useEffect } from "react";
 
 const SectionBlock = ({
   id,
@@ -90,6 +91,35 @@ const PartnersBar = () => {
 };
 
 const Services = () => {
+  // Scroll to section if URL contains a hash (on load and on hash changes)
+  useEffect(() => {
+    const headerOffset = 100; // account for fixed header height
+
+    const scrollToHash = () => {
+      if (typeof window === 'undefined') return;
+      const { hash } = window.location;
+      if (!hash) return;
+      const id = hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    };
+
+    // initial attempt after mount
+    scrollToHash();
+    // in case content paints slightly later
+    const timeoutId = window.setTimeout(scrollToHash, 50);
+
+    // listen for in-page hash changes
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.removeEventListener('hashchange', scrollToHash);
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <Layout>
       <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-10">

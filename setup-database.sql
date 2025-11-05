@@ -38,3 +38,36 @@ ON CONFLICT DO NOTHING;
 -- 6. Verify the setup
 SELECT 'Database setup completed successfully!' as status;
 SELECT COUNT(*) as total_reviews FROM reviews;
+
+
+-- Ensure table exists in public schema
+create table if not exists public.queries (
+  id bigserial primary key,
+  created_at timestamptz not null default now(),
+  name text not null,
+  phone text not null,
+  email text not null,
+  service text not null,
+  message text not null
+);
+
+-- RLS on
+alter table public.queries enable row level security;
+
+-- Clean old policies (optional but avoids duplicates)
+drop policy if exists "Allow insert for queries (public form)" on public.queries;
+drop policy if exists "Allow read for authenticated" on public.queries;
+
+-- Allow public (anon) and authenticated inserts from the website
+create policy "Allow insert for queries (public form)"
+on public.queries
+for insert
+to anon, authenticated
+with check (true);
+
+-- Optional: only allow reads to authenticated (keeps data private)
+create policy "Allow read for authenticated"
+on public.queries
+for select
+to authenticated
+using (true);

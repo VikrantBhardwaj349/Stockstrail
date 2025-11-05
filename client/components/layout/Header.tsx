@@ -57,27 +57,29 @@ const StockstrailLogo = () => (
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const servicesCloseTimer = (typeof window !== 'undefined') ? (window as any).servicesCloseTimer as number | undefined : undefined;
-  const clearServicesTimer = () => {
-    if (typeof window !== 'undefined' && (window as any).servicesCloseTimer) {
-      clearTimeout((window as any).servicesCloseTimer);
-      (window as any).servicesCloseTimer = undefined;
+  // Desktop dropdown tracking (only one open at a time)
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const clearCloseTimer = () => {
+    if (typeof window !== 'undefined' && (window as any).__navCloseTimer) {
+      clearTimeout((window as any).__navCloseTimer);
+      (window as any).__navCloseTimer = undefined;
     }
   };
-  const openServices = () => {
-    clearServicesTimer();
-    setIsServicesOpen(true);
+  const openMenu = (name: string) => {
+    clearCloseTimer();
+    setOpenDropdown(name);
   };
-  const closeServicesWithDelay = (delay = 200) => {
-    clearServicesTimer();
+  const closeMenuWithDelay = (delay = 200) => {
+    clearCloseTimer();
     if (typeof window !== 'undefined') {
-      (window as any).servicesCloseTimer = window.setTimeout(() => {
-        setIsServicesOpen(false);
-        (window as any).servicesCloseTimer = undefined;
+      (window as any).__navCloseTimer = window.setTimeout(() => {
+        setOpenDropdown(null);
+        (window as any).__navCloseTimer = undefined;
       }, delay);
     }
   };
+  // Mobile dropdown tracking
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -95,6 +97,16 @@ const Header = () => {
     },
     { name: "Blog", href: "/blog" },
     { name: "Calculators", href: "/calculators" },
+    {
+      name: "Others",
+      href: "#",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "About Us", href: "/about" },
+        { name: "Contact Us", href: "/contact" },
+        { name: "Open Demat", href: "/open-demat" },
+      ],
+    },
   ];
 
   return (
@@ -114,20 +126,20 @@ const Header = () => {
                   {item.hasDropdown ? (
                     <div
                       className="relative"
-                      onMouseEnter={openServices}
-                      onMouseLeave={() => closeServicesWithDelay(250)}
+                      onMouseEnter={() => openMenu(item.name)}
+                      onMouseLeave={() => closeMenuWithDelay(250)}
                     >
                       <button
                         className="flex items-center gap-2 text-white hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 font-work-sans font-medium"
                       >
                         {item.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openDropdown === item.name ? 'rotate-180' : ''}`} />
                       </button>
-                      {isServicesOpen && (
+                      {openDropdown === item.name && (
                         <div 
                           className="absolute top-full left-0 mt-2 w-56 bg-stockstrail-bg/95 backdrop-blur-lg border border-white/10 rounded-lg py-2 shadow-lg animate-in slide-in-from-top-2 duration-200"
-                          onMouseEnter={openServices}
-                          onMouseLeave={() => closeServicesWithDelay(250)}
+                          onMouseEnter={() => openMenu(item.name)}
+                          onMouseLeave={() => closeMenuWithDelay(250)}
                         >
                           {item.dropdownItems?.map((dropdownItem) => (
                             <a
@@ -156,7 +168,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex">
-            <a href="/contact" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 font-work-sans font-medium group">
+            <a href="/lets-talk" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 font-work-sans font-medium group">
               <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
               Let's Talk
             </a>
@@ -181,12 +193,12 @@ const Header = () => {
                     <div>
                       <button
                         className="flex items-center justify-between w-full text-left py-2 text-white font-work-sans font-medium hover:text-stockstrail-green-light transition-colors duration-300"
-                        onClick={() => setIsServicesOpen(!isServicesOpen)}
+                        onClick={() => setOpenMobileDropdown(openMobileDropdown === item.name ? null : item.name)}
                       >
                         {item.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openMobileDropdown === item.name ? 'rotate-180' : ''}`} />
                       </button>
-                      {isServicesOpen && (
+                      {openMobileDropdown === item.name && (
                         <div className="pl-4 space-y-2 mt-2">
                           {item.dropdownItems?.map((dropdownItem) => (
                             <a
@@ -212,7 +224,7 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              <a href="/contact" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white font-work-sans font-medium mt-4 w-fit hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group">
+              <a href="/lets-talk" className="inline-flex items-center gap-4 px-6 py-4 bg-transparent border-2 border-white/20 rounded-full text-white font-work-sans font-medium mt-4 w-fit hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,151,0.3)] transition-all duration-300 group">
                 <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-110 transition-transform duration-300"></div>
                 Let's Talk
               </a>

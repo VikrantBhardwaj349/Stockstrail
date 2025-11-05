@@ -19,7 +19,7 @@ const HeroLogo = () => (
 // Hero Section Component
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-12 sm:px-6 lg:px-6 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-6 lg:px-6 overflow-hidden">
       {/* Advanced Background Elements */}
       <div className="absolute inset-0">
         {/* Main animated blur circle */}
@@ -50,7 +50,7 @@ const HeroSection = () => {
       {/* Content with advanced animations */}
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         {/* Logo */}
-        <div className="animate-slide-in-from-top mb-4 sm:mb-8 lg:mb-8 lg:mt-6">
+        <div className="animate-slide-in-from-top">
           <HeroLogo/>
         </div>
         <div className="animate-slide-in-from-top">
@@ -178,7 +178,7 @@ const ServicesSection = () => {
     if (title.includes("FIXED DEPOSIT")) return "/services/fixed-deposit";
     if (title.includes("INSURANCE")) return "/services/insurance";
     if (title.includes("LOAN")) return "/services/loan";
-    if (title.includes("OTHERS")) return "/services/open-demat";
+    if (title.includes("OTHERS")) return "/open-demat";
     return "/services";
   };
 
@@ -234,8 +234,6 @@ const ServicesSection = () => {
                 {/* Arrow Link */}
                 <a
                   href={getHref(service.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="w-16 h-16 sm:w-24 sm:h-24 bg-white/20 rounded-full flex items-center justify-center mt-4 sm:mt-0 sm:ml-8 flex-shrink-0 group-hover:bg-stockstrail-gradient group-hover:scale-110 transition-all duration-300 cursor-pointer"
                   aria-label={`${service.title} link`}
                 >
@@ -261,7 +259,7 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <a
             href="/services"
             className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group"
@@ -269,7 +267,7 @@ const ServicesSection = () => {
             <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
             All Services
           </a>
-        </div>
+        </div> */}
       </div>
     </section>
   );
@@ -347,6 +345,10 @@ const TestimonialsSection = () => {
   const [testimonials, setTestimonials] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  // Touch/drag tracking
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [dragDelta, setDragDelta] = useState(0);
+  const dragging = React.useRef(false);
 
   // Default testimonials as fallback
   const defaultTestimonials = [
@@ -426,7 +428,9 @@ const TestimonialsSection = () => {
   }, []);
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    setCurrentTestimonial((prev) =>
+      testimonials.length > 0 ? (prev + 1) % testimonials.length : prev
+    );
   };
 
   const prevTestimonial = () => {
@@ -434,6 +438,15 @@ const TestimonialsSection = () => {
       (prev) => (prev - 1 + testimonials.length) % testimonials.length
     );
   };
+
+  // Auto-advance testimonials every 3 seconds
+  useEffect(() => {
+    if (loading || testimonials.length === 0) return;
+    const intervalId = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 3000);
+    return () => clearInterval(intervalId);
+  }, [loading, testimonials.length]);
 
   // ✅ Helper to render stars dynamically (supports half stars)
   const renderStars = (rating: number) => {
@@ -572,73 +585,125 @@ const TestimonialsSection = () => {
         </h2>
 
         <div className="relative">
-          {/* Arrows */}
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300"
-            aria-label="Previous testimonial"
+          {/* Testimonial Card with slide animation & touch support */}
+          <div
+            className="bg-white/5 backdrop-blur-lg rounded-2xl max-w-2xl mx-auto hover:bg-white/10 hover:scale-105 transition-all duration-500 overflow-hidden select-none"
+            onTouchStart={e => { dragging.current = true; setDragStartX(e.touches[0].clientX); }}
+            onTouchMove={e => {
+              if (dragging.current && dragStartX !== null) {
+                setDragDelta(e.touches[0].clientX - dragStartX);
+              }
+            }}
+            onTouchEnd={() => {
+              dragging.current = false;
+              if (Math.abs(dragDelta) > 60) {
+                if (dragDelta > 0) {
+                  setCurrentTestimonial((prev) =>
+                    testimonials.length > 0 ? (prev - 1 + testimonials.length) % testimonials.length : prev
+                  );
+                } else {
+                  setCurrentTestimonial((prev) =>
+                    testimonials.length > 0 ? (prev + 1) % testimonials.length : prev
+                  );
+                }
+              }
+              setDragStartX(null);
+              setDragDelta(0);
+            }}
+            onMouseDown={e => {
+              dragging.current = true; setDragStartX(e.clientX);
+            }}
+            onMouseMove={e => {
+              if (dragging.current && dragStartX !== null) {
+                setDragDelta(e.clientX - dragStartX);
+              }
+            }}
+            onMouseUp={() => {
+              dragging.current = false;
+              if (Math.abs(dragDelta) > 60) {
+                if (dragDelta > 0) {
+                  setCurrentTestimonial((prev) =>
+                    testimonials.length > 0 ? (prev - 1 + testimonials.length) % testimonials.length : prev
+                  );
+                } else {
+                  setCurrentTestimonial((prev) =>
+                    testimonials.length > 0 ? (prev + 1) % testimonials.length : prev
+                  );
+                }
+              }
+              setDragStartX(null);
+              setDragDelta(0);
+            }}
+            onMouseLeave={() => { dragging.current = false; setDragStartX(null); setDragDelta(0); }}
+            onWheel={(e) => {
+              const now = Date.now();
+              // simple throttle
+              // @ts-ignore
+              if ((window as any).__lastWheelTs && now - (window as any).__lastWheelTs < 500) return;
+              if (Math.abs(e.deltaX) > 10) {
+                // @ts-ignore
+                (window as any).__lastWheelTs = now;
+                if (e.deltaX > 0) {
+                  setCurrentTestimonial((prev) =>
+                    testimonials.length > 0 ? (prev + 1) % testimonials.length : prev
+                  );
+                } else {
+                  setCurrentTestimonial((prev) =>
+                    testimonials.length > 0 ? (prev - 1 + testimonials.length) % testimonials.length : prev
+                  );
+                }
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                setCurrentTestimonial((prev) =>
+                  testimonials.length > 0 ? (prev + 1) % testimonials.length : prev
+                );
+              }
+              if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                setCurrentTestimonial((prev) =>
+                  testimonials.length > 0 ? (prev - 1 + testimonials.length) % testimonials.length : prev
+                );
+              }
+            }}
+            tabIndex={0}
+            style={{ cursor: dragStartX !== null ? 'grabbing' : 'grab', touchAction: 'pan-y' }}
           >
-            <svg
-              className="w-6 h-6 text-white hover:text-black"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
+            {loading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-stockstrail-green-light"></div>
+              </div>
+            ) : (
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+              >
+                {testimonials.map((t, idx) => (
+                  <div key={idx} className="min-w-full shrink-0 basis-full">
+                    <div className="p-8">
+                    {/* ⭐ Dynamic Star Ratings */}
+                    <div className="flex items-center justify-center mb-6 space-x-1">
+                      {renderStars(t?.rating || 0)}
+                    </div>
 
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-stockstrail-green-light hover:scale-110 transition-all duration-300"
-            aria-label="Next testimonial"
-          >
-            <svg
-              className="w-6 h-6 text-white hover:text-black"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
+                    <blockquote className="text-white text-lg leading-relaxed mb-6">
+                      "{t?.comment || ''}"
+                    </blockquote>
 
-           {/* Testimonial Card */}
-           <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto hover:bg-white/10 hover:scale-105 transition-all duration-500">
-             {loading ? (
-               <div className="flex items-center justify-center py-8">
-                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-stockstrail-green-light"></div>
-               </div>
-             ) : (
-               <>
-                 {/* ⭐ Dynamic Star Ratings */}
-                 <div className="flex items-center justify-center mb-6 space-x-1">
-                   {renderStars(testimonials[currentTestimonial]?.rating || 0)}
-                 </div>
-
-                 <blockquote className="text-white text-lg leading-relaxed mb-6">
-                   "{testimonials[currentTestimonial]?.comment || ''}"
-                 </blockquote>
-
-                 <div className="text-white/70 text-sm">
-                   — {testimonials[currentTestimonial]?.name || ''}, {testimonials[currentTestimonial]?.position || ''}
-                   {testimonials[currentTestimonial]?.company && (
-                     <span className="text-white/50"> at {testimonials[currentTestimonial]?.company}</span>
-                   )}
-                 </div>
-               </>
-             )}
-           </div>
+                    <div className="text-white/70 text-sm">
+                      — {t?.name || ''}, {t?.position || ''}
+                      {t?.company && (
+                        <span className="text-white/50"> at {t?.company}</span>
+                      )}
+                    </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Dots Indicator */}
           <div className="flex justify-center mt-6 space-x-2">
@@ -657,19 +722,22 @@ const TestimonialsSection = () => {
 
            {/* Add a review button and dropdown form */}
            <div className="mt-8 flex flex-col items-center">
-             <button
-               className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group"
-               onClick={() => setShowForm((v) => !v)}
-               style={{ pointerEvents: 'auto' }}
-             >
-               <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
-               {showForm ? "Close" : "Add a review"}
-             </button>
+             {!showForm && (
+               <button
+                 className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group"
+                 onClick={() => setShowForm(true)}
+                 style={{ pointerEvents: 'auto' }}
+               >
+                 <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
+                 Add a review
+               </button>
+             )}
             {showForm && (
-              <form
-                className="mt-4 w-full max-w-md bg-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-4 animate-dropdown"
-                onSubmit={handleFormSubmit}
-              >
+              <>
+                <form
+                  className="mt-4 w-full max-w-md bg-white/10 rounded-xl p-6 shadow-lg flex flex-col gap-4 animate-dropdown"
+                  onSubmit={handleFormSubmit}
+                >
                 <div className="flex flex-col text-left">
                   <label className="text-white font-medium mb-1">Name<span className="text-red-500">*</span></label>
                   <input
@@ -746,7 +814,16 @@ const TestimonialsSection = () => {
                      'Submit Review'
                    )}
                  </button>
-              </form>
+                </form>
+                <button
+                  className="mt-4 inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium group"
+                  onClick={() => setShowForm(false)}
+                  style={{ pointerEvents: 'auto' }}
+                >
+                  <div className="w-3 h-3 bg-stockstrail-green-accent rounded-full group-hover:scale-125 group-hover:animate-pulse transition-all duration-300"></div>
+                  Close
+                </button>
+              </>
             )}
           </div>
         </div>
@@ -788,7 +865,7 @@ const AboutSection = () => {
         
         <div className="mt-16">
           <a 
-            href="/contact" 
+            href="/lets-talk" 
             className="inline-flex items-center gap-4 px-8 py-4 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,151,0.4)] transition-all duration-500 font-work-sans font-medium text-lg group relative z-20 cursor-pointer"
             style={{ pointerEvents: 'auto' }}
           >

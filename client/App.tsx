@@ -20,6 +20,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NseHolidays from "./pages/NseHolidays";
 import BseHolidays from "./pages/BseHolidays";
+import LetsTalk from "./pages/LetsTalk";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,8 @@ const App = () => (
           <Route path="/bse-holidays" element={<BseHolidays />} />
           <Route path="/calculators" element={<Calculators />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/lets-talk" element={<LetsTalk />} />
+          <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

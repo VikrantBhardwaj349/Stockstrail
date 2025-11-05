@@ -1,4 +1,5 @@
 import Layout from "../components/layout/Layout";
+import { Facebook, Linkedin, Instagram, Send } from "lucide-react";
 
 // Phone Icon Component
 const PhoneIcon = () => (
@@ -107,16 +108,22 @@ const Contact = () => {
                 </a>
               </div>
               <div className="group">
-                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Telegram</h2>
-                <a 
-                  href="https://t.me/stockstrail" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-                >
-                  <TelegramIcon />
-                  @stockstrail
-                </a>
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Socials</h2>
+                <div className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors duration-300">
+                  <a href="https://www.facebook.com/people/Stockstrail-Stockstrail/100089234534696/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                  <a href="https://www.linkedin.com/company/stockstrail/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                  <a href="http://instagram.com/stockstrail/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                  <a href="https://t.me/stockstrail" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Send className="w-6 h-6" />
+                  </a>
+                  
+                </div>
               </div>
             </div>
 
@@ -182,16 +189,21 @@ const Contact = () => {
                 </a>
               </div>
               <div className="group">
-                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Telegram</h2>
-                <a 
-                  href="https://t.me/stockstrail" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="underline hover:text-stockstrail-green-light hover:scale-105 transition-all duration-300 block p-3 rounded-lg hover:bg-white/5 hover:shadow-[0_0_15px_rgba(0,255,151,0.2)]"
-                >
-                  <TelegramIcon />
-                  @stockstrail
-                </a>
+                <h2 className="text-white text-sm uppercase tracking-widest mb-2 group-hover:text-stockstrail-green-light transition-colors duration-300">Socials</h2>
+                <div className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors duration-300">
+                  <a href="https://www.facebook.com/people/Stockstrail-Stockstrail/100089234534696/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                  <a href="https://www.linkedin.com/company/stockstrail/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Linkedin className="w-6 h-6" />
+                  </a>
+                  <a href="http://instagram.com/stockstrail/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                  <a href="https://t.me/stockstrail" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light hover:scale-110 transition-transform duration-300">
+                    <Send className="w-6 h-6" />
+                  </a>
+                </div>
               </div>
             </div>
 
