@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 import React, { useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
+import SEO from "../components/SEO";
 import { addReview, getRandomReviews } from "../lib/reviews";
 import { Review } from "../lib/supabase";
 
@@ -929,6 +930,12 @@ const DisclaimerSection = () => {
 const Index = () => {
   return (
     <Layout>
+      <SEO
+        title="Stockstrail - Your Journey to Financial Freedom"
+        description="Achieve financial independence with Stockstrail. Expert guidance for mutual funds, insurance, fixed deposits, and loans. Start your investment journey today."
+        keywords="mutual funds, investment, financial planning, SIP, insurance, fixed deposit, loans, Stockstrail, financial advisor, wealth management, financial freedom"
+        url="/"
+      />
       <HeroSection />
       <PartnerLogosSection />
       <ServicesSection />

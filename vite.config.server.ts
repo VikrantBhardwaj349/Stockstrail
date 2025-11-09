@@ -1,8 +1,10 @@
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// Server build configuration
+// Server build configuration for SSR
 export default defineConfig({
+  plugins: [react()],
   build: {
     lib: {
       entry: path.resolve(__dirname, "server/node-build.ts"),
@@ -32,13 +34,14 @@ export default defineConfig({
         // External dependencies that should not be bundled
         "express",
         "cors",
+        "dotenv",
       ],
       output: {
         format: "es",
         entryFileNames: "[name].mjs",
       },
     },
-    minify: false, // Keep readable for debugging
+    minify: false,
     sourcemap: true,
   },
   resolve: {
@@ -49,5 +52,8 @@ export default defineConfig({
   },
   define: {
     "process.env.NODE_ENV": '"production"',
+  },
+  ssr: {
+    noExternal: ["react", "react-dom", "react-router-dom", "react-helmet-async"],
   },
 });

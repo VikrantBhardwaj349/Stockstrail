@@ -1,4 +1,5 @@
 import Layout from "../components/layout/Layout";
+import SEO from "../components/SEO";
 import { useEffect } from "react";
 
 const SectionBlock = ({
@@ -122,6 +123,12 @@ const Services = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Services - Mutual Funds, Insurance, Fixed Deposits & Loans | Stockstrail"
+        description="Explore our comprehensive financial services including Mutual Funds, Fixed Deposits, Insurance, and Loans. Expert guidance tailored to your needs."
+        keywords="mutual funds services, fixed deposit, insurance plans, loans, financial services, SIP, investment services"
+        url="/services"
+      />
       <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-10">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text">Services</h1>

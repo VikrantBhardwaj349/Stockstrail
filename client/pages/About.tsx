@@ -1,8 +1,15 @@
 import Layout from "../components/layout/Layout";
+import SEO from "../components/SEO";
 
 const About = () => {
   return (
     <Layout>
+      <SEO
+        title="About Us - Stockstrail | Not for Profit, for People"
+        description="Learn about Stockstrail's mission to make investing simple and accessible for every Indian. We guide you step-by-step to build long-term financial security."
+        keywords="about Stockstrail, financial advisor, investment guidance, financial planning, wealth management, mutual funds advisor"
+        url="/about"
+      />
       {/* Hero */}
       <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-12 overflow-hidden">
         <div className="absolute inset-0">
