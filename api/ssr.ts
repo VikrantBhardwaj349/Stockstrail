@@ -1,26 +1,10 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import express from 'express';
 import serverless from 'serverless-http';
-import fs from 'fs';
-import path from 'path';
 import { render } from '../server/render';
 
 // Create a lightweight Express app for SSR only (avoid duplicating /api routes)
 const app = express();
-
-// Helper to load built index.html from dist/spa
-function readIndexHtml(): string {
-  const candidates = [
-    path.join(process.cwd(), 'dist/spa/index.html'),
-    path.join(process.cwd(), 'index.html'),
-  ];
-  for (const p of candidates) {
-    if (fs.existsSync(p)) {
-      return fs.readFileSync(p, 'utf-8');
-    }
-  }
-  throw new Error('index.html not found. Ensure client build outputs to dist/spa.');
-}
 
 function injectSSR(indexHtml: string, reactHtml: string, helmet: any): string {
   let html = indexHtml.replace(
@@ -51,13 +35,18 @@ function injectSSR(indexHtml: string, reactHtml: string, helmet: any): string {
 }
 
 // SSR handler for all app routes (assets are served by Vercel statics)
-app.get('*', (req, res) => {
+app.get('*', async (req, res) => {
   try {
     // Ignore Next/Vercel internal or asset routes
     if (req.path.startsWith('/assets/') || req.path.startsWith('/api/')) {
       return res.status(404).end();
     }
-    const indexHtml = readIndexHtml();
+    // Fetch the built index.html from the deployed static output
+    const protocol = (req.headers['x-forwarded-proto'] as string) || 'https';
+    const host = req.headers.host;
+    const baseUrl = `${protocol}://${host}`;
+    const resp = await fetch(`${baseUrl}/index.html`, { headers: { 'cache-control': 'no-cache' } });
+    const indexHtml = await resp.text();
     const { html: reactHtml, helmet } = render(req.url);
     const full = injectSSR(indexHtml, reactHtml, helmet);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
