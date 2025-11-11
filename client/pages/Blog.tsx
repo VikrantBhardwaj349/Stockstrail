@@ -119,9 +119,9 @@ export default function Blog() {
                   .replace(/[^a-z0-9]+/g, '-')
                   .replace(/^-+|-+$/g, '')
                   .replace(/-{2,}/g, '-');
-                // Include the Blogger numeric ID at the end to ensure resolvable fetch in production
+                // Use slug-only URLs for SEO-friendly links
                 const slug = post.slug || slugFromTitle || 'post';
-                const postPath = `/blog/${slug}-${post.id}`;
+                const postPath = `/blog/${slug}`;
                 return (
                   <article 
                     key={post.id} 
