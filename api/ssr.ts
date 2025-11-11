@@ -1,10 +1,36 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 import express from 'express';
 import serverless from 'serverless-http';
+import fs from 'fs';
+import path from 'path';
 import { render } from '../server/render';
 
 // Create a lightweight Express app for SSR only (avoid duplicating /api routes)
 const app = express();
+
+const STATIC_PATHS = new Set([
+  '/favicon.ico',
+  '/favicon.svg',
+  '/robots.txt',
+  '/sitemap.xml',
+  '/index.html',
+]);
+
+function readIndexHtml(): string {
+  const candidates = [
+    path.join(process.cwd(), 'dist/spa/index.html'),
+    path.join(process.cwd(), 'index.html'),
+  ];
+  for (const candidate of candidates) {
+    try {
+      if (fs.existsSync(candidate)) {
+        return fs.readFileSync(candidate, 'utf-8');
+      }
+    } catch {
+      // continue
+    }
+  }
+  throw new Error('index.html not found in dist/spa. Ensure client build output is deployed.');
+}
 
 function injectSSR(indexHtml: string, reactHtml: string, helmet: any): string {
   let html = indexHtml.replace(
@@ -41,12 +67,10 @@ app.get('*', async (req, res) => {
     if (req.path.startsWith('/assets/') || req.path.startsWith('/api/')) {
       return res.status(404).end();
     }
-    // Fetch the built index.html from the deployed static output
-    const protocol = (req.headers['x-forwarded-proto'] as string) || 'https';
-    const host = req.headers.host;
-    const baseUrl = `${protocol}://${host}`;
-    const resp = await fetch(`${baseUrl}/index.html`, { headers: { 'cache-control': 'no-cache' } });
-    const indexHtml = await resp.text();
+    if (STATIC_PATHS.has(req.path)) {
+      return res.status(404).end();
+    }
+    const indexHtml = readIndexHtml();
     const { html: reactHtml, helmet } = render(req.url);
     const full = injectSSR(indexHtml, reactHtml, helmet);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -66,7 +90,7 @@ app.get('*', async (req, res) => {
 
 const handler = serverless(app);
 
-export default async function ssr(req: VercelRequest, res: VercelResponse) {
+export default async function ssr(req: any, res: any) {
   return handler(req as any, res as any);
 }
 
