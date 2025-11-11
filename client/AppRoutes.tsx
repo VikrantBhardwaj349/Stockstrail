@@ -26,7 +26,9 @@ export const AppRoutes = () => (
     <Route path="/services/loan" element={<Loan />} />
     <Route path="/open-demat" element={<OpenDemat />} />
     <Route path="/blog" element={<Blog />} />
-    <Route path="/blog/:postId" element={<BlogPost />} />
+    {/* Prefer slug route but keep legacy ID route working */}
+    <Route path="/blog/:slug" element={<BlogPost />} />
+    <Route path="/blog/id/:postId" element={<BlogPost />} />
     <Route path="/nse-holidays" element={<NseHolidays />} />
     <Route path="/bse-holidays" element={<BseHolidays />} />
     <Route path="/calculators" element={<Calculators />} />

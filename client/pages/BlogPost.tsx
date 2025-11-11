@@ -7,6 +7,7 @@ import Layout from '@/components/layout/Layout';
 
 interface Post {
   id: string;
+  slug?: string;
   title: string;
   content: string;
   published: string;
@@ -141,19 +142,25 @@ const ShareButtons = ({ title, url }: { title: string; url: string }) => {
 };
 
 export default function BlogPost() {
-  const { postId } = useParams<{ postId: string }>();
+  const params = useParams();
+  const slugOrId = params.slug || params.postId;
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!postId) return;
+    if (!slugOrId) return;
 
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/blog/posts/${postId}`);
+        // Try by slug first
+        let response = await fetch(`/api/blog/posts/slug/${slugOrId}`);
         if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          // Fallback to by ID
+          response = await fetch(`/api/blog/posts/${slugOrId}`);
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
         }
         
         const contentType = response.headers.get('content-type');
@@ -167,10 +174,10 @@ export default function BlogPost() {
         setPost(data);
         setError(null);
       } catch (err) {
-        console.error(`Error fetching post ${postId}:`, err);
+        console.error(`Error fetching post ${slugOrId}:`, err);
         
         // If it's a real blog post ID (not sample), show a different error message
-        if (!postId.startsWith('sample-')) {
+        if (!String(slugOrId).startsWith('sample-')) {
           setError('This blog post is currently unavailable. Please try again later or browse other posts.');
         } else {
           setError('Blog post not found. It may have been moved or deleted.');
@@ -181,7 +188,7 @@ export default function BlogPost() {
     };
 
     fetchPost();
-  }, [postId]);
+  }, [slugOrId]);
 
   if (loading) {
     return (

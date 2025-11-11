@@ -5,6 +5,17 @@ const BLOGGER_API_KEY = process.env.VITE_BLOGGER_API_KEY || process.env.BLOGGER_
 const BLOG_ID = process.env.BLOG_ID || '8967612143410750655';
 const API_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`;
 
+function slugify(input: string): string {
+  return (input || '')
+    .toString()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/-{2,}/g, '-');
+}
+
 // Sample blog posts for fallback
 const samplePosts = [
   {
@@ -190,16 +201,20 @@ export const getBlogPosts: RequestHandler = async (req, res) => {
       timeout: 10000, // 10 second timeout
     });
 
-    const posts = response.data.items.map((post: any) => ({
-      id: post.id,
-      title: post.title,
-      content: post.content,
-      url: post.url,
-      published: post.published,
-      author: {
-        displayName: post.author?.displayName || 'Admin',
-      },
-    }));
+    const posts = response.data.items.map((post: any) => {
+      const title = post.title || '';
+      return {
+        id: post.id,
+        slug: slugify(title),
+        title,
+        content: post.content,
+        url: post.url,
+        published: post.published,
+        author: {
+          displayName: post.author?.displayName || 'Admin',
+        },
+      };
+    });
 
     console.log(`Successfully fetched ${posts.length} blog posts from Blogger API`);
     res.json({
@@ -222,7 +237,7 @@ export const getBlogPosts: RequestHandler = async (req, res) => {
     
     // Return sample posts instead of error
     res.json({
-      items: samplePosts,
+      items: samplePosts.map((p) => ({ ...p, slug: slugify(p.title) })),
       totalItems: samplePosts.length,
       fallback: true, // Flag to indicate this is fallback data
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -241,7 +256,7 @@ export const getBlogPost: RequestHandler = async (req, res) => {
   const samplePost = samplePosts.find(post => post.id === postId);
   if (samplePost) {
     console.log(`Returning sample post: ${postId}`);
-    return res.json(samplePost);
+    return res.json({ ...samplePost, slug: slugify(samplePost.title) });
   }
 
   try {
@@ -267,12 +282,62 @@ export const getBlogPost: RequestHandler = async (req, res) => {
     };
 
     console.log(`Successfully fetched blog post ${postId} from Blogger API`);
-    res.json(post);
+    res.json({ ...post, slug: slugify(post.title) });
   } catch (error) {
     console.error(`Error fetching blog post ${postId} from Blogger API:`, error);
     res.status(404).json({
       error: 'Blog post not found',
       details: 'The requested blog post could not be found or the API is unavailable.',
     });
+  }
+};
+
+export const getBlogPostBySlug: RequestHandler = async (req, res) => {
+  const { slug } = req.params;
+  if (!slug) {
+    return res.status(400).json({ error: 'Slug is required' });
+  }
+
+  // Check sample posts
+  const sample = samplePosts.find(p => slugify(p.title) === slug);
+  if (sample) {
+    return res.json({ ...sample, slug });
+  }
+
+  try {
+    // Try Blogger search API to find post by title terms
+    const q = slug.replace(/-/g, ' ');
+    const searchUrl = `${API_URL}/search`;
+    const response = await axios.get(searchUrl, {
+      params: {
+        key: BLOGGER_API_KEY,
+        q,
+        fetchBodies: true,
+        fetchImages: true,
+        orderBy: 'published',
+      },
+      timeout: 10000,
+    });
+
+    const items: any[] = response.data.items || [];
+    const match = items.find((it) => slugify(it.title || '') === slug) || items[0];
+    if (!match) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+    const post = {
+      id: match.id,
+      slug: slugify(match.title || ''),
+      title: match.title || '',
+      content: match.content || '',
+      url: match.url,
+      published: match.published,
+      author: {
+        displayName: match.author?.displayName || 'Admin',
+      },
+    };
+    return res.json(post);
+  } catch (error) {
+    console.error('Error fetching post by slug:', error);
+    return res.status(404).json({ error: 'Post not found' });
   }
 };

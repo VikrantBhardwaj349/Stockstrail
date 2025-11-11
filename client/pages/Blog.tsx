@@ -6,6 +6,7 @@ import Layout from '@/components/layout/Layout';
 
 interface BlogPost {
   id: string;
+  slug?: string;
   title: string;
   url: string;
   content: string;
@@ -111,6 +112,14 @@ export default function Blog() {
             <div className="space-y-8">
               {posts.map((post) => {
                 const imageUrl = extractImage(post.content);
+                const slugFromTitle = (post.title || '')
+                  .toLowerCase()
+                  .normalize('NFKD')
+                  .replace(/[\u0300-\u036f]/g, '')
+                  .replace(/[^a-z0-9]+/g, '-')
+                  .replace(/^-+|-+$/g, '')
+                  .replace(/-{2,}/g, '-');
+                const postPath = `/blog/${post.slug || slugFromTitle || post.id}`;
                 return (
                   <article 
                     key={post.id} 
@@ -136,7 +145,7 @@ export default function Blog() {
                           </p>
                           <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-3 font-product-sans leading-snug">
                             <Link 
-                              to={`/blog/${post.id}`}
+                              to={postPath}
                               className="text-stockstrail-green-light hover:text-white transition-colors duration-300"
                             >
                               {post.title}
@@ -150,7 +159,7 @@ export default function Blog() {
                         {/* Footer with Date and Read More */}
                         <div className="flex items-center justify-between pt-4 border-t border-white/10">
                           <Link 
-                            to={`/blog/${post.id}`}
+                            to={postPath}
                             className="inline-flex items-center gap-2 text-stockstrail-green-light hover:text-white font-medium transition-colors duration-300 font-work-sans text-sm sm:text-base group-hover:gap-3"
                           >
                             Read More
