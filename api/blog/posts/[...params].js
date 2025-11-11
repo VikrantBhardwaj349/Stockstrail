@@ -238,33 +238,18 @@ export default async function handler(req, res) {
 
       // Fallback: fetch recent posts if search returned nothing
       if (!items.length) {
-        // Paginate up to 10 pages (~500 posts)
-        let pageToken = undefined;
-        let attempts = 0;
-        while (attempts < 10) {
-          const listResp = await axios.get(API_URL, {
-            params: {
-              key: BLOGGER_API_KEY,
-              fetchBodies: true,
-              fetchImages: true,
-              maxResults: 50,
-              orderBy: 'published',
-              sortOrder: 'DESCENDING',
-              pageToken,
-            },
-            timeout: 10000,
-          });
-          const batch = listResp.data.items || [];
-          items = items.concat(batch);
-          const found = batch.find((it) => slugify(it.title || '') === slug);
-          if (found) {
-            items = [found];
-            break;
-          }
-          pageToken = listResp.data.nextPageToken;
-          if (!pageToken) break;
-          attempts += 1;
-        }
+        const listResp = await axios.get(API_URL, {
+          params: {
+            key: BLOGGER_API_KEY,
+            fetchBodies: true,
+            fetchImages: true,
+            maxResults: 50,
+            orderBy: 'published',
+            sortOrder: 'DESCENDING',
+          },
+          timeout: 10000,
+        });
+        items = listResp.data.items || [];
       }
 
       const match = items.find((it) => slugify(it.title || '') === slug) || items[0];

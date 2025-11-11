@@ -119,7 +119,7 @@ export default function Blog() {
                   .replace(/[^a-z0-9]+/g, '-')
                   .replace(/^-+|-+$/g, '')
                   .replace(/-{2,}/g, '-');
-                // Use slug-only URLs for SEO-friendly links
+                // Use clean, slug-only URLs for user friendliness and SEO
                 const slug = post.slug || slugFromTitle || 'post';
                 const postPath = `/blog/${slug}`;
                 return (

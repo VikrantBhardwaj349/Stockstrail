@@ -190,11 +190,11 @@ export default function BlogPost() {
         const data = await response.json();
         setPost(data);
 
-        // Canonicalize to slug-only URL for SEO
+        // Canonicalize to clean slug-only URL for SEO/user-friendliness
         if (data?.slug) {
-          // Legacy ID path or slug-with-id path → replace with slug-only
-          const slugWithIdPattern = /-\\d+$/;
-          if (location.pathname.startsWith('/blog/id/') || slugWithIdPattern.test(location.pathname)) {
+          const hasLegacyIdPrefix = location.pathname.startsWith('/blog/id/');
+          const hasIdSuffix = /-\d+$/.test(location.pathname);
+          if (hasLegacyIdPrefix || hasIdSuffix) {
             navigate(`/blog/${data.slug}`, { replace: true });
           }
         }
