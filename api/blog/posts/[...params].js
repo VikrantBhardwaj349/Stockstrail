@@ -4,6 +4,17 @@ const BLOGGER_API_KEY = process.env.VITE_BLOGGER_API_KEY || process.env.BLOGGER_
 const BLOG_ID = process.env.VITE_BLOG_ID || process.env.BLOG_ID || '8967612143410750655';
 const API_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`;
 
+function slugify(input = '') {
+  return input
+    .toString()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/-{2,}/g, '-');
+}
+
 // Sample blog posts for fallback
 const samplePosts = {
   'sample-1': {
@@ -188,20 +199,60 @@ export default async function handler(req, res) {
   }
 
   const { params } = req.query;
-  const postId = Array.isArray(params) ? params[0] : params;
+  const parts = Array.isArray(params) ? params : [params].filter(Boolean);
+  const first = parts[0];
+  const second = parts[1];
+  const isSlugRoute = first === 'slug';
+  const postId = isSlugRoute ? undefined : first;
+  const slug = isSlugRoute ? second : undefined;
   
-  if (!postId) {
-    return res.status(400).json({ error: 'Post ID is required' });
+  if (!postId && !slug) {
+    return res.status(400).json({ error: 'Post ID or slug is required' });
   }
 
   // Check if it's a sample post first
-  const samplePost = samplePosts[postId];
-  if (samplePost) {
-    console.log(`Returning sample post: ${postId}`);
-    return res.json(samplePost);
+  if (postId) {
+    const samplePost = samplePosts[postId];
+    if (samplePost) {
+      console.log(`Returning sample post: ${postId}`);
+      return res.json(samplePost);
+    }
   }
 
   try {
+    if (slug) {
+      // Search by slug (title)
+      const q = slug.replace(/-/g, ' ');
+      const searchUrl = `${API_URL}/search`;
+      const response = await axios.get(searchUrl, {
+        params: {
+          key: BLOGGER_API_KEY,
+          q,
+          fetchBodies: true,
+          fetchImages: true,
+          orderBy: 'published',
+        },
+        timeout: 10000,
+      });
+      const items = response.data.items || [];
+      const match = items.find((it) => slugify(it.title || '') === slug) || items[0];
+      if (!match) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+      const post = {
+        id: match.id,
+        slug: slugify(match.title || ''),
+        title: match.title || '',
+        content: match.content || '',
+        url: match.url,
+        published: match.published,
+        author: {
+          displayName: match.author?.displayName || 'Admin',
+        },
+      };
+      return res.json(post);
+    }
+    
     console.log(`Attempting to fetch blog post ${postId} from Blogger API...`);
     const response = await axios.get(`${API_URL}/${postId}`, {
       params: {

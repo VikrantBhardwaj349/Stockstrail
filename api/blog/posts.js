@@ -4,6 +4,17 @@ const BLOGGER_API_KEY = process.env.VITE_BLOGGER_API_KEY || process.env.BLOGGER_
 const BLOG_ID = process.env.VITE_BLOG_ID || process.env.BLOG_ID || '8967612143410750655';
 const API_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`;
 
+function slugify(input = '') {
+  return input
+    .toString()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/-{2,}/g, '-');
+}
+
 // Sample blog posts for fallback
 const samplePosts = [
   {
@@ -206,6 +217,7 @@ export default async function handler(req, res) {
 
     const posts = response.data.items.map((post) => ({
       id: post.id,
+      slug: slugify(post.title || ''),
       title: post.title,
       content: post.content,
       url: post.url,
@@ -236,7 +248,7 @@ export default async function handler(req, res) {
     
     // Return sample posts instead of error
     res.json({
-      items: samplePosts,
+      items: samplePosts.map(p => ({ ...p, slug: slugify(p.title) })),
       totalItems: samplePosts.length,
       fallback: true,
       error: error instanceof Error ? error.message : 'Unknown error'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ChevronLeft, Facebook, Linkedin, Instagram, Send, MessageCircle, Share2 } from 'lucide-react';
@@ -143,6 +143,8 @@ const ShareButtons = ({ title, url }: { title: string; url: string }) => {
 
 export default function BlogPost() {
   const params = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const slugOrId = params.slug || params.postId;
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -172,6 +174,11 @@ export default function BlogPost() {
         
         const data = await response.json();
         setPost(data);
+
+        // If reached via legacy ID route, replace URL with slug version for SEO
+        if (location.pathname.startsWith('/blog/id/') && data?.slug) {
+          navigate(`/blog/${data.slug}`, { replace: true });
+        }
         setError(null);
       } catch (err) {
         console.error(`Error fetching post ${slugOrId}:`, err);
@@ -188,7 +195,7 @@ export default function BlogPost() {
     };
 
     fetchPost();
-  }, [slugOrId]);
+  }, [slugOrId, location.pathname, navigate]);
 
   if (loading) {
     return (
