@@ -1,15 +1,23 @@
 {
-  "installCommand": "npm ci || npm install",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/spa",
-  "rewrites": [
-    {
-      "source": "/api/blog/posts/:params*",
-      "destination": "/api/blog/posts/[...params].js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
-    }
-  ]
+	"installCommand": "npm ci || npm install",
+	"buildCommand": "npm run build",
+	"outputDirectory": "dist/spa",
+	"rewrites": [
+		{
+			"source": "/api/blog/posts/:params*",
+			"destination": "/api/blog/posts/[...params].js"
+		},
+		{
+			"source": "/api/blog/posts",
+			"destination": "/api/blog/posts.js"
+		},
+		{
+			"source": "/assets/:path*",
+			"destination": "/assets/:path*"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "/api/ssr"
+		}
+	]
 }
