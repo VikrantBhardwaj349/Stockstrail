@@ -234,7 +234,24 @@ export default async function handler(req, res) {
         },
         timeout: 10000,
       });
-      const items = response.data.items || [];
+      let items = response.data.items || [];
+
+      // Fallback: fetch recent posts if search returned nothing
+      if (!items.length) {
+        const listResp = await axios.get(API_URL, {
+          params: {
+            key: BLOGGER_API_KEY,
+            fetchBodies: true,
+            fetchImages: true,
+            maxResults: 50,
+            orderBy: 'published',
+            sortOrder: 'DESCENDING',
+          },
+          timeout: 10000,
+        });
+        items = listResp.data.items || [];
+      }
+
       const match = items.find((it) => slugify(it.title || '') === slug) || items[0];
       if (!match) {
         return res.status(404).json({ error: 'Post not found' });

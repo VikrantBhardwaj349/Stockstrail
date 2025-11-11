@@ -305,10 +305,10 @@ export const getBlogPostBySlug: RequestHandler = async (req, res) => {
   }
 
   try {
-    // Try Blogger search API to find post by title terms
+    // Strategy 1: Blogger search API
     const q = slug.replace(/-/g, ' ');
     const searchUrl = `${API_URL}/search`;
-    const response = await axios.get(searchUrl, {
+    const searchResp = await axios.get(searchUrl, {
       params: {
         key: BLOGGER_API_KEY,
         q,
@@ -319,7 +319,24 @@ export const getBlogPostBySlug: RequestHandler = async (req, res) => {
       timeout: 10000,
     });
 
-    const items: any[] = response.data.items || [];
+    let items: any[] = searchResp.data.items || [];
+
+    // Strategy 2: If search empty, fetch recent posts and try to match
+    if (!items.length) {
+      const listResp = await axios.get(API_URL, {
+        params: {
+          key: BLOGGER_API_KEY,
+          fetchBodies: true,
+          fetchImages: true,
+          maxResults: 50,
+          orderBy: 'published',
+          sortOrder: 'DESCENDING',
+        },
+        timeout: 10000,
+      });
+      items = listResp.data.items || [];
+    }
+
     const match = items.find((it) => slugify(it.title || '') === slug) || items[0];
     if (!match) {
       return res.status(404).json({ error: 'Post not found' });
