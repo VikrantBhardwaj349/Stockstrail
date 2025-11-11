@@ -155,14 +155,29 @@ export default function BlogPost() {
 
     const fetchPost = async () => {
       try {
-        // Try by slug first
-        let response = await fetch(`/api/blog/posts/slug/${slugOrId}`);
-        if (!response.ok) {
-          // Fallback to by ID
-          response = await fetch(`/api/blog/posts/${slugOrId}`);
+        // If URL is like /blog/my-slug-<id>, extract the trailing numeric ID
+        const idMatch = String(slugOrId).match(/-(\d+)$/);
+        const extractedId = idMatch?.[1];
+
+        let response: Response | null = null;
+
+        if (extractedId) {
+          // Prefer exact ID when available (more reliable on production/CDN)
+          response = await fetch(`/api/blog/posts/${extractedId}`);
           if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            // Fallback to slug route if ID fails for some reason
+            response = await fetch(`/api/blog/posts/slug/${slugOrId}`);
           }
+        } else {
+          // No ID present, try slug then ID
+          response = await fetch(`/api/blog/posts/slug/${slugOrId}`);
+          if (!response.ok) {
+            response = await fetch(`/api/blog/posts/${slugOrId}`);
+          }
+        }
+
+        if (!response || !response.ok) {
+          throw new Error(`HTTP ${response?.status}: ${response?.statusText}`);
         }
         
         const contentType = response.headers.get('content-type');
@@ -178,6 +193,10 @@ export default function BlogPost() {
         // If reached via legacy ID route, replace URL with slug version for SEO
         if (location.pathname.startsWith('/blog/id/') && data?.slug) {
           navigate(`/blog/${data.slug}`, { replace: true });
+        }
+        // If reached via slug-with-id, ensure canonical path (slug-id) is kept
+        if (!location.pathname.endsWith(`-${data.id}`) && data?.slug && data?.id) {
+          navigate(`/blog/${data.slug}-${data.id}`, { replace: true });
         }
         setError(null);
       } catch (err) {
