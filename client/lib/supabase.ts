@@ -1,24 +1,27 @@
 import { createClient } from '@supabase/supabase-js'
 
 // Your Supabase project credentials
-const supabaseUrl = import.meta.env.VITE_PUBLIC_SUPABASE_URL 
-const supabaseAnonKey = import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY 
+// In SSR/SSG context, import.meta.env may be undefined, so we safely default to empty strings
+const supabaseUrl = typeof import.meta !== 'undefined' ? import.meta.env?.VITE_PUBLIC_SUPABASE_URL : '' 
+const supabaseAnonKey = typeof import.meta !== 'undefined' ? import.meta.env?.VITE_PUBLIC_SUPABASE_ANON_KEY : ''
 
-// Validate the URL format
-if (!supabaseUrl || !supabaseUrl.startsWith('http')) {
-  console.error('❌ Invalid Supabase URL:', supabaseUrl)
-  throw new Error('Invalid Supabase URL: Must be a valid HTTP or HTTPS URL')
+// Validate the URL format (skip in non-browser context like SSG)
+if (typeof window !== 'undefined') {
+  if (!supabaseUrl || !supabaseUrl.startsWith('http')) {
+    console.error('❌ Invalid Supabase URL:', supabaseUrl)
+    throw new Error('Invalid Supabase URL: Must be a valid HTTP or HTTPS URL')
+  }
+
+  if (!supabaseAnonKey) {
+    console.error('❌ Missing Supabase Anon Key')
+    throw new Error('Missing Supabase Anon Key')
+  }
+
+  console.log('✅ Supabase URL:', supabaseUrl)
+  console.log('✅ Supabase Key:', supabaseAnonKey.substring(0, 20) + '...')
 }
 
-if (!supabaseAnonKey) {
-  console.error('❌ Missing Supabase Anon Key')
-  throw new Error('Missing Supabase Anon Key')
-}
-
-console.log('✅ Supabase URL:', supabaseUrl)
-console.log('✅ Supabase Key:', supabaseAnonKey.substring(0, 20) + '...')
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null
 
 // Reviews table type
 export type Review = {

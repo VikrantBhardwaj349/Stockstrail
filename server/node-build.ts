@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = createServer();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 // In production, serve the built client assets (JS, CSS, images, etc.)
 const distPath = path.join(__dirname, "../spa");
@@ -17,18 +17,12 @@ const assetsPath = path.join(distPath, "assets");
 
 // Serve static assets (JS, CSS, images, etc.)
 app.use("/assets", express.static(assetsPath));
-app.use(express.static(distPath, { 
-  // Don't serve index.html as static - we'll render it with SSR
-  index: false 
-}));
+// Serve static files from the SPA output. We allow serving index.html files
+// (so pre-rendered pages under e.g. /services/index.html are served directly)
+app.use(express.static(distPath));
 
 // SSR: Handle all non-API routes with server-side rendering
-app.get("*", async (req, res) => {
-  // Don't render for API routes
-  if (req.path.startsWith("/api/") || req.path.startsWith("/health")) {
-    return res.status(404).json({ error: "API endpoint not found" });
-  }
-
+app.get(/^(?!\/api\/).*$/, async (req, res) => {
   try {
     // Render React app to HTML
     const { html: reactHtml, helmet } = render(req.url);
