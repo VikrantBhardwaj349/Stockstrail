@@ -50,8 +50,15 @@ async function prerender() {
   const routes: RouteDef[] = [
     { path: '/', outDir: 'dist/spa' },
     { path: '/services', outDir: 'dist/spa/services' },
+    // Pre-render nested service pages so they are served as static HTML and
+    // do not trigger serverless functions on Vercel.
+    { path: '/services/mutual-funds', outDir: 'dist/spa/services/mutual-funds' },
+    { path: '/services/fixed-deposit', outDir: 'dist/spa/services/fixed-deposit' },
+    { path: '/services/insurance', outDir: 'dist/spa/services/insurance' },
+    { path: '/services/loan', outDir: 'dist/spa/services/loan' },
     { path: '/about', outDir: 'dist/spa/about' },
     { path: '/contact', outDir: 'dist/spa/contact' },
+    { path: '/lets-talk', outDir: 'dist/spa/lets-talk' },
     { path: '/open-demat', outDir: 'dist/spa/open-demat' },
     { path: '/calculators', outDir: 'dist/spa/calculators' },
     { path: '/blog', outDir: 'dist/spa/blog' },
