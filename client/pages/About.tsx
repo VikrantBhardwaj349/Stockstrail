@@ -31,7 +31,7 @@ const About = () => {
           </p>
           <p className="text-white/60 text-base sm:text-lg max-w-3xl mx-auto mb-8">
             Whether you are new to investing or already experienced, we are here to support you with clarity,
-            discipline, and trust. No shortcuts. No hype. Only honest and long-term guidance.
+            discipline, and trust. No shortcuts. No hype. Only honest, sureshot advice and long-term guidance.
           </p>
           <div className="inline-block px-6 py-3 bg-stockstrail-green-light/10 border border-stockstrail-green-light/30 rounded-full">
             <p className="text-stockstrail-green-light font-product-sans text-lg sm:text-xl font-medium">
