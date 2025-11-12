@@ -2,7 +2,10 @@ import "./global.css";
 
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
+// Import the ESM build directly to avoid CJS/ESM interop issues on some hosts
+// Use default import for compatibility with CJS runtimes; fall back to named
+// export if present.
+import { HelmetProvider } from './lib/helmet-compat.mjs';
 import { AppContent } from "./AppContent";
 import { AppRoutes } from "./AppRoutes";
 

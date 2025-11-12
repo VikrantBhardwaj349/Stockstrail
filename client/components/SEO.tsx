@@ -1,4 +1,8 @@
-import { Helmet } from 'react-helmet-async';
+// Import the ESM entry directly to ensure consistent named exports in build
+// and runtime environments (avoids CJS/ESM interop issues on some hosts).
+// Use default import to be compatible with environments where the package is
+// exposed as CommonJS. Access the named export from the default if needed.
+import { Helmet } from '../lib/helmet-compat.mjs';
 
 interface SEOProps {
   title?: string;

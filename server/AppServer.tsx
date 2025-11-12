@@ -1,6 +1,9 @@
 import React from 'react';
 import { StaticRouter } from 'react-router-dom/server';
-import { HelmetProvider } from 'react-helmet-async';
+// Import ESM version directly to ensure named exports are available in SSR
+// Default import for compatibility with environments that provide CJS module
+// shape at runtime.
+import { HelmetProvider } from '../client/lib/helmet-compat.mjs';
 import { AppContent } from '../client/AppContent';
 import { AppRoutes } from '../client/AppRoutes';
 
