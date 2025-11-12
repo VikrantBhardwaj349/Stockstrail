@@ -62,6 +62,8 @@ async function prerender() {
     { path: '/open-demat', outDir: 'dist/spa/open-demat' },
     { path: '/calculators', outDir: 'dist/spa/calculators' },
     { path: '/blog', outDir: 'dist/spa/blog' },
+    { path: '/nse-holidays', outDir: 'dist/spa/nse-holidays' },
+    { path: '/bse-holidays', outDir: 'dist/spa/bse-holidays' },
   ];
 
   const template = readIndexTemplate();
