@@ -24,11 +24,12 @@ app.use(express.static(distPath));
 // SSR: Handle all non-API routes with server-side rendering
 app.get(/^(?!\/api\/).*$/, async (req, res) => {
   try {
-    // Render React app to HTML
-    const { html: reactHtml, helmet } = render(req.url);
+    // Render React app to HTML (may include initialData for blog pages)
+    const result = await render(req.url);
+    const { html: reactHtml, helmet, initialData } = result as any;
     
     // Generate full HTML document
-    const fullHtml = generateHTML(reactHtml, helmet);
+    const fullHtml = generateHTML(reactHtml, helmet, initialData);
     
     // Send the rendered HTML
     res.status(200).set({ "Content-Type": "text/html" }).send(fullHtml);

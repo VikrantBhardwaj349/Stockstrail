@@ -28,7 +28,7 @@ function findClientAssets(): { js: string[]; css: string[] } {
   return { js, css };
 }
 
-export function generateHTML(reactHtml: string, helmet: any): string {
+export function generateHTML(reactHtml: string, helmet: any, initialData?: any): string {
   // Read the base index.html template
   // In production, it should be in dist/spa, fallback to source if not found
   const indexPath = fs.existsSync(path.join(__dirname, '../spa/index.html'))
@@ -97,6 +97,17 @@ export function generateHTML(reactHtml: string, helmet: any): string {
       if (htmlAttrs) {
         html = html.replace('<html lang="en">', `<html lang="en" ${htmlAttrs}>`);
       }
+    }
+  }
+
+  // Inject initial data into the page (if any) so client can hydrate without an extra fetch
+  if (initialData) {
+    try {
+      const json = JSON.stringify(initialData).replace(/</g, '\\u003c');
+      const script = `    <script>window.__INITIAL_DATA__ = ${json};</script>`;
+      html = html.replace('</body>', `${script}\n</body>`);
+    } catch (e) {
+      console.warn('Failed to serialize initialData for HTML injection:', e);
     }
   }
 

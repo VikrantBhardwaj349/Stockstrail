@@ -146,11 +146,18 @@ export default function BlogPost() {
   const location = useLocation();
   const navigate = useNavigate();
   const slugOrId = params.slug || params.postId;
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
+
+  // Hydrate from server-provided initial data when available
+  const serverData = typeof globalThis !== 'undefined' ? (globalThis as any).__INITIAL_DATA__ : null;
+  const initialPost = serverData?.post || null;
+
+  const [post, setPost] = useState<Post | null>(initialPost);
+  const [loading, setLoading] = useState(initialPost ? false : true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // If server already provided the post, skip fetching
+    if (initialPost) return;
     if (!slugOrId) return;
 
     const fetchPost = async () => {

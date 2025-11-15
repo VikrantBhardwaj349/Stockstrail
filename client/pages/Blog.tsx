@@ -17,11 +17,20 @@ interface BlogPost {
 }
 
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Hydrate from server-provided initial data when available (SSG/SSR)
+  const serverData = typeof globalThis !== 'undefined' ? (globalThis as any).__INITIAL_DATA__ : null;
+  const initialPosts = serverData?.posts || [];
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
+  const [loading, setLoading] = useState(initialPosts.length === 0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // If server already provided posts, skip fetching on first load
+    if (initialPosts.length > 0) {
+      setLoading(false);
+      return;
+    }
+
     const fetchBlogPosts = async () => {
       try {
         const response = await fetch('/api/blog/posts');

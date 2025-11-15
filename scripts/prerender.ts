@@ -87,8 +87,18 @@ async function prerender() {
   }
 
   for (const r of routes) {
-    const { html, helmet } = render(r.path);
-    const full = injectSSR(template, html, helmet);
+    const res = await render(r.path);
+    const { html, helmet, initialData } = res as any;
+    let full = injectSSR(template, html, helmet);
+    // Inject initial data for prerendered pages
+    if (initialData) {
+      try {
+        const json = JSON.stringify(initialData).replace(/</g, '\\u003c');
+        full = full.replace('</body>', `    <script>window.__INITIAL_DATA__ = ${json};</script>\n</body>`);
+      } catch (e) {
+        console.warn('Failed to serialize initialData for prerender file:', e);
+      }
+    }
     ensureDir(r.outDir);
     const outPath = path.join(r.outDir, 'index.html');
     fs.writeFileSync(outPath, full, 'utf-8');
