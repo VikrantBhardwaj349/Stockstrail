@@ -134,7 +134,7 @@ const PartnerLogosSection = () => {
         </div>
         <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden hover:border-stockstrail-green-light/30 transition-colors duration-500">
           <div className="partners-track animate-scroll">
-            {partners.concat(partners).map((partner, i) => (
+            {partners.map((partner, i) => (
               <div key={`partner-${i}`} className="flex items-center justify-center px-4 sm:px-6 py-4 sm:py-4 min-w-[120px] sm:min-w-[200px] group">
                 <img
                   src={partner.logo}

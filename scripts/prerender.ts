@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { render } from '../server/render';
+import { fetchBlogPosts } from '../server/routes/blog';
 
 type RouteDef = {
   path: string;
@@ -67,6 +68,23 @@ async function prerender() {
   ];
 
   const template = readIndexTemplate();
+
+  // Dynamically include blog post pages into the prerender list so each
+  // post gets its own static HTML file (prevents serverless function hits).
+  try {
+    const posts = await fetchBlogPosts();
+    for (const p of posts) {
+      const slug = p.slug || (p.title && p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')) || `${p.id}`;
+      // Add both `/blog/slug` and `/blog/slug-<id>` variants which the app
+      // sometimes uses (client navigates to slug-id format).
+      const slugPath = `/blog/${slug}`;
+      const slugIdPath = `/blog/${slug}-${p.id}`;
+      routes.push({ path: slugPath, outDir: `dist/spa/blog/${slug}` });
+      routes.push({ path: slugIdPath, outDir: `dist/spa/blog/${slug}-${p.id}` });
+    }
+  } catch (e) {
+    console.warn('Could not fetch blog posts for prerender:', e);
+  }
 
   for (const r of routes) {
     const { html, helmet } = render(r.path);

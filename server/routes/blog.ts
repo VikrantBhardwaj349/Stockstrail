@@ -184,24 +184,21 @@ const samplePosts = [
   }
 ];
 
-export const getBlogPosts: RequestHandler = async (req, res) => {
+export async function fetchBlogPosts(): Promise<any[]> {
   try {
-    console.log('Attempting to fetch blog posts from Blogger API...');
-    console.log('API Key available:', !!BLOGGER_API_KEY);
-    console.log('Blog ID:', BLOG_ID);
     const response = await axios.get(API_URL, {
       params: {
         key: BLOGGER_API_KEY,
         fetchBodies: true,
         fetchImages: true,
-        maxResults: 10, // Limit number of posts to fetch
+        maxResults: 50,
         orderBy: 'published',
         sortOrder: 'DESCENDING',
       },
-      timeout: 10000, // 10 second timeout
+      timeout: 10000,
     });
 
-    const posts = response.data.items.map((post: any) => {
+    const posts = (response.data.items || []).map((post: any) => {
       const title = post.title || '';
       return {
         id: post.id,
@@ -216,33 +213,17 @@ export const getBlogPosts: RequestHandler = async (req, res) => {
       };
     });
 
-    console.log(`Successfully fetched ${posts.length} blog posts from Blogger API`);
-    res.json({
-      items: posts,
-      totalItems: response.data.items?.length || 0,
-    });
+    return posts;
   } catch (error) {
-    console.error('Error fetching blog posts from Blogger API:', error);
-    console.log('Falling back to sample blog posts...');
-    
-    // Log more details about the error
-    if (axios.isAxiosError(error)) {
-      console.error('Axios error details:', {
-        status: error.response?.status,
-        statusText: error.response?.statusText,
-        data: error.response?.data,
-        url: error.config?.url
-      });
-    }
-    
-    // Return sample posts instead of error
-    res.json({
-      items: samplePosts.map((p) => ({ ...p, slug: slugify(p.title) })),
-      totalItems: samplePosts.length,
-      fallback: true, // Flag to indicate this is fallback data
-      error: error instanceof Error ? error.message : 'Unknown error'
-    });
+    console.error('Error fetching blog posts from Blogger API in fetchBlogPosts:', error);
+    // Fallback to sample posts with generated slugs
+    return samplePosts.map((p) => ({ ...p, slug: slugify(p.title) }));
   }
+}
+
+export const getBlogPosts: RequestHandler = async (req, res) => {
+  const posts = await fetchBlogPosts();
+  res.json({ items: posts, totalItems: posts.length });
 };
 
 export const getBlogPost: RequestHandler = async (req, res) => {
@@ -358,3 +339,49 @@ export const getBlogPostBySlug: RequestHandler = async (req, res) => {
     return res.status(404).json({ error: 'Post not found' });
   }
 };
+
+export async function fetchBlogPostBySlug(slug: string): Promise<any | null> {
+  if (!slug) return null;
+  // check sample first
+  const sample = samplePosts.find(p => slugify(p.title) === slug);
+  if (sample) return { ...sample, slug };
+
+  try {
+    const q = slug.replace(/-/g, ' ');
+    const searchUrl = `${API_URL}/search`;
+    const searchResp = await axios.get(searchUrl, {
+      params: {
+        key: BLOGGER_API_KEY,
+        q,
+        fetchBodies: true,
+        fetchImages: true,
+        orderBy: 'published',
+      },
+      timeout: 10000,
+    });
+
+    let items: any[] = searchResp.data.items || [];
+    if (!items.length) {
+      const listResp = await axios.get(API_URL, {
+        params: { key: BLOGGER_API_KEY, fetchBodies: true, fetchImages: true, maxResults: 50 },
+        timeout: 10000,
+      });
+      items = listResp.data.items || [];
+    }
+
+    const match = items.find((it) => slugify(it.title || '') === slug) || items[0];
+    if (!match) return null;
+    return {
+      id: match.id,
+      slug: slugify(match.title || ''),
+      title: match.title || '',
+      content: match.content || '',
+      url: match.url,
+      published: match.published,
+      author: { displayName: match.author?.displayName || 'Admin' },
+    };
+  } catch (e) {
+    console.error('fetchBlogPostBySlug error:', e);
+    return null;
+  }
+}
