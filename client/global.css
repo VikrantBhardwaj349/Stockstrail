@@ -143,12 +143,12 @@
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-50.6%);
+      transform: translateX(-50.5%);
     }
   }
 
 .animate-scroll {
-  animation: scroll 25s linear infinite;
+  animation: scroll 65s linear infinite;
   will-change: transform; /* Optimize for smooth animation */
   animation-fill-mode: both;
 }

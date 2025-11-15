@@ -90,10 +90,31 @@ const PartnerLogosSection = () => {
   const partners = [
     { name: "AngelOne", logo: "/logos/angelone.png" },
     { name: "Alice Blue", logo: "/logos/aliceblue.png" },
-    { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
-    { name: "Zerodha", logo: "/logos/zerodha.png" },
     { name: "AssetPlus", logo: "/logos/assetplus.png" },
+    { name: "Axis", logo: "/logos/axis.png" },
+    { name: "Bandhan", logo: "/logos/bandhan.png" },
+    { name: "DSP", logo: "/logos/dsp.png" },
+    { name: "Edelweiss", logo: "/logos/edelweis.png" },
+    { name: "Franklin", logo: "/logos/franklin.png" },
+    { name: "Groww", logo: "/logos/groww.png" },
+    { name: "HDFC", logo: "/logos/hdfc.png" },
+    { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
+    { name: "ICICI", logo: "/logos/icici.png" },
+    { name: "ITI", logo: "/logos/iti.png" },
+    { name: "Kotak", logo: "/logos/kotak.png" },
+    { name: "LIC", logo: "/logos/lic.jpeg" },
+    { name: "Mirae", logo: "/logos/mirae.png" },
+    { name: "Motilal", logo: "/logos/motilal.png" },
+    { name: "Nippon", logo: "/logos/nippon.png" },
     { name: "PB Partners", logo: "/logos/pbpartners.png" },
+    { name: "PGIM", logo: "/logos/pgim.jpeg" },
+    { name: "PPFAS", logo: "/logos/ppfas.png" },
+    { name: "Quant", logo: "/logos/quant.png" },
+    { name: "Quantum", logo: "/logos/quantum.png" },
+    { name: "SBI", logo: "/logos/sbi.png" },
+    { name: "Shriram", logo: "/logos/shriram.png" },
+    { name: "Tata", logo: "/logos/tata.png" },
+    { name: "Zerodha", logo: "/logos/zerodha.png" },
   ];
 
   return (
@@ -210,7 +231,7 @@ const ServicesSection = () => {
                     <img
                       src={service.icon}
                       alt={service.title}
-                      className="w-8 h-8 sm:w-12 sm:h-12 object-contain group-hover:scale-110 transition-transform duration-300"
+                      className="w-8 h-8 sm:w-16 sm:h-16 object-contain group-hover:scale-110 transition-transform duration-300"
                       loading="lazy"
                       width="48"
                       height="48"
