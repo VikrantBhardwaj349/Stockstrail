@@ -258,7 +258,35 @@ const Services = () => {
                   { name: "Shriram", logo: "/logos/shriram.png" },
                   { name: "Tata", logo: "/logos/tata.png" },
                   { name: "Zerodha", logo: "/logos/zerodha.png" },
-                ].map((partner, i) => (
+                ].concat([
+                  { name: "AngelOne", logo: "/logos/angelone.png" },
+                  { name: "Alice Blue", logo: "/logos/aliceblue.png" },
+                  { name: "AssetPlus", logo: "/logos/assetplus.png" },
+                  { name: "Axis", logo: "/logos/axis.png" },
+                  { name: "Bandhan", logo: "/logos/bandhan.png" },
+                  { name: "DSP", logo: "/logos/dsp.png" },
+                  { name: "Edelweiss", logo: "/logos/edelweis.png" },
+                  { name: "Franklin", logo: "/logos/franklin.png" },
+                  { name: "Groww", logo: "/logos/groww.png" },
+                  { name: "HDFC", logo: "/logos/hdfc.png" },
+                  { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
+                  { name: "ICICI", logo: "/logos/icici.png" },
+                  { name: "ITI", logo: "/logos/iti.png" },
+                  { name: "Kotak", logo: "/logos/kotak.png" },
+                  { name: "LIC", logo: "/logos/lic.jpeg" },
+                  { name: "Mirae", logo: "/logos/mirae.png" },
+                  { name: "Motilal", logo: "/logos/motilal.png" },
+                  { name: "Nippon", logo: "/logos/nippon.png" },
+                  { name: "PB Partners", logo: "/logos/pbpartners.png" },
+                  { name: "PGIM", logo: "/logos/pgim.jpeg" },
+                  { name: "PPFAS", logo: "/logos/ppfas.png" },
+                  { name: "Quant", logo: "/logos/quant.png" },
+                  { name: "Quantum", logo: "/logos/quantum.png" },
+                  { name: "SBI", logo: "/logos/sbi.png" },
+                  { name: "Shriram", logo: "/logos/shriram.png" },
+                  { name: "Tata", logo: "/logos/tata.png" },
+                  { name: "Zerodha", logo: "/logos/zerodha.png" },
+                ]).map((partner, i) => (
                   <div key={`partner-${i}`} className="flex items-center justify-center px-4 sm:px-6 py-4 sm:py-4 min-w-[120px] sm:min-w-[200px] group">
                     <img
                       src={partner.logo}
