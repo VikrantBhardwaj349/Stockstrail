@@ -139,12 +139,15 @@ export default function Blog() {
                     <div className="flex flex-col lg:flex-row gap-6 p-6 lg:p-6">
                       {/* Image Section */}
                       {imageUrl && (
-                        <div className="w-full lg:w-64 flex-shrink-0">
-                          <img 
-                            src={imageUrl} 
-                            alt={post.title}
-                            className="w-full h-40 lg:h-44 object-cover rounded-lg border border-white/10 group-hover:scale-[1.02] transition-transform duration-500"
-                          />
+                        <div className="w-full lg:w-72 flex-shrink-0">
+                          <div className="w-full">
+                            <img
+                              src={imageUrl}
+                              alt={post.title}
+                              className="w-full h-auto object-contain rounded-lg border border-white/10 group-hover:scale-[1.02] transition-transform duration-500"
+                              style={{ objectPosition: 'center' }}
+                            />
+                          </div>
                         </div>
                       )}
                       

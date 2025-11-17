@@ -23,19 +23,22 @@ export const addReview = async (reviewData: Omit<Review, 'id' | 'created_at'>) =
 // Fetch random 5 reviews from the database
 export const getRandomReviews = async (limit: number = 5) => {
   try {
-    const { data, error } = await supabase
-      .from('reviews')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(limit)
+    // Fetch all reviews then pick a random subset client-side so every load
+    // can return a different selection instead of always the most-recent ones.
+    const { data, error } = await supabase.from('reviews').select('*')
 
     if (error) {
       throw error
     }
 
-    // Shuffle the array to get random reviews
-    const shuffled = data ? [...data].sort(() => Math.random() - 0.5) : []
-    return { data: shuffled, error: null }
+    const arr = data ? [...data] : []
+    // Shuffle in-place using Fisher-Yates
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[arr[i], arr[j]] = [arr[j], arr[i]]
+    }
+    const picked = arr.slice(0, limit)
+    return { data: picked, error: null }
   } catch (error) {
     console.error('Error fetching reviews:', error)
     return { data: [], error }
