@@ -9,12 +9,14 @@ import MutualFunds from "./pages/MutualFunds";
 import FixedDeposit from "./pages/FixedDeposit";
 import Insurance from "./pages/Insurance";
 import Loan from "./pages/Loan";
+import Others from "./pages/Others";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NseHolidays from "./pages/NseHolidays";
 import BseHolidays from "./pages/BseHolidays";
 import LetsTalk from "./pages/LetsTalk";
 import About from "./pages/About";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 export const AppRoutes = () => (
   <Routes>
@@ -24,6 +26,7 @@ export const AppRoutes = () => (
     <Route path="/services/fixed-deposit" element={<FixedDeposit />} />
     <Route path="/services/insurance" element={<Insurance />} />
     <Route path="/services/loan" element={<Loan />} />
+    <Route path="/services/others" element={<Others />} />
     <Route path="/open-demat" element={<OpenDemat />} />
     <Route path="/blog" element={<Blog />} />
     {/* Prefer slug route but keep legacy ID route working */}
@@ -35,6 +38,7 @@ export const AppRoutes = () => (
     <Route path="/contact" element={<Contact />} />
     <Route path="/lets-talk" element={<LetsTalk />} />
     <Route path="/about" element={<About />} />
+    <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
     <Route path="*" element={<NotFound />} />
   </Routes>

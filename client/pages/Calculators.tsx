@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 
 type Tab = "SIP" | "LUMPSUM" | "FD" | "RD" | "EMI" | "TAX";
@@ -152,6 +152,18 @@ const Donut = ({ invested, returns, investedLabel = "INVESTED AMOUNT", returnsLa
 
 const Calculators = () => {
   const [tab, setTab] = useState<Tab>("SIP");
+
+  // Initialize tab from query parameter
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      if (tabParam && ['SIP', 'LUMPSUM', 'FD', 'RD', 'EMI', 'TAX'].includes(tabParam)) {
+        setTab(tabParam as Tab);
+      }
+    }
+  }, []);
+
   const [amount, setAmount] = useState(32500);
   const [rate, setRate] = useState(12);
   const [years, setYears] = useState(10);

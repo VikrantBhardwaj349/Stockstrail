@@ -1,4 +1,5 @@
 import Layout from "../components/layout/Layout";
+import SEO from "../components/SEO";
 
 const brokers = [
   {
@@ -84,58 +85,317 @@ const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: s
 const OpenDemat = () => {
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+      <SEO
+        title="Open Demat Account | Stock Market Trading Platform | Stockstrail"
+        description="Open your Demat account with top brokers. Trade stocks, mutual funds, and ETFs with ease. 100% paperless process, secure, and beginner-friendly."
+        keywords="Demat account, stock market, trading, investment, online trading, securities, Zerodha, Angel One, HDFC Sky"
+        url="/services/others#demat"
+      />
+
+      {/* Hero Section */}
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="absolute inset-0 -z-10">
-          <div className="mx-auto max-w-5xl h-[80%] mt-10 rounded-[40px] bg-gradient-to-b from-white/5 to-white/0 blur-[60px]" />
+          <div className="w-full h-96 bg-stockstrail-bg-light blur-185 opacity-40" />
         </div>
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-4">Your Gateway to Stock Market Investments</h1>
-          <p className="text-white/80 max-w-3xl mx-auto leading-relaxed">Trade, invest, and grow – all in one secure platform.</p>
+        <div className="max-w-6xl mx-auto text-center">
+          <h1 className="font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-6">
+            Your Gateway to Stock Market Trading
+          </h1>
+          <p className="text-white/80 max-w-3xl mx-auto leading-relaxed text-lg">
+            Open a Demat account and start trading stocks, mutual funds, and ETFs. Fast, secure, and completely paperless process.
+          </p>
         </div>
       </section>
 
-      {/* Overview + Benefits */}
-      <section className="relative px-4 sm:px-6 lg:px-8 pb-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-          {/* Visual */}
-          <div className="rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
-            <img src="/services/da2.png" alt="Investing" className="w-full h-[260px] sm:h-[340px] object-cover group-hover:scale-105 transition-transform duration-300" />
-          </div>
-          {/* Copy */}
-          <div>
-            <h2 className="text-white text-2xl sm:text-3xl mb-3">Overview</h2>
-            <p className="text-white/80 leading-relaxed mb-6">
-              To buy and sell stocks or mutual funds, you need a Demat & Trading account. Think of it as a secure digital locker
-              that safely stores your shares, bonds, ETFs, and mutual funds in electronic form.
-            </p>
-            <h3 className="text-white text-xl sm:text-2xl mb-2">Benefits of opening with us</h3>
-            <ul className="space-y-2 text-white/80 mb-6 list-disc pl-5">
-              <li>100% paperless process — open in minutes</li>
-              <li>Secure & reliable platform with top-notch encryption</li>
-              <li>Real-time market access for buying and selling</li>
-              <li>Competitive brokerage charges</li>
-              <li>User-friendly mobile and desktop trading apps</li>
-            </ul>
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4 sm:p-5 mb-6">
-              <p className="text-white/85">
-                Example: Invest ₹10,000 in blue-chip stocks today and track them live on your trading app — all securely held in your
-                Demat account.
+      {/* What is Demat Account */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Image */}
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
+              <img 
+                src="/services/da2.png" 
+                alt="What is Demat Account" 
+                className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            {/* Content */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold text-stockstrail-green-light mb-6">
+                What is a Demat Account?
+              </h2>
+              <p className="text-white/80 leading-relaxed mb-4">
+                A Demat account (Dematerialized Securities Account) is a digital locker that safely holds your shares, bonds, ETFs, and other securities in electronic form instead of physical certificates.
               </p>
-            </div> 
+              <p className="text-white/80 leading-relaxed mb-4">
+                When you buy or sell stocks or mutual funds, the securities are credited or debited from your Demat account. It acts as a bridge between your trading account and the stock exchange.
+              </p>
+              <p className="text-white/80 leading-relaxed">
+                Without a Demat account, you cannot buy or sell stocks on the stock market. It's a mandatory requirement for anyone looking to invest in equities, bonds, or ETFs directly.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Broker list */}
-      <section id="brokers" className="relative px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="max-w-4xl mx-auto text-center mb-6">
-          <h2 className="text-white text-3xl sm:text-4xl">Choose your preferred platform</h2>
+      {/* Why Open a Demat Account */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16 bg-stockstrail-bg-light/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold gradient-text mb-12 text-center">
+            Why Open a Demat Account?
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <div className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+              <h3 className="text-xl font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">100% Paperless Process</h3>
+              <p className="text-white/80">Open your account online in minutes without visiting a branch or submitting physical documents.</p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+              <h3 className="text-xl font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">Secure & Safe</h3>
+              <p className="text-white/80">Your securities are stored electronically with top-tier encryption and regulatory oversight by SEBI.</p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+              <h3 className="text-xl font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">Easy Trading</h3>
+              <p className="text-white/80">Buy and sell stocks instantly during market hours through your broker's mobile app or website.</p>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+              <h3 className="text-xl font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">Real-Time Updates</h3>
+              <p className="text-white/80">Track your portfolio in real-time and receive instant notifications about your holdings and trades.</p>
+            </div>
+
+            {/* Card 5 */}
+            <div className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+              <h3 className="text-xl font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">Low Charges</h3>
+              <p className="text-white/80">Competitive annual maintenance fees and brokerage charges from leading brokers in the industry.</p>
+            </div>
+
+            {/* Card 6 */}
+            <div className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+              <h3 className="text-xl font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">Access Multiple Markets</h3>
+              <p className="text-white/80">Trade equities, derivatives, mutual funds, bonds, and ETFs all through a single Demat account.</p>
+            </div>
+          </div>
         </div>
-        <div className="max-w-4xl mx-auto space-y-6">
-          {brokers.map((b) => (
-            <Row key={b.key} name={b.name} href={b.href} logoSrc={(b as any).logoSrc} highlight={Boolean((b as any).highlight)} />
-          ))}
+      </section>
+
+      {/* How Demat Account Works */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold gradient-text mb-12 text-center">
+            How Does a Demat Account Work?
+          </h2>
+
+          <div className="space-y-6">
+            {[
+              {
+                step: "1",
+                title: "Open Account",
+                desc: "Choose a broker and complete the online account opening process with KYC verification (Aadhaar, PAN)."
+              },
+              {
+                step: "2",
+                title: "Link Bank Account",
+                desc: "Link your bank account to your trading account for seamless fund transfers and dividend deposits."
+              },
+              {
+                step: "3",
+                title: "Deposit Funds",
+                desc: "Transfer money from your bank account to your trading account to start buying securities."
+              },
+              {
+                step: "4",
+                title: "Place Orders",
+                desc: "Use your broker's platform to search for stocks or mutual funds and place buy or sell orders during market hours."
+              },
+              {
+                step: "5",
+                title: "Settlement",
+                desc: "After T+1 or T+2 days, the securities are credited to your Demat account and become yours to hold or sell."
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="flex gap-6 items-start bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-lg p-5 border border-white/10 hover:border-stockstrail-green-light/30 transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 bg-stockstrail-green-light rounded-full flex items-center justify-center text-black font-bold text-lg">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold text-lg mb-2">{item.title}</h3>
+                  <p className="text-white/80">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Types of Demat Accounts */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16 bg-stockstrail-bg-light/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold gradient-text mb-12 text-center">
+            Types of Demat Accounts
+          </h2>
+
+          <div className="space-y-8">
+            {/* Standard Account */}
+            <div className="bg-stockstrail-bg-light/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-stockstrail-green-light/30 transition-all duration-300">
+              <h3 className="text-2xl font-semibold text-stockstrail-green-light mb-3">Standard Demat Account</h3>
+              <p className="text-white/80 mb-4">
+                The most common type, used for buying and holding equity shares, bonds, government securities, and mutual funds.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-white font-semibold mb-2">Features:</p>
+                  <ul className="text-white/70 space-y-1">
+                    <li>• Suitable for all individuals</li>
+                    <li>• Long-term investment focus</li>
+                    <li>• Minimal fees and charges</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-2">Best For:</p>
+                  <p className="text-white/70">Individual investors, long-term wealth creation, and beginners.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Margin/Collateral Account */}
+            <div className="bg-stockstrail-bg-light/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-stockstrail-green-light/30 transition-all duration-300">
+              <h3 className="text-2xl font-semibold text-stockstrail-green-light mb-3">Margin/Collateral Demat Account</h3>
+              <p className="text-white/80 mb-4">
+                Allows you to use your holdings as collateral to borrow funds for additional trading or investing activities.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-white font-semibold mb-2">Features:</p>
+                  <ul className="text-white/70 space-y-1">
+                    <li>• Borrow against holdings</li>
+                    <li>• Increased leverage for trading</li>
+                    <li>• Higher interest charges apply</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-2">Best For:</p>
+                  <p className="text-white/70">Active traders and investors seeking leverage opportunities.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Repatriable Account */}
+            <div className="bg-stockstrail-bg-light/30 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-stockstrail-green-light/30 transition-all duration-300">
+              <h3 className="text-2xl font-semibold text-stockstrail-green-light mb-3">Repatriable Demat Account</h3>
+              <p className="text-white/80 mb-4">
+                For NRIs (Non-Resident Indians) to invest in Indian securities and repatriate funds back to their home country.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <p className="text-white font-semibold mb-2">Features:</p>
+                  <ul className="text-white/70 space-y-1">
+                    <li>• Special compliance requirements</li>
+                    <li>• Ability to repatriate funds</li>
+                    <li>• FEMA regulations apply</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-2">Best For:</p>
+                  <p className="text-white/70">NRIs wanting to invest in Indian markets.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Choose Your Broker */}
+      <section id="brokers" className="relative px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold gradient-text mb-4">
+              Choose Your Preferred Broker
+            </h2>
+            <p className="text-white/70 text-lg max-w-2xl mx-auto">
+              Select from India's leading brokers with competitive fees, excellent trading platforms, and trusted customer support.
+            </p>
+          </div>
+
+          <div className="space-y-4 max-w-4xl mx-auto">
+            {brokers.map((b) => (
+              <Row key={b.key} name={b.name} href={b.href} logoSrc={(b as any).logoSrc} highlight={Boolean((b as any).highlight)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who Should Open Demat */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16 bg-stockstrail-bg-light/20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold gradient-text mb-12 text-center">
+            Who Should Open a Demat Account?
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              "Beginners looking to start stock market investing",
+              "Active traders buying and selling securities regularly",
+              "Long-term investors building wealth through equities",
+              "Mutual fund investors tracking and managing holdings",
+              "Individuals interested in IPOs and bond investments",
+              "Business owners diversifying their investment portfolio",
+              "Retirement planners seeking equity exposure",
+              "NRIs wanting to invest in Indian securities"
+            ].map((item, idx) => (
+              <div key={idx} className="flex gap-4 items-start bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-lg p-5 border border-white/10 hover:border-stockstrail-green-light/30 transition-all duration-300">
+                <div className="text-stockstrail-green-light text-2xl font-bold flex-shrink-0">→</div>
+                <p className="text-white/80">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Stockstrail */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold gradient-text mb-12 text-center">
+            Why Open Your Demat Account with Stockstrail?
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Expert Guidance", desc: "Our specialists help you choose the right broker based on your trading style and investment goals." },
+              { title: "Broker Comparison", desc: "We compare fees, features, and platforms to help you find the best fit for your needs." },
+              { title: "Paperless Process", desc: "Complete account opening in minutes with 100% digital documentation through our partners." },
+              { title: "24/7 Support", desc: "Get assistance with account setup, trading queries, and technical issues at any time." },
+              { title: "Transparent Information", desc: "No hidden charges. We explain everything clearly so you know exactly what you're paying for." },
+              { title: "Integrated Services", desc: "Combine your Demat account with our mutual fund and insurance services for complete financial management." }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-stockstrail-bg-light/40 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-stockstrail-green-light/30 hover:shadow-[0_0_24px_rgba(0,255,151,0.12)] transition-all duration-300 group">
+                <h3 className="text-lg font-semibold text-stockstrail-green-light mb-3 group-hover:text-white transition-colors">{item.title}</h3>
+                <p className="text-white/80 text-sm group-hover:text-white/90 transition-colors">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer CTA */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16 bg-stockstrail-bg-light/10">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-product-sans font-semibold text-white mb-4">
+            Start Your Stock Market Journey Today
+          </h2>
+          <p className="text-white/80 max-w-2xl mx-auto leading-relaxed mb-8">
+            Choose your broker from above and open your Demat account in minutes. Our team is here to guide you every step of the way.
+          </p>
+          <a href="/contact" className="inline-flex items-center gap-3 px-6 py-3 bg-transparent border-2 border-white/20 rounded-full text-white hover:border-stockstrail-green-light hover:text-stockstrail-green-light hover:bg-stockstrail-green-light/10 transition-all duration-300 font-work-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stockstrail-green-light">
+            Get Expert Guidance
+          </a>
         </div>
       </section>
     </Layout>

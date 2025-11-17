@@ -57,6 +57,7 @@ async function prerender() {
     { path: '/services/fixed-deposit', outDir: 'dist/spa/services/fixed-deposit' },
     { path: '/services/insurance', outDir: 'dist/spa/services/insurance' },
     { path: '/services/loan', outDir: 'dist/spa/services/loan' },
+    { path: '/services/others', outDir: 'dist/spa/services/others' },
     { path: '/about', outDir: 'dist/spa/about' },
     { path: '/contact', outDir: 'dist/spa/contact' },
     { path: '/lets-talk', outDir: 'dist/spa/lets-talk' },
@@ -65,6 +66,7 @@ async function prerender() {
     { path: '/blog', outDir: 'dist/spa/blog' },
     { path: '/nse-holidays', outDir: 'dist/spa/nse-holidays' },
     { path: '/bse-holidays', outDir: 'dist/spa/bse-holidays' },
+    { path: '/terms-and-conditions', outDir: 'dist/spa/terms-and-conditions' },
   ];
 
   const template = readIndexTemplate();

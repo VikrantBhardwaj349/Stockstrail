@@ -204,9 +204,9 @@ const Footer = () => {
 
         {/* Bottom Links and Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white font-montserrat text-xs leading-relaxed">
+          <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="text-white hover:text-stockstrail-green-light font-montserrat text-xs leading-relaxed transition-colors duration-300">
             Terms and Conditions & Cancellation Policy
-          </p>
+          </a>
           <p className="text-white font-montserrat text-xs leading-relaxed">
             © 2025 Stockstrail. All Rights Reserved.
           </p>

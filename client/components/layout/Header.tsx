@@ -92,11 +92,24 @@ const Header = () => {
   { name: "Fixed Deposit", href: "/services#fd" },
   { name: "Insurance", href: "/services#insurance" },
   { name: "Loan", href: "/services#loan" },
-  { name: "Others", href: "/services#demat" },
+  { name: "Open Demat", href: "/services#demat" },
+  { name: "Other Services", href: "/services#others" },
       ]
     },
     { name: "Blog", href: "/blog" },
-    { name: "Calculators", href: "/calculators" },
+    {
+      name: "Calculators",
+      href: "/calculators",
+      hasDropdown: true,
+      dropdownItems: [
+        { name: "SIP Calculator", href: "/calculators?tab=SIP" },
+        { name: "Lumpsum Calculator", href: "/calculators?tab=LUMPSUM" },
+        { name: "FD Calculator", href: "/calculators?tab=FD" },
+        { name: "RD Calculator", href: "/calculators?tab=RD" },
+        { name: "EMI Calculator", href: "/calculators?tab=EMI" },
+        { name: "Tax Calculator", href: "/calculators?tab=TAX" },
+      ]
+    },
     {
       name: "Others",
       href: "#",
@@ -104,7 +117,6 @@ const Header = () => {
       dropdownItems: [
         { name: "About Us", href: "/about" },
         { name: "Contact Us", href: "/contact" },
-        { name: "Open Demat", href: "/open-demat" },
       ],
     },
   ];

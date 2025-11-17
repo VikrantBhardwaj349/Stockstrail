@@ -226,6 +226,24 @@ const Services = () => {
             imageAlt="Demat Account"
           />
 
+          <SectionBlock
+            id="others"
+            title="Complete Financial Protection | OTHER SERVICES"
+            description="Beyond core investments, Stockstrail offers comprehensive additional financial services including Motor Insurance, Travel Insurance, Demat accounts, ULIPs, and Guaranteed Plans. Each service is designed to provide complete protection and convenience at every stage of life."
+            benefits={[
+              'Motor Insurance for comprehensive vehicle protection',
+              'Travel Insurance for domestic and international coverage',
+              'Demat accounts for stock market participation',
+              'ULIPs combining investment and life insurance',
+              'Guaranteed Plans for risk-free, assured returns',
+              'Professional guidance and transparent recommendations',
+            ]}
+            cta="EXPLORE OTHER SERVICES"
+            ctaLink="/services/others"
+            imageSrc="/services/others.png"
+            imageAlt="Other Services"
+          />
+
           <section className="mt-20 overflow-hidden">
             <h3 className="text-center font-product-sans text-5xl sm:text-6xl font-normal uppercase gradient-text mb-8">OUR PARTNERS</h3>
             <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden">
