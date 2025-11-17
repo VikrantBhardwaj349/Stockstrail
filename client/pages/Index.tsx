@@ -200,7 +200,7 @@ const ServicesSection = () => {
     if (title.includes("FIXED DEPOSIT")) return "/services/fixed-deposit";
     if (title.includes("INSURANCE")) return "/services/insurance";
     if (title.includes("LOAN")) return "/services/loan";
-    if (title.includes("OTHERS")) return "/open-demat";
+    if (title.includes("OTHERS")) return "/services/others";
     return "/services";
   };
 
