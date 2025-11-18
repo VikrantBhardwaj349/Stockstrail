@@ -51,11 +51,14 @@ const Row = ({ name, href, logoSrc, highlight = false }: { name: string; href: s
   >
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4 sm:gap-6">
-        <div className="h-12 sm:h-16 w-36 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden group-hover:bg-white/10 group-hover:border-stockstrail-green-light/30 transition-all duration-300">
+            <div className="h-12 sm:h-16 w-36 sm:w-60 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden group-hover:bg-white/10 group-hover:border-stockstrail-green-light/30 transition-all duration-300">
           {logoSrc ? (
             <img
               src={logoSrc}
               alt={`${name} logo`}
+              loading="lazy"
+              width={180}
+              height={48}
               className="h-full w-auto max-w-full object-contain px-1 sm:px-2 group-hover:scale-105 transition-transform duration-300"
             />
           ) : null}
@@ -114,10 +117,13 @@ const OpenDemat = () => {
             {/* Image */}
             <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
               <img 
-                src="/services/da2.png" 
-                alt="What is Demat Account" 
-                className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              />
+                    src="/services/da2.webp" 
+                    alt="What is Demat Account" 
+                    loading="lazy"
+                    width={720}
+                    height={420}
+                    className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                  />
             </div>
 
             {/* Content */}

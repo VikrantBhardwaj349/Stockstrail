@@ -33,10 +33,13 @@ const MutualFunds = () => {
             {/* Image */}
             <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
               <img 
-                src="/services/mf2.png" 
-                alt="What is Mutual Fund" 
-                className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-              />
+                  src="/services/mf2.webp" 
+                  alt="What is Mutual Fund" 
+                  loading="lazy"
+                  width={720}
+                  height={420}
+                  className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
+                />
             </div>
 
             {/* Content */}

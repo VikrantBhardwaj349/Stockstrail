@@ -27,8 +27,8 @@ const SectionBlock = ({
     <div id={id} className="grid grid-cols-1 gap-10 items-start group">
       {/* Image on top */}
       <div className="justify-self-center">
-        <div className="w-full max-w-[420px] h-[200px] sm:h-[250px] md:h-[300px] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group-hover:border-stockstrail-green-light group-hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
-          <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div className="w-full max-w-[420px] h-[200px] sm:h-[250px] md:h-[300px] rounded-xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group-hover:border-stockstrail-green-light group-hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
+          <img src={imageSrc} alt={imageAlt} loading="lazy" width={420} height={300} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         </div>
       </div>
 
@@ -154,7 +154,7 @@ const Services = () => {
             ]}
             cta="APPLY MUTUAL FUNDS"
             ctaLink="/services/mutual-funds"
-            imageSrc="/services/mf.jpg"
+            imageSrc="/services/mf.webp"
             imageAlt="Mutual Funds"
           />
 
@@ -171,7 +171,7 @@ const Services = () => {
             ]}
             cta="APPLY FIXED DEPOSIT"
             ctaLink="/services/fixed-deposit"
-            imageSrc="/services/fd.jpg"
+            imageSrc="/services/fd.webp"
             imageAlt="Fixed Deposit"
           />
 
@@ -188,7 +188,7 @@ const Services = () => {
             ]}
             cta="APPLY INSURANCE"
             ctaLink="/services/insurance"
-            imageSrc="/services/insurance.jpg"
+            imageSrc="/services/insurance.webp"
             imageAlt="Insurance"
           />
 
@@ -204,7 +204,7 @@ const Services = () => {
             ]}
             cta="APPLY LOAN"
             ctaLink="/services/loan"
-            imageSrc="/services/loan.jpg"
+            imageSrc="/services/loan.webp"
             imageAlt="Loan Services"
           />
 
@@ -222,7 +222,7 @@ const Services = () => {
             ]}
             cta="OPEN DEMAT ACCOUNT"
             ctaLink="/open-demat"
-            imageSrc="/services/da.png"
+            imageSrc="/services/da.webp"
             imageAlt="Demat Account"
           />
 
@@ -240,7 +240,7 @@ const Services = () => {
             ]}
             cta="EXPLORE OTHER SERVICES"
             ctaLink="/services/others"
-            imageSrc="/services/others.png"
+            imageSrc="/services/others.webp"
             imageAlt="Other Services"
           />
 
@@ -249,61 +249,61 @@ const Services = () => {
             <div className="w-full bg-[#0F2A2A] border-y border-[#1A3A3A] overflow-hidden">
               <div className="partners-track animate-scroll">
                 {[
-                  { name: "AngelOne", logo: "/logos/angelone.png" },
-                  { name: "Alice Blue", logo: "/logos/aliceblue.png" },
-                  { name: "AssetPlus", logo: "/logos/assetplus.png" },
-                  { name: "Axis", logo: "/logos/axis.png" },
-                  { name: "Bandhan", logo: "/logos/bandhan.png" },
-                  { name: "DSP", logo: "/logos/dsp.png" },
-                  { name: "Edelweiss", logo: "/logos/edelweis.png" },
-                  { name: "Franklin", logo: "/logos/franklin.png" },
-                  { name: "Groww", logo: "/logos/groww.png" },
-                  { name: "HDFC", logo: "/logos/hdfc.png" },
-                  { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
-                  { name: "ICICI", logo: "/logos/icici.png" },
-                  { name: "ITI", logo: "/logos/iti.png" },
-                  { name: "Kotak", logo: "/logos/kotak.png" },
-                  { name: "LIC", logo: "/logos/lic.jpeg" },
-                  { name: "Mirae", logo: "/logos/mirae.png" },
-                  { name: "Motilal", logo: "/logos/motilal.png" },
-                  { name: "Nippon", logo: "/logos/nippon.png" },
-                  { name: "PB Partners", logo: "/logos/pbpartners.png" },
-                  { name: "PGIM", logo: "/logos/pgim.jpeg" },
-                  { name: "PPFAS", logo: "/logos/ppfas.png" },
-                  { name: "Quant", logo: "/logos/quant.png" },
-                  { name: "Quantum", logo: "/logos/quantum.png" },
-                  { name: "SBI", logo: "/logos/sbi.png" },
-                  { name: "Shriram", logo: "/logos/shriram.png" },
-                  { name: "Tata", logo: "/logos/tata.png" },
-                  { name: "Zerodha", logo: "/logos/zerodha.png" },
+                  { name: "AngelOne", logo: "/logos/angelone.webp" },
+                  { name: "Alice Blue", logo: "/logos/aliceblue.webp" },
+                  { name: "AssetPlus", logo: "/logos/assetplus.webp" },
+                  { name: "Axis", logo: "/logos/axis.webp" },
+                  { name: "Bandhan", logo: "/logos/bandhan.webp" },
+                  { name: "DSP", logo: "/logos/dsp.webp" },
+                  { name: "Edelweiss", logo: "/logos/edelweis.webp" },
+                  { name: "Franklin", logo: "/logos/franklin.webp" },
+                  { name: "Groww", logo: "/logos/groww.webp" },
+                  { name: "HDFC", logo: "/logos/hdfc.webp" },
+                  { name: "HDFC SKY", logo: "/logos/hdfcsky.webp" },
+                  { name: "ICICI", logo: "/logos/icici.webp" },
+                  { name: "ITI", logo: "/logos/iti.webp" },
+                  { name: "Kotak", logo: "/logos/kotak.webp" },
+                  { name: "LIC", logo: "/logos/lic.webp" },
+                  { name: "Mirae", logo: "/logos/mirae.webp" },
+                  { name: "Motilal", logo: "/logos/motilal.webp" },
+                  { name: "Nippon", logo: "/logos/nippon.webp" },
+                  { name: "PB Partners", logo: "/logos/pbpartners.webp" },
+                  { name: "PGIM", logo: "/logos/pgim.webp" },
+                  { name: "PPFAS", logo: "/logos/ppfas.webp" },
+                  { name: "Quant", logo: "/logos/quant.webp" },
+                  { name: "Quantum", logo: "/logos/quantum.webp" },
+                  { name: "SBI", logo: "/logos/sbi.webp" },
+                  { name: "Shriram", logo: "/logos/shriram.webp" },
+                  { name: "Tata", logo: "/logos/tata.webp" },
+                  { name: "Zerodha", logo: "/logos/zerodha.webp" },
                 ].concat([
-                  { name: "AngelOne", logo: "/logos/angelone.png" },
-                  { name: "Alice Blue", logo: "/logos/aliceblue.png" },
-                  { name: "AssetPlus", logo: "/logos/assetplus.png" },
-                  { name: "Axis", logo: "/logos/axis.png" },
-                  { name: "Bandhan", logo: "/logos/bandhan.png" },
-                  { name: "DSP", logo: "/logos/dsp.png" },
-                  { name: "Edelweiss", logo: "/logos/edelweis.png" },
-                  { name: "Franklin", logo: "/logos/franklin.png" },
-                  { name: "Groww", logo: "/logos/groww.png" },
-                  { name: "HDFC", logo: "/logos/hdfc.png" },
-                  { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
-                  { name: "ICICI", logo: "/logos/icici.png" },
-                  { name: "ITI", logo: "/logos/iti.png" },
-                  { name: "Kotak", logo: "/logos/kotak.png" },
-                  { name: "LIC", logo: "/logos/lic.jpeg" },
-                  { name: "Mirae", logo: "/logos/mirae.png" },
-                  { name: "Motilal", logo: "/logos/motilal.png" },
-                  { name: "Nippon", logo: "/logos/nippon.png" },
-                  { name: "PB Partners", logo: "/logos/pbpartners.png" },
-                  { name: "PGIM", logo: "/logos/pgim.jpeg" },
-                  { name: "PPFAS", logo: "/logos/ppfas.png" },
-                  { name: "Quant", logo: "/logos/quant.png" },
-                  { name: "Quantum", logo: "/logos/quantum.png" },
-                  { name: "SBI", logo: "/logos/sbi.png" },
-                  { name: "Shriram", logo: "/logos/shriram.png" },
-                  { name: "Tata", logo: "/logos/tata.png" },
-                  { name: "Zerodha", logo: "/logos/zerodha.png" },
+                  { name: "AngelOne", logo: "/logos/angelone.webp" },
+                  { name: "Alice Blue", logo: "/logos/aliceblue.webp" },
+                  { name: "AssetPlus", logo: "/logos/assetplus.webp" },
+                  { name: "Axis", logo: "/logos/axis.webp" },
+                  { name: "Bandhan", logo: "/logos/bandhan.webp" },
+                  { name: "DSP", logo: "/logos/dsp.webp" },
+                  { name: "Edelweiss", logo: "/logos/edelweis.webp" },
+                  { name: "Franklin", logo: "/logos/franklin.webp" },
+                  { name: "Groww", logo: "/logos/groww.webp" },
+                  { name: "HDFC", logo: "/logos/hdfc.webp" },
+                  { name: "HDFC SKY", logo: "/logos/hdfcsky.webp" },
+                  { name: "ICICI", logo: "/logos/icici.webp" },
+                  { name: "ITI", logo: "/logos/iti.webp" },
+                  { name: "Kotak", logo: "/logos/kotak.webp" },
+                  { name: "LIC", logo: "/logos/lic.webp" },
+                  { name: "Mirae", logo: "/logos/mirae.webp" },
+                  { name: "Motilal", logo: "/logos/motilal.webp" },
+                  { name: "Nippon", logo: "/logos/nippon.webp" },
+                  { name: "PB Partners", logo: "/logos/pbpartners.webp" },
+                  { name: "PGIM", logo: "/logos/pgim.webp" },
+                  { name: "PPFAS", logo: "/logos/ppfas.webp" },
+                  { name: "Quant", logo: "/logos/quant.webp" },
+                  { name: "Quantum", logo: "/logos/quantum.webp" },
+                  { name: "SBI", logo: "/logos/sbi.webp" },
+                  { name: "Shriram", logo: "/logos/shriram.webp" },
+                  { name: "Tata", logo: "/logos/tata.webp" },
+                  { name: "Zerodha", logo: "/logos/zerodha.webp" },
                 ]).map((partner, i) => (
                   <div key={`partner-${i}`} className="flex items-center justify-center px-4 sm:px-6 py-4 sm:py-4 min-w-[120px] sm:min-w-[200px] group">
                     <img

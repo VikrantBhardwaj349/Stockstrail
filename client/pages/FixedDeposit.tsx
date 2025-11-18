@@ -33,8 +33,11 @@ const FixedDeposit = () => {
             {/* Image */}
             <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-white/5 group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.2)] transition-all duration-300">
               <img 
-                src="/services/fd2.png" 
+                src="/services/fd2.webp" 
                 alt="What is Fixed Deposit" 
+                width={720}
+                height={420}
+                loading="lazy"
                 className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300"
               />
             </div>

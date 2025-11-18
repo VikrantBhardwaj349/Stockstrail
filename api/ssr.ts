@@ -70,8 +70,8 @@ app.get('*', async (req, res) => {
     if (STATIC_PATHS.has(req.path)) {
       return res.status(404).end();
     }
-    const indexHtml = readIndexHtml();
-    const { html: reactHtml, helmet } = render(req.url);
+  const indexHtml = readIndexHtml();
+  const { html: reactHtml, helmet } = await render(req.url);
     const full = injectSSR(indexHtml, reactHtml, helmet);
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.status(200).send(full);

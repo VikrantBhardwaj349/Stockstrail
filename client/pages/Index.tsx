@@ -12,6 +12,8 @@ const HeroLogo = () => (
       alt="Stockstrail Logo"
       className="w-32 h-32 sm:w-52 sm:h-52 group-hover:scale-110 transition-transform duration-500 object-contain"
       loading="eager"
+      width={208}
+      height={208}
     />
   </div>
 );
@@ -88,33 +90,33 @@ const HeroSection = () => {
 // Partner Logos Section
 const PartnerLogosSection = () => {
   const partners = [
-    { name: "AngelOne", logo: "/logos/angelone.png" },
-    { name: "Alice Blue", logo: "/logos/aliceblue.png" },
-    { name: "AssetPlus", logo: "/logos/assetplus.png" },
-    { name: "Axis", logo: "/logos/axis.png" },
-    { name: "Bandhan", logo: "/logos/bandhan.png" },
-    { name: "DSP", logo: "/logos/dsp.png" },
-    { name: "Edelweiss", logo: "/logos/edelweis.png" },
-    { name: "Franklin", logo: "/logos/franklin.png" },
-    { name: "Groww", logo: "/logos/groww.png" },
-    { name: "HDFC", logo: "/logos/hdfc.png" },
-    { name: "HDFC SKY", logo: "/logos/hdfcsky.png" },
-    { name: "ICICI", logo: "/logos/icici.png" },
-    { name: "ITI", logo: "/logos/iti.png" },
-    { name: "Kotak", logo: "/logos/kotak.png" },
-    { name: "LIC", logo: "/logos/lic.jpeg" },
-    { name: "Mirae", logo: "/logos/mirae.png" },
-    { name: "Motilal", logo: "/logos/motilal.png" },
-    { name: "Nippon", logo: "/logos/nippon.png" },
-    { name: "PB Partners", logo: "/logos/pbpartners.png" },
-    { name: "PGIM", logo: "/logos/pgim.jpeg" },
-    { name: "PPFAS", logo: "/logos/ppfas.png" },
-    { name: "Quant", logo: "/logos/quant.png" },
-    { name: "Quantum", logo: "/logos/quantum.png" },
-    { name: "SBI", logo: "/logos/sbi.png" },
-    { name: "Shriram", logo: "/logos/shriram.png" },
-    { name: "Tata", logo: "/logos/tata.png" },
-    { name: "Zerodha", logo: "/logos/zerodha.png" },
+    { name: "AngelOne", logo: "/logos/angelone.webp" },
+    { name: "Alice Blue", logo: "/logos/aliceblue.webp" },
+    { name: "AssetPlus", logo: "/logos/assetplus.webp" },
+    { name: "Axis", logo: "/logos/axis.webp" },
+    { name: "Bandhan", logo: "/logos/bandhan.webp" },
+    { name: "DSP", logo: "/logos/dsp.webp" },
+    { name: "Edelweiss", logo: "/logos/edelweis.webp" },
+    { name: "Franklin", logo: "/logos/franklin.webp" },
+    { name: "Groww", logo: "/logos/groww.webp" },
+    { name: "HDFC", logo: "/logos/hdfc.webp" },
+    { name: "HDFC SKY", logo: "/logos/hdfcsky.webp" },
+    { name: "ICICI", logo: "/logos/icici.webp" },
+    { name: "ITI", logo: "/logos/iti.webp" },
+    { name: "Kotak", logo: "/logos/kotak.webp" },
+    { name: "LIC", logo: "/logos/lic.webp" },
+    { name: "Mirae", logo: "/logos/mirae.webp" },
+    { name: "Motilal", logo: "/logos/motilal.webp" },
+    { name: "Nippon", logo: "/logos/nippon.webp" },
+    { name: "PB Partners", logo: "/logos/pbpartners.webp" },
+    { name: "PGIM", logo: "/logos/pgim.webp" },
+    { name: "PPFAS", logo: "/logos/ppfas.webp" },
+    { name: "Quant", logo: "/logos/quant.webp" },
+    { name: "Quantum", logo: "/logos/quantum.webp" },
+    { name: "SBI", logo: "/logos/sbi.webp" },
+    { name: "Shriram", logo: "/logos/shriram.webp" },
+    { name: "Tata", logo: "/logos/tata.webp" },
+    { name: "Zerodha", logo: "/logos/zerodha.webp" },
   ];
 
   return (
@@ -162,35 +164,35 @@ const ServicesSection = () => {
       title: "MUTUAL FUNDS",
       description:
         "Our expertly managed funds offer a convenient way to grow your wealth over time, with the potential for long-term returns and minimal risk.",
-      icon: "/piggybank.png", // ✅ Correct path (no /public)
+      icon: "/piggybank.webp", // ✅ Correct path (no /public)
       isImage: true,
     },
     {
       title: "FIXED DEPOSIT",
       description:
         "Secure your savings with guaranteed returns through our fixed deposit schemes, offering competitive interest rates and flexible tenure options.",
-        icon: "/fd.png", // ✅ Correct path (no /public)
+        icon: "/fd.webp", // ✅ Correct path (no /public)
         isImage: true,
     },
     {
       title: "INSURANCE",
       description:
         "Protect yourself and your loved ones from life's uncertainties with our comprehensive insurance plans.",
-        icon: "/insurance.png", // ✅ Correct path (no /public)
+        icon: "/insurance.webp", // ✅ Correct path (no /public)
         isImage: true,
     },
     {
       title: "LOAN",
       description:
         "Get quick approval for personal, home, and business loans with competitive interest rates and flexible repayment terms.",
-        icon: "/loan.png", // ✅ Correct path (no /public)
+        icon: "/loan.webp", // ✅ Correct path (no /public)
         isImage: true,
     },
     {
       title: "OTHERS",
       description:
         "In addition to our core financial services, we also offer a range of other solutions to support your financial well-being.",
-        icon: "/others.png", // ✅ Correct path (no /public)
+        icon: "/others.webp", // ✅ Correct path (no /public)
         isImage: true,
     },
   ];

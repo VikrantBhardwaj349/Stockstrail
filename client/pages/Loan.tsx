@@ -66,7 +66,7 @@ const Loan = () => {
           </div>
 
           <aside className="rounded-2xl p-6 bg-stockstrail-bg-light/40 border border-white/10">
-            <img src="/services/loan2.png" alt="Loan overview" loading="lazy" className="w-full h-36 sm:h-44 md:h-56 object-contain rounded-lg mb-4 bg-white/5" />
+            <img src="/services/loan2.webp" alt="Loan overview" loading="lazy" width={480} height={320} className="w-full h-36 sm:h-44 md:h-56 object-contain rounded-lg mb-4 bg-white/5" />
             <h4 className="text-white font-semibold mb-3">Quick Example</h4>
             <p className="text-white/80 mb-2">A ₹50 lakh mutual fund portfolio can secure a LAMF of up to ₹25–30 lakh at ~7–8% interest — while your investments continue to grow.</p>
             <a href="/contact" aria-label="Get personalised loan advice" className="mt-3 inline-block text-stockstrail-green-light underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stockstrail-green-light">Get personalised loan advice</a>
@@ -83,7 +83,7 @@ const Loan = () => {
               <div className="h-full flex items-center justify-center w-full">
                 <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-white/5 w-full max-w-md mx-auto group hover:border-stockstrail-green-light hover:shadow-[0_0_30px_rgba(0,255,151,0.12)] transition-all duration-300">
                   <img
-                    src="/services/loan4.png"
+                    src="/services/loan4.webp"
                     alt="Loan Against Mutual Funds"
                     loading="lazy"
                     className="w-full max-h-[240px] sm:max-h-[320px] md:max-h-[420px] object-contain group-hover:scale-105 transition-transform duration-300 bg-white/5"
@@ -188,7 +188,7 @@ const Loan = () => {
           <div className="flex items-center justify-center">
             <div className="h-full flex items-center justify-center w-full">
               <div className="rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-white/5 w-full max-w-md mx-auto">
-                <img src="/services/loan3.png" alt="Business and Home Loans" loading="lazy" className="w-full max-h-[240px] sm:max-h-[320px] md:max-h-[420px] object-contain" />
+                <img src="/services/loan3.webp" alt="Business and Home Loans" loading="lazy" width={520} height={360} className="w-full max-h-[240px] sm:max-h-[320px] md:max-h-[420px] object-contain" />
               </div>
             </div>
           </div>
