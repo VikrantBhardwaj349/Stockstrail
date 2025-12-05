@@ -1,19 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  output: "standalone",
   typescript: {
     ignoreBuildErrors: false, // Enforce type checking
   },
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '**', // Allow all external images
+        protocol: "https",
+        hostname: "**", // Allow all external images
       },
       {
-        protocol: 'http',
-        hostname: '**',
+        protocol: "http",
+        hostname: "**",
       },
     ],
   },
